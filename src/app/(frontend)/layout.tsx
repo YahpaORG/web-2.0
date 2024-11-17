@@ -2,9 +2,11 @@ import { ThemeProvider } from '@/providers/ThemeProvider'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { Toaster } from '@/components/ui/toaster'
 
 import { cn } from '@/lib/utils'
-import { ThemeDropdown } from '@/components/ThemeDropdown'
+import { Header } from '@/components/Header'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,12 +30,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div>
-            <ThemeDropdown />
-          </div>
+          <Header />
           <div className="flex flex-1">
             <main className="flex-1">{children}</main>
           </div>
+
+          <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
