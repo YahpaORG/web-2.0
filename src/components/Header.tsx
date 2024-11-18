@@ -1,9 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 import { ThemeDropdown } from './ThemeDropdown'
+import { Button } from '@/components/ui/button'
+import { useAuth } from '@/providers/AuthProvider'
 
 export function Header() {
+  const { user, logout } = useAuth()
   return (
-    <header className="flex justify-between items-center mx-6 my-4">
+    <header className="flex justify-between items-center mx-6 mt-4 mb-12">
       <div className="flex flex-col justify-center flex-1">
         <span className="font-semibold text-2xl">
           <Link href="/">YAHPA</Link>
@@ -25,7 +30,16 @@ export function Header() {
         </ul>
       </nav>
       <div className="flex flex-1 justify-end">
-        <ul>
+        <ul className="flex flex-row items-center gap-4">
+          <li>
+            {user ? (
+              <Button onClick={logout}>Logout</Button>
+            ) : (
+              <Button asChild>
+                <Link href="/login">Join YAHPA</Link>
+              </Button>
+            )}
+          </li>
           <li>
             <ThemeDropdown />
           </li>

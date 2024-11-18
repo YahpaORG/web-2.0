@@ -19,7 +19,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -66,11 +65,28 @@ export function ContactForm() {
   })
 
   async function onSubmit(values: FormValues) {
-    console.log('emailForm values', values)
-    toast({
-      title: 'Your email as been sent!',
-      description: new Date().toUTCString(),
-    })
+    try {
+      const req = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/contact-forms`, {
+        body: JSON.stringify({
+          ...values,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      })
+
+      const res = await req.json()
+
+      if (res) {
+        toast({
+          title: 'Your email as been sent!',
+          description: new Date().toUTCString(),
+        })
+      }
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (

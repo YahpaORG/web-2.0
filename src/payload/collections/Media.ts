@@ -1,7 +1,9 @@
 import type { CollectionConfig } from 'payload'
+import { admins } from '@/payload/access/admins'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  admin: {},
   access: {
     read: () => true,
   },
