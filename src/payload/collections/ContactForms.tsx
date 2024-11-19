@@ -1,6 +1,8 @@
 import type { CollectionConfig } from 'payload'
 import { admins } from '@/payload/access/admins'
-import { anyone } from '../access/anyone'
+import { anyone } from '@/payload/access/anyone'
+import { render } from '@react-email/render'
+import MyTemplate from '../emails/MyTemplate'
 
 export const ContactForms: CollectionConfig = {
   labels: {
@@ -19,9 +21,10 @@ export const ContactForms: CollectionConfig = {
       async ({ doc, operation, req }) => {
         if (operation === 'create') {
           console.log('sendEmail', doc)
+          const html = await render(<MyTemplate />)
           req.payload.sendEmail({
             from: 'website@yahpa.org',
-            html: `<p>${doc.name ? `Hi ${doc.name}!` : 'Hi!'} We'll be in touch soon...</p>`,
+            html,
             subject: 'Hello from YAHPA (testing)',
             to: doc.email,
           })

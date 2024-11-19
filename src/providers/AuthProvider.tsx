@@ -1,6 +1,7 @@
 'use client'
 
 import type { User } from '@/payload/payload-types'
+import { useRouter } from 'next/navigation'
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
 type AuthContext = {
@@ -28,6 +29,7 @@ export const useAuth = () => useContext(AuthContext)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>()
+  const router = useRouter()
 
   const rest = async (
     url: string,
@@ -76,6 +78,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = async () => {
     await rest(`${process.env.NEXT_PUBLIC_CMS_URL}/api/users/logout`)
     setUser(null)
+    router.push('/')
     return
   }
 

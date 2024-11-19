@@ -8,24 +8,24 @@
 
 export interface Config {
   auth: {
-    members: MemberAuthOperations;
+    users: UserAuthOperations;
     admins: AdminAuthOperations;
   };
   collections: {
-    members: Member;
+    users: User;
     media: Media;
-    admins: Admin;
     'contact-forms': ContactForm;
+    admins: Admin;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
-    members: MembersSelect<false> | MembersSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    admins: AdminsSelect<false> | AdminsSelect<true>;
     'contact-forms': ContactFormsSelect<false> | ContactFormsSelect<true>;
+    admins: AdminsSelect<false> | AdminsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -37,8 +37,8 @@ export interface Config {
   globalsSelect: {};
   locale: null;
   user:
-    | (Member & {
-        collection: 'members';
+    | (User & {
+        collection: 'users';
       })
     | (Admin & {
         collection: 'admins';
@@ -48,7 +48,7 @@ export interface Config {
     workflows?: unknown;
   };
 }
-export interface MemberAuthOperations {
+export interface UserAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -86,9 +86,9 @@ export interface AdminAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "members".
+ * via the `definition` "users".
  */
-export interface Member {
+export interface User {
   id: string;
   updatedAt: string;
   createdAt: string;
@@ -97,6 +97,8 @@ export interface Member {
   resetPasswordExpiration?: string | null;
   salt?: string | null;
   hash?: string | null;
+  _verified?: boolean | null;
+  _verificationToken?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
@@ -122,6 +124,19 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-forms".
+ */
+export interface ContactForm {
+  id: string;
+  name: string;
+  email: string;
+  reason: string;
+  message: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "admins".
  */
 export interface Admin {
@@ -139,45 +154,32 @@ export interface Admin {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contact-forms".
- */
-export interface ContactForm {
-  id: string;
-  name: string;
-  email: string;
-  reason: string;
-  message: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'members';
-        value: string | Member;
+        relationTo: 'users';
+        value: string | User;
       } | null)
     | ({
         relationTo: 'media';
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'admins';
-        value: string | Admin;
-      } | null)
-    | ({
         relationTo: 'contact-forms';
         value: string | ContactForm;
+      } | null)
+    | ({
+        relationTo: 'admins';
+        value: string | Admin;
       } | null);
   globalSlug?: string | null;
   user:
     | {
-        relationTo: 'members';
-        value: string | Member;
+        relationTo: 'users';
+        value: string | User;
       }
     | {
         relationTo: 'admins';
@@ -194,8 +196,8 @@ export interface PayloadPreference {
   id: string;
   user:
     | {
-        relationTo: 'members';
-        value: string | Member;
+        relationTo: 'users';
+        value: string | User;
       }
     | {
         relationTo: 'admins';
@@ -227,9 +229,9 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "members_select".
+ * via the `definition` "users_select".
  */
-export interface MembersSelect<T extends boolean = true> {
+export interface UsersSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -237,6 +239,8 @@ export interface MembersSelect<T extends boolean = true> {
   resetPasswordExpiration?: T;
   salt?: T;
   hash?: T;
+  _verified?: T;
+  _verificationToken?: T;
   loginAttempts?: T;
   lockUntil?: T;
 }
@@ -260,6 +264,18 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-forms_select".
+ */
+export interface ContactFormsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  reason?: T;
+  message?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "admins_select".
  */
 export interface AdminsSelect<T extends boolean = true> {
@@ -272,18 +288,6 @@ export interface AdminsSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contact-forms_select".
- */
-export interface ContactFormsSelect<T extends boolean = true> {
-  name?: T;
-  email?: T;
-  reason?: T;
-  message?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,15 +1,15 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { resendAdapter } from '@payloadcms/email-resend'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
 import sharp from 'sharp'
-import { resendAdapter } from '@payloadcms/email-resend'
-import { Members } from './collections/Members'
-import { Media } from './collections/Media'
-import { Admins } from './collections/Admins'
+import { fileURLToPath } from 'url'
 import { ContactForms } from './collections/ContactForms'
+import { Media } from './collections/Media'
+import { Users } from './collections/Users'
+import {Admins} from "./collections/Admins"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,7 +26,7 @@ export default buildConfig({
     defaultFromName: 'YAHPA - Web (testing)',
     apiKey: process.env.RESEND_API_KEY || '',
   }),
-  collections: [Members, Media, Admins, ContactForms],
+  collections: [Users, Media, ContactForms,Admins],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

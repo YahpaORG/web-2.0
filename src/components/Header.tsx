@@ -8,15 +8,15 @@ import { useAuth } from '@/providers/AuthProvider'
 export function Header() {
   const { user, logout } = useAuth()
   return (
-    <header className="flex justify-between items-center mx-6 mt-4 mb-12">
+    <header className="flex items-center justify-between mx-6 mt-4 mb-12">
       <div className="flex flex-col justify-center flex-1">
-        <span className="font-semibold text-2xl">
+        <span className="text-2xl font-semibold">
           <Link href="/">YAHPA</Link>
         </span>
         <span className="text-sm">Young Asian Health Professional Association</span>
       </div>
 
-      <nav className="flex flex-1 justify-center">
+      <nav className="flex justify-center flex-1">
         <ul className="flex flex-row items-center gap-4">
           <li>
             <Link href="/registry">Registry</Link>
@@ -29,17 +29,25 @@ export function Header() {
           </li>
         </ul>
       </nav>
-      <div className="flex flex-1 justify-end">
+      <div className="flex justify-end flex-1">
         <ul className="flex flex-row items-center gap-4">
-          <li>
-            {user ? (
-              <Button onClick={logout}>Logout</Button>
-            ) : (
+          {user ? (
+            <>
+              <li>
+                <Link href="/account">My Account</Link>
+              </li>
+              <li>
+                <Button onClick={logout}>Logout</Button>
+              </li>
+            </>
+          ) : (
+            <li>
               <Button asChild>
                 <Link href="/login">Join YAHPA</Link>
               </Button>
-            )}
-          </li>
+            </li>
+          )}
+
           <li>
             <ThemeDropdown />
           </li>

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { admins } from '@/payload/access/admins'
 
 export const Admins: CollectionConfig = {
   slug: 'admins',
@@ -7,7 +8,10 @@ export const Admins: CollectionConfig = {
   },
   auth: true,
   access: {
-    create: () => true,
+    read: admins,
+    create: admins,
+    update: admins,
+    delete: admins,
   },
   fields: [
     // Email added by default

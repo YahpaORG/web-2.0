@@ -24,20 +24,19 @@ type FormValues = z.infer<typeof formSchema>
 
 const formSchema = z
   .object({
-    first_name: z.string({ required_error: 'Please enter your first name.' }).max(50),
-    last_name: z.string({ required_error: 'Please enter your last name.' }).max(50),
+    first_name: z.string().min(1, { message: 'Please enter your first name.' }),
+    last_name: z.string().min(1, { message: 'Please enter your last name.' }),
     email: z
-      .string({
-        required_error: 'You need to provide a valid email to create your account.',
-      })
+      .string()
+      .min(1, { message: 'You need to provide a valid email to create your account.' })
       .email('This is not a valid email.'),
     password: z
-      .string({
-        required_error: 'You need to provide a strong password to create your account.',
-      })
-      .min(8),
-    confirm_password: z.string({ required_error: 'This field must match your password.' }).min(8),
-    agreeToTerms: z.boolean(),
+      .string()
+      .min(8, { message: 'You need to provide a strong password to create your account.' }),
+    confirm_password: z.string().min(8, { message: 'This field must match your password.' }),
+    agreeToTerms: z.literal<boolean>(true, {
+      message: 'You must agree to the general terms and conditions',
+    }),
   })
   .refine((data) => data.password === data.confirm_password, {
     message: "Your passwords don't match",
@@ -50,20 +49,31 @@ export function SignUpForm() {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+      confirm_password: '',
+      first_name: '',
+      last_name: '',
+      agreeToTerms: false,
+    },
   })
 
   async function onSubmit(values: FormValues) {
-    console.log('values', values)
-    await signup({
+    const user = await signup({
       email: values.email,
       password: values.password,
       firstName: values.first_name,
       lastName: values.last_name,
     })
-    toast({
-      title: 'Your account as been created!',
-      description: new Date().toUTCString(),
-    })
+
+    if (user) {
+      toast({
+        title: 'Your account as been created!',
+        description: new Date().toUTCString(),
+      })
+      form.reset()
+    }
   }
 
   return (
@@ -149,7 +159,7 @@ export function SignUpForm() {
           control={form.control}
           name="agreeToTerms"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+            <FormItem className="flex flex-row items-start p-4 space-x-3 space-y-0 border rounded-md">
               <FormControl>
                 <Checkbox checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
@@ -168,6 +178,7 @@ export function SignUpForm() {
                   Please read the terms and conditions to better understand our platform and its
                   intended use.
                 </FormDescription>
+                <FormMessage />
               </div>
             </FormItem>
           )}
@@ -175,8 +186,8 @@ export function SignUpForm() {
         <div className="flex flex-col gap-2">
           <p className="text-sm">
             Already have an account?{' '}
-            <Link href="/signin" className="underline">
-              Sign in
+            <Link href="/login" className="underline">
+              Log in
             </Link>
           </p>
           <div>

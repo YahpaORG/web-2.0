@@ -1,15 +1,27 @@
 import { LoginForm } from '@/components/LoginForm'
 import { isAuthenticated } from '../actions'
 import { redirect } from 'next/navigation'
-export default async function LoginPage() {
-  const isAuth = await isAuthenticated()
+import configPromise from '@payload-config'
+import { getPayload } from 'payload'
+import { headers } from 'next/headers'
 
-  if (isAuth) {
+export default async function LoginPage() {
+  const headersList = await headers()
+
+  const payload = await getPayload({
+    config: configPromise,
+  })
+
+  const result = await payload.auth({ headers: headersList })
+
+  console.log('result', result)
+
+  if (result.user) {
     redirect('/')
   }
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 justify-center items-center gap-2 ">
+    <div className="flex flex-col items-center justify-center flex-1 w-full gap-2 px-8 ">
       <section className="max-w-xl">
         <LoginForm />
       </section>
