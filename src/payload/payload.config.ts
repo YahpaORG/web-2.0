@@ -21,6 +21,19 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    meta: {
+      title: 'YAHPA',
+    },
+    components: {
+      graphics: {
+        Logo: {
+          path: 'src/payload/ui/logo',
+        },
+        Icon: {
+          path: 'src/payload/ui/icon',
+        },
+      },
+    },
   },
   email: resendAdapter({
     defaultFromAddress: 'website@yahpa.org',
