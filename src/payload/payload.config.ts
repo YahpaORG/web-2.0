@@ -9,12 +9,13 @@ import { fileURLToPath } from 'url'
 import { ContactForms } from './collections/ContactForms'
 import { Media } from './collections/Media'
 import { Users } from './collections/Users'
-import {Admins} from "./collections/Admins"
+import { Admins } from './collections/Admins'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
   admin: {
     user: Admins.slug,
     importMap: {
@@ -26,7 +27,7 @@ export default buildConfig({
     defaultFromName: 'YAHPA - Web (testing)',
     apiKey: process.env.RESEND_API_KEY || '',
   }),
-  collections: [Users, Media, ContactForms,Admins],
+  collections: [Users, Media, ContactForms, Admins],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
