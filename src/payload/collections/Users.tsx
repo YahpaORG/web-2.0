@@ -1,9 +1,8 @@
 import type { CollectionConfig } from 'payload'
-import { admins } from '@/payload/access/admins'
 import { anyone } from '@/payload//access/anyone'
 import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
 import { render } from '@react-email/render'
-import SlackConfirmEmail from '../emails/MemberConfirmation'
+import AccountConfirmation from '@/payload/emails/AccountConfirmation'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -15,7 +14,7 @@ export const Users: CollectionConfig = {
       generateEmailHTML: async ({ req, token, user }) => {
         // Use the token provided to allow your user to verify their account
         const url = `${process.env.NEXT_PUBLIC_CMS_URL}/verify?token=${token}`
-        const html = await render(<SlackConfirmEmail validationUrl={url} />)
+        const html = await render(<AccountConfirmation validationUrl={url} />)
         return html
       },
     },

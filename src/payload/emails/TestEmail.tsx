@@ -30,6 +30,7 @@ export default function TestEmail({ name = 'Jimmy Choo' }: TestEmailProps) {
               src={`${baseUrl}/media/1_Without_Background.png`}
               width="480"
               height="240"
+              className="mx-auto my-12"
               alt="YAHPA"
             />
             <Text>Hello {name},</Text>
