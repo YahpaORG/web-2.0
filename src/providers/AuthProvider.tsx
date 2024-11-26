@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signup = async (args: SignUpInput) => {
     const user = await rest(`${process.env.NEXT_PUBLIC_CMS_URL}/api/users`, args)
-    setUser(user)
+    setUser(user) // TOOD: does not return user if waiting for verification
     return user
   }
 

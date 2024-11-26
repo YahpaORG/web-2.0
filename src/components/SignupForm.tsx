@@ -60,20 +60,18 @@ export function SignUpForm() {
   })
 
   async function onSubmit(values: FormValues) {
-    const user = await signup({
+    await signup({
       email: values.email,
       password: values.password,
       firstName: values.first_name,
       lastName: values.last_name,
-    })
-
-    if (user) {
+    }).then(() => {
       toast({
         title: 'Your account as been created!',
         description: new Date().toUTCString(),
       })
       form.reset()
-    }
+    })
   }
 
   return (
