@@ -13,13 +13,15 @@ import {
   Text,
 } from '@react-email/components'
 
-type TestEmailProps = {
+type AccountConfirmationEmailProps = {
   validationUrl?: string
 }
 
 const baseUrl = process.env.NEXT_PUBLIC_CMS_URL || ''
 
-export default function TestEmail({ validationUrl = '#' }: TestEmailProps) {
+export default function AccountConfirmationEmail({
+  validationUrl = '#',
+}: AccountConfirmationEmailProps) {
   return (
     <Tailwind>
       <Html>

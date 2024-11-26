@@ -20,7 +20,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Input } from '@/components/ui/input'
@@ -51,7 +50,6 @@ const formSchema = z.object({
 })
 
 export function ContactForm() {
-  const router = useRouter()
   const { toast } = useToast()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -79,6 +77,7 @@ export function ContactForm() {
       const res = await req.json()
 
       if (res) {
+        form.reset()
         toast({
           title: 'Your email as been sent!',
           description: new Date().toUTCString(),

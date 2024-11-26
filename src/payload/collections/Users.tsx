@@ -2,7 +2,7 @@ import type { CollectionConfig } from 'payload'
 import { anyone } from '@/payload//access/anyone'
 import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
 import { render } from '@react-email/render'
-import AccountConfirmation from '@/payload/emails/AccountConfirmation'
+import AccountConfirmation from '@/payload/emails/AccountConfirmationEmail'
 
 export const Users: CollectionConfig = {
   slug: 'users',

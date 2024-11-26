@@ -1,8 +1,32 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, CollectionAfterChangeHook } from 'payload'
 import { admins } from '@/payload/access/admins'
 import { anyone } from '@/payload/access/anyone'
 import { render } from '@react-email/render'
-import MyTemplate from '../emails/MyTemplate'
+import ContactFormReceivedEmail from '../emails/ContactFormReceivedEmail'
+import { ContactForm } from '../payload-types'
+
+const sendEmailAfterChange: CollectionAfterChangeHook<ContactForm> = async ({
+  doc,
+  operation,
+  req,
+}) => {
+  if (operation === 'create') {
+    const html = await render(
+      <ContactFormReceivedEmail
+        name={doc.name}
+        date={new Date(doc.createdAt)}
+        reason={doc.reason}
+        message={doc.message}
+      />,
+    )
+    req.payload.sendEmail({
+      from: 'website@yahpa.org',
+      html,
+      subject: `YAHPA - We received your request for ${doc.reason}`,
+      to: doc.email,
+    })
+  }
+}
 
 export const ContactForms: CollectionConfig = {
   labels: {
@@ -17,20 +41,7 @@ export const ContactForms: CollectionConfig = {
     update: () => false,
   },
   hooks: {
-    afterChange: [
-      async ({ doc, operation, req }) => {
-        if (operation === 'create') {
-          console.log('sendEmail', doc)
-          const html = await render(<MyTemplate />)
-          req.payload.sendEmail({
-            from: 'website@yahpa.org',
-            html,
-            subject: 'Hello from YAHPA (testing)',
-            to: doc.email,
-          })
-        }
-      },
-    ],
+    afterChange: [sendEmailAfterChange],
   },
   fields: [
     {
