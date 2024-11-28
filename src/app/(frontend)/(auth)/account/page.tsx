@@ -1,7 +1,16 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 
-export default function AccountPage() {
+export default async function AccountPage() {
+  const payload = await getPayload({
+    config,
+  })
+
+  // TODO: Get document from Payload
+  // const {} = await payload.find()
+
   return (
     <section className="flex flex-col items-center justify-center">
       <div className="flex flex-col max-w-xl gap-4 mb-8">

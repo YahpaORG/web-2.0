@@ -34,10 +34,12 @@ import { Input } from '@/components/ui/input'
 import { MultiSelect } from '@/components/ui/multi-select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useToast } from '@/hooks/use-toast'
+import { submitRegistryForm } from '@/app/(frontend)/(auth)/account/register/actions'
 
 type FormValues = z.infer<typeof formSchema>
 
-const STATUSES = ['Studying', 'Seeking Employment', 'Employed'] as const
+const STATUSES = ['student', 'employed', 'unemployed'] as const
+
 const SECTORS = [
   { label: 'Private', value: 'private' },
   { label: 'Public', value: 'public' },
@@ -146,7 +148,10 @@ const formSchema = z.object({
 
   // Professional info
   status: z.enum(STATUSES),
-  estimated_graduation_data: z.date().optional(),
+  //   status: z.array(z.string()).refine((value) => value.some((item) => item), {
+  //     message: 'You have to select at least one item.',
+  //   }),
+  estimated_graduation_date: z.date().optional(),
   profession: z.string({ required_error: 'Please choose a profession.' }),
   other_profession: z.string().optional(),
   sectors: z.array(z.string()).refine((value) => value.some((item) => item), {
@@ -155,6 +160,7 @@ const formSchema = z.object({
 })
 
 export function RegistrySignupForm() {
+  const router = useRouter()
   const { toast } = useToast()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -167,11 +173,11 @@ export function RegistrySignupForm() {
 
   const isOtherProfession = form.watch('profession') === 'other'
   const isOtherLanguage = form.watch('languages')?.includes('other')
-  const isStudent = form.watch('status') === 'Studying'
+  const isStudent = form.watch('status') === 'student'
 
   async function onSubmit(values: FormValues) {
-    console.log('registry form values', values)
-
+    submitRegistryForm(values)
+    router.replace('/account')
     toast({
       title: 'Registration complete!',
       description: new Date().toUTCString(),
@@ -190,7 +196,7 @@ export function RegistrySignupForm() {
   // Conditionally check if the applicant is a student
   useEffect(() => {
     if (isStudent) {
-      form.register('estimated_graduation_data')
+      form.register('estimated_graduation_date')
     } else {
       form.unregister('profession')
     }
@@ -372,7 +378,7 @@ export function RegistrySignupForm() {
         {isStudent && (
           <FormField
             control={form.control}
-            name="estimated_graduation_data"
+            name="estimated_graduation_date"
             render={({ field }) => (
               <FormItem className="flex flex-col">
                 <FormLabel>Estimated graduation date</FormLabel>
