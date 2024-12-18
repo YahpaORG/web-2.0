@@ -160,6 +160,8 @@ export interface Admin {
  */
 export interface RegistryForm {
   id: string;
+  registry_status?: ('approved' | 'review') | null;
+  user_id: string;
   first_name: string;
   last_name: string;
   email: string;
@@ -375,6 +377,8 @@ export interface AdminsSelect<T extends boolean = true> {
  * via the `definition` "registry-forms_select".
  */
 export interface RegistryFormsSelect<T extends boolean = true> {
+  registry_status?: T;
+  user_id?: T;
   first_name?: T;
   last_name?: T;
   email?: T;

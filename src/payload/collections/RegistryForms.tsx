@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
+import { admins } from '../access/admins'
 
 export const RegistryForms: CollectionConfig = {
   labels: {
@@ -12,9 +13,36 @@ export const RegistryForms: CollectionConfig = {
     read: isSelfOrAdmin,
     create: isSelfOrAdmin,
     delete: isSelfOrAdmin,
-    update: () => false,
+    update: admins,
   },
   fields: [
+    {
+      name: 'registry_status',
+      label: 'Registry Status',
+      type: 'select',
+      options: [
+        {
+          label: 'Approved',
+          value: 'approved',
+        },
+        {
+          label: 'In Review',
+          value: 'review',
+        },
+      ],
+      defaultValue: 'review',
+      hasMany: false,
+      required: false,
+    },
+    {
+      name: 'user_id',
+      label: 'User ID',
+      type: 'text',
+      required: true,
+      access: {
+        update: () => false,
+      },
+    },
     {
       name: 'first_name',
       label: 'First Name',

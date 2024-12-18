@@ -2,14 +2,26 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { headers } from 'next/headers'
 
 export default async function AccountPage() {
   const payload = await getPayload({
     config,
   })
+  const headersList = await headers()
 
-  // TODO: Get document from Payload
-  // const {} = await payload.find()
+  const { user } = await payload.auth({ headers: headersList })
+
+  const data = await payload.find({
+    collection: 'registry-forms',
+    where: {
+      user_id: {
+        equals: user?.id,
+      },
+    },
+  })
+
+  const hasUploadedForm = data.docs.length > 0
 
   return (
     <section className="flex flex-col items-center justify-center">
@@ -22,15 +34,22 @@ export default async function AccountPage() {
         <h3 className="mb-4 text-xl text-center">
           Joining the Registry of Healthcare Professionals
         </h3>
-        <p className="mb-10 ">
+        <p className="mb-10">
           YAHPA invites you to become part of our online network, connecting you with patients and
           other professionals in the Greater Montreal area. By joining, you’ll be helping to bridge
           language barriers, making healthcare more accessible and impactful for diverse
           communities.
         </p>
-        <Button asChild>
-          <Link href="/account/register">Signup to Online Registry</Link>
-        </Button>
+        {hasUploadedForm ? (
+          <div className="text-center">
+            <p className="font-bold">Your submission is currently being reviewed.</p>
+            <span>Submitted on {new Date(data.docs[0].createdAt).toDateString()}</span>
+          </div>
+        ) : (
+          <Button asChild>
+            <Link href="/account/register">Signup to Online Registry</Link>
+          </Button>
+        )}
       </div>
     </section>
   )
