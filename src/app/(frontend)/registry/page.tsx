@@ -7,6 +7,11 @@ export default function RegistryPage() {
       <div className="flex flex-col max-w-xl gap-4 mb-8">
         <h1 className="text-3xl">Registry of Health Care Professionals</h1>
         <h2 className="font-bold">Discover healthcare that speaks your language</h2>
+        <div className="flex justify-center my-12">
+          <Button asChild size="lg">
+            <Link href="/registry/search">Find a professional</Link>
+          </Button>
+        </div>
         <p>
           Our registry is designed specifically to help you find healthcare professionals in the
           Greater Montreal area who speak a range of Asian languages. Whether you&apos;re seeking a

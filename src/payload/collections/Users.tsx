@@ -26,7 +26,11 @@ export const Users: CollectionConfig = {
     delete: isSelfOrAdmin,
   },
   fields: [
-    // Email added by default
-    // Add more fields as needed
+    {
+      name: 'relatedRegistry',
+      type: 'join',
+      collection: 'registry',
+      on: 'relatedUser',
+    },
   ],
 }

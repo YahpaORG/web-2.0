@@ -1,8 +1,50 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, FieldHook } from 'payload'
 
 import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
 import { admins } from '../access/admins'
+import { RegistryForm } from '../payload-types'
+import {
+  ProfessionField,
+  LanguageField,
+  FirstNameField,
+  LastNameField,
+  EmailField,
+} from '../fields/registry-form'
 
+/**
+ * Hook that creates a registry member after the registry form status has been changed to approved
+ */
+const registerUserToRegistry: FieldHook<RegistryForm> = async ({
+  collection,
+  operation,
+  req,
+  data,
+  value,
+  ...rest
+}) => {
+  const { payload } = req
+  const formData = data as RegistryForm
+  if (operation === 'update') {
+    if (value === 'approved') {
+      const result = await payload.create({
+        collection: 'registry',
+        data: {
+          relatedUser: formData.user_id,
+          profession: formData.profession,
+          language: formData.language,
+          first_name: formData.first_name,
+          last_name: formData.last_name,
+          emails: [{ email: formData.email }],
+          phone_numbers: [{ phone_number: formData.primary_phone_number }],
+        },
+      })
+
+      console.log('Successfully created Registry', result)
+    }
+  }
+}
+
+// TODO: create afterChange hook to update User collection with data.
 export const RegistryForms: CollectionConfig = {
   labels: {
     singular: 'Registry Form',
@@ -15,6 +57,7 @@ export const RegistryForms: CollectionConfig = {
     delete: isSelfOrAdmin,
     update: admins,
   },
+
   fields: [
     {
       name: 'registry_status',
@@ -31,6 +74,9 @@ export const RegistryForms: CollectionConfig = {
         },
       ],
       defaultValue: 'review',
+      hooks: {
+        afterChange: [registerUserToRegistry],
+      },
       hasMany: false,
       required: false,
     },
@@ -43,24 +89,9 @@ export const RegistryForms: CollectionConfig = {
         update: () => false,
       },
     },
-    {
-      name: 'first_name',
-      label: 'First Name',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'last_name',
-      label: 'Last Name',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'email',
-      type: 'email',
-      unique: true,
-      required: true,
-    },
+    FirstNameField,
+    LastNameField,
+    EmailField,
     {
       name: 'primary_phone_number',
       label: 'Primary Phone Number',
@@ -77,23 +108,7 @@ export const RegistryForms: CollectionConfig = {
       ],
       required: true,
     },
-    {
-      label: 'Languages',
-      name: 'languages',
-      type: 'select',
-      hasMany: true,
-      options: [
-        { label: 'English', value: 'en' },
-        { label: 'Français', value: 'fr' },
-        { label: '简体中文', value: 'zh' },
-        { label: 'Tiếng Việt', value: 'vn' },
-        { label: 'ᜆᜄᜎᜓᜄ᜔', value: 'tl' },
-        { label: 'ភាសាខ្មែរ', value: 'km' },
-        { label: '日本語', value: 'ja' },
-        { label: '한국어', value: 'ko' },
-      ],
-      required: true,
-    },
+    LanguageField,
     {
       label: 'Other Languages',
       name: 'other_languages',
@@ -125,79 +140,7 @@ export const RegistryForms: CollectionConfig = {
       type: 'date',
       required: false,
     },
-    {
-      name: 'profession',
-      type: 'select',
-      options: [
-        { label: 'Acupuncturist', value: 'acupuncturist' },
-        { label: 'Anesthesiologist', value: 'anesthesiologist' },
-        { label: 'Audiologist', value: 'audiologist' },
-        { label: 'Chiropractor', value: 'chiropractor' },
-        { label: 'Clinical Psychologist', value: 'clinical_psychologist' },
-        { label: 'Dentist', value: 'dentist' },
-        { label: 'Dermatologist', value: 'dermatologist' },
-        { label: 'Dietitian', value: 'dietitian' },
-        {
-          label: 'Emergency Medicine Physician',
-          value: 'emergency_medicine_physician',
-        },
-        { label: 'Endocrinologist', value: 'endocrinologist' },
-        { label: 'Family Medicine Physician', value: 'family_medicine_physician' },
-        { label: 'Gastroenterologist', value: 'gastroenterologist' },
-        { label: 'General Practitioner', value: 'general_practitioner' },
-        { label: 'Gynecologist', value: 'gynecologist' },
-        { label: 'Hearing Specialist', value: 'hearing_specialist' },
-        { label: 'Homeopath', value: 'homeopath' },
-        {
-          label: 'Internal Medicine Physician',
-          value: 'internal_medicine_physician',
-        },
-        { label: 'Massage Therapist', value: 'massage_therapist' },
-        { label: 'Naturopath', value: 'naturopath' },
-        { label: 'Neurologist', value: 'neurologist' },
-        { label: 'Nurse Practitioner', value: 'nurse_practitioner' },
-        { label: 'Obstetrician', value: 'obstetrician' },
-        { label: 'Occupational Therapist', value: 'occupational_therapist' },
-        { label: 'Oncologist', value: 'oncologist' },
-        { label: 'Ophthalmologist', value: 'ophthalmologist' },
-        { label: 'Optometrist', value: 'optometrist' },
-        { label: 'Orthopedic Surgeon', value: 'orthopedic_surgeon' },
-        { label: 'Osteopath', value: 'osteopath' },
-        { label: 'Pain Management Specialist', value: 'pain_management_specialist' },
-        { label: 'Pediatrician', value: 'pediatrician' },
-        { label: 'Podiatrist', value: 'podiatrist' },
-        { label: 'Plastic Surgeon', value: 'plastic_surgeon' },
-        { label: 'Podiatric Surgeon', value: 'podiatric_surgeon' },
-        { label: 'Psychiatrist', value: 'psychiatrist' },
-        { label: 'Psychologist', value: 'psychologist' },
-        { label: 'Pulmonologist', value: 'pulmonologist' },
-        { label: 'Radiologist', value: 'radiologist' },
-        {
-          label: 'Reproductive Endocrinologist',
-          value: 'reproductive_endocrinologist',
-        },
-        { label: 'Rheumatologist', value: 'rheumatologist' },
-        { label: 'Sleep Specialist', value: 'sleep_specialist' },
-        {
-          label: 'Speech-Language Pathologist',
-          value: 'speech_language_pathologist',
-        },
-        { label: 'Sports Medicine Physician', value: 'sports_medicine_physician' },
-        { label: 'Surgical Specialist', value: 'surgical_specialist' },
-        { label: 'Urologist', value: 'urologist' },
-        { label: 'Vascular Surgeon', value: 'vascular_surgeon' },
-        { label: 'Wound Care Specialist', value: 'wound_care_specialist' },
-        { label: 'Wellness Coach', value: 'wellness_coach' },
-        { label: 'Yoga Therapist', value: 'yoga_therapist' },
-        { label: 'Orthodontist', value: 'orthodontist' },
-        { label: 'Palliative Care Specialist', value: 'palliative_care_specialist' },
-        { label: 'Chronic Pain Specialist', value: 'chronic_pain_specialist' },
-        { label: 'Biofeedback Specialist', value: 'biofeedback_specialist' },
-        { label: 'Nutritionist', value: 'nutritionist' },
-        { label: 'Other profession', value: 'other' },
-      ],
-      required: true,
-    },
+    ProfessionField,
     {
       name: 'other profession',
       type: 'text',

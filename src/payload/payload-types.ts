@@ -17,17 +17,23 @@ export interface Config {
     'contact-forms': ContactForm;
     admins: Admin;
     'registry-forms': RegistryForm;
+    registry: Registry;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    users: {
+      relatedRegistry: 'registry';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'contact-forms': ContactFormsSelect<false> | ContactFormsSelect<true>;
     admins: AdminsSelect<false> | AdminsSelect<true>;
     'registry-forms': RegistryFormsSelect<false> | RegistryFormsSelect<true>;
+    registry: RegistrySelect<false> | RegistrySelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -92,6 +98,10 @@ export interface AdminAuthOperations {
  */
 export interface User {
   id: string;
+  relatedRegistry?: {
+    docs?: (string | Registry)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -104,6 +114,86 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "registry".
+ */
+export interface Registry {
+  id: string;
+  relatedUser: string | User;
+  first_name: string;
+  last_name: string;
+  profession:
+    | 'acupuncturist'
+    | 'anesthesiologist'
+    | 'audiologist'
+    | 'chiropractor'
+    | 'clinical_psychologist'
+    | 'dentist'
+    | 'dermatologist'
+    | 'dietitian'
+    | 'emergency_medicine_physician'
+    | 'endocrinologist'
+    | 'family_medicine_physician'
+    | 'gastroenterologist'
+    | 'general_practitioner'
+    | 'gynecologist'
+    | 'hearing_specialist'
+    | 'homeopath'
+    | 'internal_medicine_physician'
+    | 'massage_therapist'
+    | 'naturopath'
+    | 'neurologist'
+    | 'nurse_practitioner'
+    | 'obstetrician'
+    | 'occupational_therapist'
+    | 'oncologist'
+    | 'ophthalmologist'
+    | 'optometrist'
+    | 'orthopedic_surgeon'
+    | 'osteopath'
+    | 'pain_management_specialist'
+    | 'pediatrician'
+    | 'podiatrist'
+    | 'plastic_surgeon'
+    | 'podiatric_surgeon'
+    | 'psychiatrist'
+    | 'psychologist'
+    | 'pulmonologist'
+    | 'radiologist'
+    | 'reproductive_endocrinologist'
+    | 'rheumatologist'
+    | 'sleep_specialist'
+    | 'speech_language_pathologist'
+    | 'sports_medicine_physician'
+    | 'surgical_specialist'
+    | 'urologist'
+    | 'vascular_surgeon'
+    | 'wound_care_specialist'
+    | 'wellness_coach'
+    | 'yoga_therapist'
+    | 'orthodontist'
+    | 'palliative_care_specialist'
+    | 'chronic_pain_specialist'
+    | 'biofeedback_specialist'
+    | 'nutritionist'
+    | 'other';
+  language: ('en' | 'fr' | 'zh' | 'vn' | 'tl' | 'km' | 'ja' | 'ko')[];
+  emails?:
+    | {
+        email?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  phone_numbers?:
+    | {
+        phone_number?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -167,7 +257,7 @@ export interface RegistryForm {
   email: string;
   primary_phone_number: string;
   preferred_contact_method: 'email' | 'phone';
-  languages: ('en' | 'fr' | 'zh' | 'vn' | 'tl' | 'km' | 'ja' | 'ko')[];
+  language: ('en' | 'fr' | 'zh' | 'vn' | 'tl' | 'km' | 'ja' | 'ko')[];
   other_languages?: string | null;
   status: 'student' | 'unemployed' | 'employed';
   'estimated graduation date'?: string | null;
@@ -257,6 +347,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'registry-forms';
         value: string | RegistryForm;
+      } | null)
+    | ({
+        relationTo: 'registry';
+        value: string | Registry;
       } | null);
   globalSlug?: string | null;
   user:
@@ -315,6 +409,7 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  relatedRegistry?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -384,13 +479,38 @@ export interface RegistryFormsSelect<T extends boolean = true> {
   email?: T;
   primary_phone_number?: T;
   preferred_contact_method?: T;
-  languages?: T;
+  language?: T;
   other_languages?: T;
   status?: T;
   'estimated graduation date'?: T;
   profession?: T;
   'other profession'?: T;
   sectors?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "registry_select".
+ */
+export interface RegistrySelect<T extends boolean = true> {
+  relatedUser?: T;
+  first_name?: T;
+  last_name?: T;
+  profession?: T;
+  language?: T;
+  emails?:
+    | T
+    | {
+        email?: T;
+        id?: T;
+      };
+  phone_numbers?:
+    | T
+    | {
+        phone_number?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
