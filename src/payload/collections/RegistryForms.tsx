@@ -27,7 +27,7 @@ const registerUserToRegistry: FieldHook<RegistryForm> = async ({
   if (operation === 'update') {
     if (value === 'approved') {
       const result = await payload.create({
-        collection: 'registry',
+        collection: 'registry-members',
         data: {
           relatedUser: formData.user_id,
           profession: formData.profession,

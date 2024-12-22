@@ -29,7 +29,7 @@ export const Users: CollectionConfig = {
     {
       name: 'relatedRegistry',
       type: 'join',
-      collection: 'registry',
+      collection: 'registry-members',
       on: 'relatedUser',
     },
   ],

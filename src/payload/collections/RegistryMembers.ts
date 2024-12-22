@@ -7,8 +7,8 @@ import {
   FirstNameField,
   LastNameField,
 } from '../fields/registry-form'
-export const Registry: CollectionConfig = {
-  slug: 'registry',
+export const RegistryMembers: CollectionConfig = {
+  slug: 'registry-members',
   labels: { plural: 'Registry Members', singular: 'Registry Member' },
   access: {
     read: anyone,
@@ -22,7 +22,6 @@ export const Registry: CollectionConfig = {
       type: 'relationship',
       relationTo: 'users',
       hasMany: false,
-      required: true,
     },
     FirstNameField,
     LastNameField,

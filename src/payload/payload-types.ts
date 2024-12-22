@@ -17,14 +17,14 @@ export interface Config {
     'contact-forms': ContactForm;
     admins: Admin;
     'registry-forms': RegistryForm;
-    registry: Registry;
+    'registry-members': RegistryMember;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {
     users: {
-      relatedRegistry: 'registry';
+      relatedRegistry: 'registry-members';
     };
   };
   collectionsSelect: {
@@ -33,7 +33,7 @@ export interface Config {
     'contact-forms': ContactFormsSelect<false> | ContactFormsSelect<true>;
     admins: AdminsSelect<false> | AdminsSelect<true>;
     'registry-forms': RegistryFormsSelect<false> | RegistryFormsSelect<true>;
-    registry: RegistrySelect<false> | RegistrySelect<true>;
+    'registry-members': RegistryMembersSelect<false> | RegistryMembersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -99,7 +99,7 @@ export interface AdminAuthOperations {
 export interface User {
   id: string;
   relatedRegistry?: {
-    docs?: (string | Registry)[] | null;
+    docs?: (string | RegistryMember)[] | null;
     hasNextPage?: boolean | null;
   } | null;
   updatedAt: string;
@@ -117,11 +117,11 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "registry".
+ * via the `definition` "registry-members".
  */
-export interface Registry {
+export interface RegistryMember {
   id: string;
-  relatedUser: string | User;
+  relatedUser?: (string | null) | User;
   first_name: string;
   last_name: string;
   profession:
@@ -349,8 +349,8 @@ export interface PayloadLockedDocument {
         value: string | RegistryForm;
       } | null)
     | ({
-        relationTo: 'registry';
-        value: string | Registry;
+        relationTo: 'registry-members';
+        value: string | RegistryMember;
       } | null);
   globalSlug?: string | null;
   user:
@@ -491,9 +491,9 @@ export interface RegistryFormsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "registry_select".
+ * via the `definition` "registry-members_select".
  */
-export interface RegistrySelect<T extends boolean = true> {
+export interface RegistryMembersSelect<T extends boolean = true> {
   relatedUser?: T;
   first_name?: T;
   last_name?: T;

@@ -10,7 +10,7 @@ import { ContactForms } from './collections/ContactForms'
 import { Media } from './collections/Media'
 import { Users } from './collections/Users'
 import { Admins } from './collections/Admins'
-import { Registry } from './collections/Registry'
+import { RegistryMembers } from './collections/RegistryMembers'
 import { RegistryForms } from './collections/RegistryForms'
 
 const filename = fileURLToPath(import.meta.url)
@@ -42,7 +42,7 @@ export default buildConfig({
     defaultFromName: 'YAHPA - Web (testing)',
     apiKey: process.env.RESEND_API_KEY || '',
   }),
-  collections: [Users, Media, ContactForms, Admins, RegistryForms, Registry],
+  collections: [Users, Media, ContactForms, Admins, RegistryForms, RegistryMembers],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
