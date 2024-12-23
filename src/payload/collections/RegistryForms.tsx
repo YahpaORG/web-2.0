@@ -3,13 +3,7 @@ import type { CollectionConfig, FieldHook } from 'payload'
 import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
 import { admins } from '../access/admins'
 import { RegistryForm } from '../payload-types'
-import {
-  ProfessionField,
-  LanguageField,
-  FirstNameField,
-  LastNameField,
-  EmailField,
-} from '../fields/registry-form'
+import { FirstNameField, LastNameField, EmailField } from '../fields/registry-form'
 
 /**
  * Hook that creates a registry member after the registry form status has been changed to approved
@@ -31,7 +25,7 @@ const registerUserToRegistry: FieldHook<RegistryForm> = async ({
         data: {
           relatedUser: formData.user_id,
           profession: formData.profession,
-          language: formData.language,
+          languages: formData.languages,
           first_name: formData.first_name,
           last_name: formData.last_name,
           emails: [{ email: formData.email }],
@@ -108,7 +102,14 @@ export const RegistryForms: CollectionConfig = {
       ],
       required: true,
     },
-    LanguageField,
+    {
+      name: 'languages',
+      label: 'Languages',
+      type: 'relationship',
+      relationTo: ['languages'],
+      hasMany: true,
+      required: true,
+    },
     {
       label: 'Other Languages',
       name: 'other_languages',
@@ -140,7 +141,14 @@ export const RegistryForms: CollectionConfig = {
       type: 'date',
       required: false,
     },
-    ProfessionField,
+    {
+      name: 'profession',
+      label: 'Professional Title',
+      type: 'relationship',
+      relationTo: ['professions'],
+      hasMany: false,
+      required: true,
+    },
     {
       name: 'other profession',
       type: 'text',

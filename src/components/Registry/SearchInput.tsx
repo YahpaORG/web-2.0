@@ -49,33 +49,31 @@ export default function SearchInput() {
   }
 
   return (
-    <div className="w-full">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handeOnSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="term"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Enter a name or profession</FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="example@yahpa.org"
-                    {...field}
-                    value={field.value}
-                    onChange={(e) => {
-                      field.onChange(e)
-                      handleInputChange()
-                    }}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </form>
-      </Form>
-    </div>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handeOnSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="term"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Enter a name or profession</FormLabel>
+              <FormControl>
+                <Input
+                  type="text"
+                  placeholder="example@yahpa.org"
+                  {...field}
+                  value={field.value}
+                  onChange={(e) => {
+                    field.onChange(e)
+                    handleInputChange()
+                  }}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </form>
+    </Form>
   )
 }

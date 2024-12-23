@@ -35,6 +35,7 @@ import { MultiSelect } from '@/components/ui/multi-select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useToast } from '@/hooks/use-toast'
 import { submitRegistryForm } from '@/app/(frontend)/(auth)/account/register/actions'
+import { Language, Profession } from '@/payload/payload-types'
 
 type FormValues = z.infer<typeof formSchema>
 
@@ -57,75 +58,6 @@ const LANGUAGES = [
   { label: '한국어', value: 'ko' },
   { label: 'Other', value: 'other' },
 ]
-
-const PROFESSIONS = [
-  { label: 'Acupuncturist', value: 'acupuncturist' },
-  { label: 'Anesthesiologist', value: 'anesthesiologist' },
-  { label: 'Audiologist', value: 'audiologist' },
-  { label: 'Chiropractor', value: 'chiropractor' },
-  { label: 'Clinical Psychologist', value: 'clinical_psychologist' },
-  { label: 'Dentist', value: 'dentist' },
-  { label: 'Dermatologist', value: 'dermatologist' },
-  { label: 'Dietitian', value: 'dietitian' },
-  {
-    label: 'Emergency Medicine Physician',
-    value: 'emergency_medicine_physician',
-  },
-  { label: 'Endocrinologist', value: 'endocrinologist' },
-  { label: 'Family Medicine Physician', value: 'family_medicine_physician' },
-  { label: 'Gastroenterologist', value: 'gastroenterologist' },
-  { label: 'General Practitioner', value: 'general_practitioner' },
-  { label: 'Gynecologist', value: 'gynecologist' },
-  { label: 'Hearing Specialist', value: 'hearing_specialist' },
-  { label: 'Homeopath', value: 'homeopath' },
-  {
-    label: 'Internal Medicine Physician',
-    value: 'internal_medicine_physician',
-  },
-  { label: 'Massage Therapist', value: 'massage_therapist' },
-  { label: 'Naturopath', value: 'naturopath' },
-  { label: 'Neurologist', value: 'neurologist' },
-  { label: 'Nurse Practitioner', value: 'nurse_practitioner' },
-  { label: 'Obstetrician', value: 'obstetrician' },
-  { label: 'Occupational Therapist', value: 'occupational_therapist' },
-  { label: 'Oncologist', value: 'oncologist' },
-  { label: 'Ophthalmologist', value: 'ophthalmologist' },
-  { label: 'Optometrist', value: 'optometrist' },
-  { label: 'Orthopedic Surgeon', value: 'orthopedic_surgeon' },
-  { label: 'Osteopath', value: 'osteopath' },
-  { label: 'Pain Management Specialist', value: 'pain_management_specialist' },
-  { label: 'Pediatrician', value: 'pediatrician' },
-  { label: 'Podiatrist', value: 'podiatrist' },
-  { label: 'Plastic Surgeon', value: 'plastic_surgeon' },
-  { label: 'Podiatric Surgeon', value: 'podiatric_surgeon' },
-  { label: 'Psychiatrist', value: 'psychiatrist' },
-  { label: 'Psychologist', value: 'psychologist' },
-  { label: 'Pulmonologist', value: 'pulmonologist' },
-  { label: 'Radiologist', value: 'radiologist' },
-  {
-    label: 'Reproductive Endocrinologist',
-    value: 'reproductive_endocrinologist',
-  },
-  { label: 'Rheumatologist', value: 'rheumatologist' },
-  { label: 'Sleep Specialist', value: 'sleep_specialist' },
-  {
-    label: 'Speech-Language Pathologist',
-    value: 'speech_language_pathologist',
-  },
-  { label: 'Sports Medicine Physician', value: 'sports_medicine_physician' },
-  { label: 'Surgical Specialist', value: 'surgical_specialist' },
-  { label: 'Urologist', value: 'urologist' },
-  { label: 'Vascular Surgeon', value: 'vascular_surgeon' },
-  { label: 'Wound Care Specialist', value: 'wound_care_specialist' },
-  { label: 'Wellness Coach', value: 'wellness_coach' },
-  { label: 'Yoga Therapist', value: 'yoga_therapist' },
-  { label: 'Orthodontist', value: 'orthodontist' },
-  { label: 'Palliative Care Specialist', value: 'palliative_care_specialist' },
-  { label: 'Chronic Pain Specialist', value: 'chronic_pain_specialist' },
-  { label: 'Biofeedback Specialist', value: 'biofeedback_specialist' },
-  { label: 'Nutritionist', value: 'nutritionist' },
-  { label: 'Other (please specify)', value: 'other' },
-] as const
 
 const formSchema = z.object({
   // Contact info
@@ -159,7 +91,12 @@ const formSchema = z.object({
   }),
 })
 
-export function RegistrySignupForm() {
+type RegistrySignupFormProps = {
+  professions: Profession[]
+  languages: Language[]
+}
+
+export function RegistrySignupForm({ professions, languages }: RegistrySignupFormProps) {
   const router = useRouter()
   const { toast } = useToast()
 
@@ -176,8 +113,23 @@ export function RegistrySignupForm() {
   const isStudent = form.watch('status') === 'student'
 
   async function onSubmit(values: FormValues) {
-    submitRegistryForm(values)
-    router.replace('/account')
+    const formattedLanguages = values.languages.map((lang: string) => ({
+      relationTo: 'languages',
+      value: languages.find((l) => l.id === lang),
+    }))
+
+    const chosenProfession = {
+      relationTo: 'professions',
+      value: professions.find((p) => p.title === values.profession),
+    }
+
+    submitRegistryForm({ ...values, profession: chosenProfession, languages: formattedLanguages })
+    console.log('values', {
+      ...values,
+      profession: chosenProfession,
+      languages: formattedLanguages,
+    })
+    // router.replace('/account')
     toast({
       title: 'Registration complete!',
       description: new Date().toUTCString(),
@@ -317,7 +269,10 @@ export function RegistrySignupForm() {
               </FormDescription>
               <FormControl>
                 <MultiSelect
-                  options={LANGUAGES}
+                  options={languages.map((lang) => ({
+                    value: lang.id,
+                    label: lang.autonym,
+                  }))}
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                   placeholder="Select languages"
@@ -435,7 +390,7 @@ export function RegistrySignupForm() {
                       )}
                     >
                       {field.value
-                        ? PROFESSIONS.find((profession) => profession.value === field.value)?.label
+                        ? professions.find((profession) => profession.title === field.value)?.title
                         : 'Select profession'}
                       <ChevronsUpDown className="w-4 h-4 ml-2 opacity-50 shrink-0" />
                     </Button>
@@ -450,19 +405,19 @@ export function RegistrySignupForm() {
                         let us know.
                       </CommandEmpty>
                       <CommandGroup>
-                        {PROFESSIONS.map((profession) => (
+                        {professions.map((profession) => (
                           <CommandItem
-                            value={profession.label}
-                            key={profession.value}
+                            value={profession.title}
+                            key={profession.id}
                             onSelect={() => {
-                              form.setValue('profession', profession.value)
+                              form.setValue('profession', profession.title)
                             }}
                           >
-                            {profession.label}
+                            {profession.title}
                             <Check
                               className={cn(
                                 'ml-auto',
-                                profession.value === field.value ? 'opacity-100' : 'opacity-0',
+                                profession.title === field.value ? 'opacity-100' : 'opacity-0',
                               )}
                             />
                           </CommandItem>

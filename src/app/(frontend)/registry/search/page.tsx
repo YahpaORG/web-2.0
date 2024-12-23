@@ -17,13 +17,17 @@ export default async function RegistrySearchPage(props: RegistrySearchPageProps)
   return (
     <section className="flex flex-col items-center max-w-3xl mx-auto">
       <div className="flex flex-col max-w-xl gap-4 mb-8">
-        <h1 className="text-3xl">Registry of Health Care Professionals</h1>
-        <h2 className="font-bold">Find a healthcare professional near you</h2>
+        <h1 className="text-3xl">Find a healthcare professional</h1>
+        <h2 className="font-bold">Enter a profession</h2>
       </div>
-      <SearchInput />
-      <Suspense key={query + currentPage} fallback={<p>Loading...</p>}>
-        <SearchResults query={query} currentPage={currentPage} />
-      </Suspense>
+      <div className="w-full mb-4">
+        <SearchInput />
+      </div>
+      <div className="w-full">
+        <Suspense key={query + currentPage} fallback={<p>Loading...</p>}>
+          <SearchResults query={query} currentPage={currentPage} />
+        </Suspense>
+      </div>
     </section>
   )
 }

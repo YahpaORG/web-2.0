@@ -1,5 +1,6 @@
 import { fetchSearchResults } from '@/app/(frontend)/registry/search/actions'
 import { Badge } from '../ui/badge'
+import { Language, Profession } from '@/payload/payload-types'
 
 type SearchResultsProps = {
   query: string
@@ -14,12 +15,14 @@ export default async function SearchResults({ query, currentPage }: SearchResult
       {results.docs.map((result) => (
         <li
           key={result.id}
-          className="flex flex-col w-full gap-2 p-4 my-2 border-2 border-black rounded-md"
+          className="flex flex-col w-full gap-2 p-4 border-2 border-black rounded-md"
         >
           <p>
             {result.first_name} {result.last_name}
           </p>
-          <p className="capitalize">{result.profession}</p>
+          {result.profession && (
+            <p className="capitalize">{(result.profession.value as Profession).title}</p>
+          )}
           {result.emails && result.emails.length > 0 && (
             <div className="flex gap-2">
               <span>Emails:</span>
@@ -38,8 +41,8 @@ export default async function SearchResults({ query, currentPage }: SearchResult
           )}
           <div className="flex gap-2">
             <span>Spoken Languages:</span>
-            {result.language.map((lang) => (
-              <Badge key={`${result.id}-${lang}`}>{lang}</Badge>
+            {result.languages?.map((language, index) => (
+              <Badge key={`${result.id}-${index}`}>{(language.value as Language).heteronym}</Badge>
             ))}
           </div>
           <p>Joined since {new Date(result.createdAt).toDateString()}</p>

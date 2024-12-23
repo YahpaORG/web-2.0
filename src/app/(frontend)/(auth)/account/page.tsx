@@ -22,7 +22,7 @@ export default async function AccountPage() {
   })
 
   const registryForm = data.docs[0]
-  const isApproved = registryForm.registry_status === 'approved'
+  const isApproved = registryForm?.registry_status === 'approved' || false
   const hasUploadedForm = data.docs.length > 0
 
   return (

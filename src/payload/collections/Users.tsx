@@ -27,6 +27,21 @@ export const Users: CollectionConfig = {
   },
   fields: [
     {
+      name: 'primary_phone_number',
+      label: 'Primary Phone Number',
+      type: 'text',
+    },
+    {
+      name: 'preferred_contact_method',
+      label: 'Preferred Contact Method',
+      type: 'radio',
+      options: [
+        { label: 'By email', value: 'email' },
+        { label: 'By phone', value: 'phone' },
+      ],
+      defaultValue: 'email',
+    },
+    {
       name: 'relatedRegistry',
       type: 'join',
       collection: 'registry-members',
