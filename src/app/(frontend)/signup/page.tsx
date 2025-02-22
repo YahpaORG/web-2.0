@@ -2,7 +2,6 @@ import { SignUpForm } from '@/components/SignupForm'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { headers } from 'next/headers'
-
 import { redirect } from 'next/navigation'
 
 export default async function SignupPage() {
@@ -14,7 +13,7 @@ export default async function SignupPage() {
   const { user } = await payload.auth({ headers: headersList })
 
   if (user) {
-    redirect('/')
+    redirect('/account')
   }
 
   return (
