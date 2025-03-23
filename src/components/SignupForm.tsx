@@ -19,6 +19,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/use-toast'
 import { useAuth } from '@/providers/AuthProvider'
+import { APIError } from 'payload'
 
 type FormValues = z.infer<typeof formSchema>
 
@@ -65,13 +66,22 @@ export function SignUpForm() {
       password: values.password,
       firstName: values.first_name,
       lastName: values.last_name,
-    }).then(() => {
-      toast({
-        title: 'Your account as been created!',
-        description: new Date().toUTCString(),
-      })
-      form.reset()
     })
+      .then(() => {
+        toast({
+          title: 'Your account as been created!',
+          description: new Date().toUTCString(),
+        })
+        form.reset()
+      })
+      .catch((e) => {
+        const error: APIError = e
+        toast({
+          title: error.message,
+          variant: 'destructive',
+          description: 'Please verify the information on your form before submitting again.',
+        })
+      })
   }
 
   return (

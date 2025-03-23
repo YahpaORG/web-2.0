@@ -1,8 +1,27 @@
-import type { CollectionConfig } from 'payload'
 import { anyone } from '@/payload//access/anyone'
-import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
-import { render } from '@react-email/render'
 import AccountConfirmation from '@/payload/emails/AccountConfirmationEmail'
+import { render } from '@react-email/render'
+import { APIError, type CollectionBeforeOperationHook, type CollectionConfig } from 'payload'
+import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
+
+const checkExistingEmail: CollectionBeforeOperationHook = async ({ args, operation, req }) => {
+  if (operation === 'create') {
+    const emailExists = await req.payload.find({
+      collection: 'users',
+      where: {
+        email: {
+          equals: req.data?.email,
+        },
+      },
+    })
+
+    if (emailExists) {
+      throw new APIError('This email already exists', 409, undefined, true)
+    }
+  }
+
+  return args
+}
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -25,7 +44,16 @@ export const Users: CollectionConfig = {
     update: isSelfOrAdmin,
     delete: isSelfOrAdmin,
   },
+  hooks: {
+    beforeOperation: [checkExistingEmail],
+  },
   fields: [
+    {
+      name: 'email',
+      type: 'email',
+      unique: true,
+      required: true,
+    },
     {
       name: 'primary_phone_number',
       label: 'Primary Phone Number',

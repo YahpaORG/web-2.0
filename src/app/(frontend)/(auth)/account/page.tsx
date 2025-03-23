@@ -36,8 +36,8 @@ export default async function AccountPage() {
         <div className="flex flex-col items-center justify-center w-full max-w-xl p-6 my-2 border-2 rounded-md">
           <h3 className="mb-4 text-xl text-center">My YAHPA Registry</h3>
           <p className="mb-10">
-            You can modify and update your information from YAHPA's online registry of healthcare
-            professionals.
+            You can modify and update your information from YAHPA&apos;s online registry of
+            healthcare professionals.
           </p>
           <Button asChild>
             <Link href="/account/manage">Manage Information</Link>
