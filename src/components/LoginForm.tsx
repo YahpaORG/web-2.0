@@ -65,12 +65,11 @@ export function LoginForm() {
           <p>Please enter your email and password to login to your YAHPA account.</p>
         </div>
 
-        {state.message && (
+        {state.message && !state.success && (
           <div>
             <p className="text-sm text-red-500">{state.message}</p>
           </div>
         )}
-
         <FormField
           control={form.control}
           name="email"

@@ -6,7 +6,7 @@ import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
 
 const checkExistingEmail: CollectionBeforeOperationHook = async ({ args, operation, req }) => {
   if (operation === 'create') {
-    const emailExists = await req.payload.find({
+    const { docs } = await req.payload.find({
       collection: 'users',
       where: {
         email: {
@@ -15,7 +15,7 @@ const checkExistingEmail: CollectionBeforeOperationHook = async ({ args, operati
       },
     })
 
-    if (emailExists) {
+    if (docs.length > 0) {
       throw new APIError('This email already exists', 409, undefined, true)
     }
   }

@@ -7,7 +7,6 @@ import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
 import { Header } from '@/components/Header'
 import Footer from '@/components/Footer'
-import { AuthProvider } from '@/providers/AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,22 +24,20 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className={cn([inter.className, 'flex', 'min-h-screen', 'flex-col'])}>
-        <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            <div className="flex flex-1">
-              <main className="flex-1">{children}</main>
-            </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <div className="flex flex-1">
+            <main className="flex-1">{children}</main>
+          </div>
 
-            <Footer />
-            <Toaster />
-          </ThemeProvider>
-        </AuthProvider>
+          <Footer />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   )

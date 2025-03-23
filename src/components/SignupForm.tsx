@@ -18,79 +18,71 @@ import { z } from 'zod'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/use-toast'
-import { useAuth } from '@/providers/AuthProvider'
-import { APIError } from 'payload'
+import { startTransition, useActionState, useEffect, useRef } from 'react'
+import { createNewUser } from '@/app/(frontend)/signup/actions'
+import { SignUpFormSchema } from '@/lib/formSchemas'
+import { useRouter } from 'next/navigation'
 
-type FormValues = z.infer<typeof formSchema>
+type FormValues = z.infer<typeof SignUpFormSchema>
 
-const formSchema = z
-  .object({
-    first_name: z.string().min(1, { message: 'Please enter your first name.' }),
-    last_name: z.string().min(1, { message: 'Please enter your last name.' }),
-    email: z
-      .string()
-      .min(1, { message: 'You need to provide a valid email to create your account.' })
-      .email('This is not a valid email.'),
-    password: z
-      .string()
-      .min(8, { message: 'You need to provide a strong password to create your account.' }),
-    confirm_password: z.string().min(8, { message: 'This field must match your password.' }),
-    agreeToTerms: z.literal<boolean>(true, {
-      message: 'You must agree to the general terms and conditions',
-    }),
-  })
-  .refine((data) => data.password === data.confirm_password, {
-    message: "Your passwords don't match",
-    path: ['confirm_password'],
-  })
+const INITIAL_STATE = {
+  first_name: '',
+  last_name: '',
+  email: '',
+  password: '',
+  confirm_password: '',
+  agreeToTerms: false,
+}
 
 export function SignUpForm() {
-  const { signup } = useAuth()
+  const router = useRouter()
+  const [state, formAction] = useActionState(createNewUser, {
+    message: '',
+    data: INITIAL_STATE,
+  })
   const { toast } = useToast()
+  const formRef = useRef<HTMLFormElement>(null)
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-      confirm_password: '',
-      first_name: '',
-      last_name: '',
-      agreeToTerms: false,
-    },
+  const form = useForm<FormValues>({
+    resolver: zodResolver(SignUpFormSchema),
+    defaultValues: INITIAL_STATE,
   })
 
-  async function onSubmit(values: FormValues) {
-    await signup({
-      email: values.email,
-      password: values.password,
-      firstName: values.first_name,
-      lastName: values.last_name,
-    })
-      .then(() => {
-        toast({
-          title: 'Your account as been created!',
-          description: new Date().toUTCString(),
-        })
-        form.reset()
+  useEffect(() => {
+    if (state.success && form.formState.isSubmitSuccessful) {
+      router.refresh()
+      router.replace('/signup/confirm')
+      toast({
+        title: state.message,
+        description: new Date().toUTCString(),
       })
-      .catch((e) => {
-        const error: APIError = e
-        toast({
-          title: error.message,
-          variant: 'destructive',
-          description: 'Please verify the information on your form before submitting again.',
-        })
-      })
-  }
+    }
+  }, [state])
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        ref={formRef}
+        action={formAction}
+        onSubmit={(evt) => {
+          evt.preventDefault()
+          form.handleSubmit(() => {
+            startTransition(() => formAction(new FormData(formRef.current!)))
+          })(evt)
+        }}
+        className="space-y-6"
+      >
         <div className="max-w-md">
           <h3 className="text-2xl">Sign Up with YAHPA</h3>
           <p>Please fill out the form below to create your account with YAHPA.</p>
         </div>
+
+        {state.message && !state.success && (
+          <div>
+            <p className="text-sm text-red-500">{state.message}</p>
+          </div>
+        )}
+
         <div className="flex flex-row gap-4">
           <FormField
             control={form.control}
