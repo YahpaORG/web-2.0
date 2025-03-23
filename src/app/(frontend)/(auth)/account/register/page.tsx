@@ -4,7 +4,6 @@ import { getLanguages, getProfessions } from './actions'
 export default async function AccountRegisterPage() {
   const professions = await getProfessions()
   const languages = await getLanguages()
-  console.log('my professions', professions)
   return (
     <section className="flex flex-col items-center justify-center h-full py-12">
       <div className="flex flex-col items-center justify-center w-full gap-12 md:flex-row">

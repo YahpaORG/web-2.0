@@ -39,7 +39,7 @@ export default function AccountConfirmationEmail({
             <Heading className="text-xl text-center">Confirm your email address</Heading>
 
             <Text>
-              Your confirmation link is below - enter it in your browser and we'll help you get
+              Your confirmation link is below - enter it in your browser and we&apos;ll help you get
               signed in.
             </Text>
 
@@ -53,8 +53,8 @@ export default function AccountConfirmationEmail({
             </Section>
 
             <Text className="text-gray-500">
-              If you didn't request this email, there's nothing to worry about, you can safely
-              ignore it.
+              If you didn&apos;t request this email, there&apos;s nothing to worry about, you can
+              safely ignore it.
             </Text>
           </Container>
         </Body>
