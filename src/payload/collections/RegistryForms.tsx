@@ -32,8 +32,6 @@ const registerUserToRegistry: FieldHook<RegistryForm> = async ({
           phone_numbers: [{ phone_number: formData.primary_phone_number }],
         },
       })
-
-      console.log('Successfully created Registry', result)
     }
   }
 }

@@ -22,6 +22,7 @@ import { startTransition, useActionState, useEffect, useRef } from 'react'
 import { createNewUser } from '@/app/(frontend)/signup/actions'
 import { SignUpFormSchema } from '@/lib/formSchemas'
 import { useRouter } from 'next/navigation'
+import { LoadingSpinner } from './ui/LoadingSpinner'
 
 type FormValues = z.infer<typeof SignUpFormSchema>
 
@@ -36,7 +37,7 @@ const INITIAL_STATE = {
 
 export function SignUpForm() {
   const router = useRouter()
-  const [state, formAction] = useActionState(createNewUser, {
+  const [state, formAction, isPending] = useActionState(createNewUser, {
     message: '',
     data: INITIAL_STATE,
   })
@@ -122,7 +123,7 @@ export function SignUpForm() {
                 This is the email that will be used to connect to your account.
               </FormDescription>
               <FormControl>
-                <Input type="text" placeholder="example@yahpa.org" {...field} />
+                <Input type="email" placeholder="example@yahpa.org" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -192,7 +193,7 @@ export function SignUpForm() {
           </p>
           <div>
             <Button type="submit" disabled={!form.formState.isDirty}>
-              Create Account
+              {form.formState.isLoading || isPending ? <LoadingSpinner /> : 'Create Account'}
             </Button>
           </div>
         </div>

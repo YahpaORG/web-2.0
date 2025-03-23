@@ -12,7 +12,5 @@ export const getUser = async () => {
 
   const { user } = await payload.auth({ headers: headersList })
 
-  console.log('getUser', user)
-
   return user
 }

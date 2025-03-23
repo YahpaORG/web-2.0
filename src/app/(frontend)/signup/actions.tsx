@@ -20,8 +20,6 @@ export const createNewUser = async (prevState: FormState, data: FormData): Promi
   const formData = Object.fromEntries(data)
   const parsed = SignUpFormSchema.safeParse(formData)
 
-  console.log('form data', formData)
-
   // 2. Validate parsed data
   if (!parsed.success) {
     const fields: Record<string, string> = {}
@@ -39,13 +37,12 @@ export const createNewUser = async (prevState: FormState, data: FormData): Promi
   }
 
   // 3. Create a new user from validated data
-
-  console.log('parsed data', parsed.data)
   try {
     await payload.create({ collection: 'users', data: { ...parsed.data } })
-    return { ...prevState, message: 'Login successful!', success: true }
+    return { ...prevState, message: 'Account creation successful!', success: true }
   } catch (e) {
     const error = e as APIError
+    console.log('error', error)
     return { ...prevState, message: error.message, success: false }
   }
 }

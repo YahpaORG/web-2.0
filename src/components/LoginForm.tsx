@@ -20,6 +20,7 @@ import { useToast } from '@/hooks/use-toast'
 import { startTransition, useActionState, useEffect, useRef } from 'react'
 import { signin } from '@/app/(frontend)/login/actions'
 import { LoginFormSchema } from '@/lib/formSchemas'
+import { LoadingSpinner } from './ui/LoadingSpinner'
 
 type FormValues = z.infer<typeof LoginFormSchema>
 
@@ -27,7 +28,7 @@ export function LoginForm() {
   const router = useRouter()
   const { toast } = useToast()
   const formRef = useRef<HTMLFormElement>(null)
-  const [state, formAction] = useActionState(signin, {
+  const [state, formAction, isPending] = useActionState(signin, {
     message: '',
   })
 
@@ -107,7 +108,9 @@ export function LoginForm() {
             </Link>
           </p>
           <div>
-            <Button type="submit">Log In</Button>
+            <Button type="submit">
+              {form.formState.isLoading || isPending ? <LoadingSpinner /> : 'Login'}
+            </Button>
           </div>
         </div>
       </form>

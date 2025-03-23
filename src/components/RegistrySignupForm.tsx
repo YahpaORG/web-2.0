@@ -128,11 +128,7 @@ export function RegistrySignupForm({ professions, languages }: RegistrySignupFor
     }
 
     submitRegistryForm({ ...values, profession: chosenProfession, languages: formattedLanguages })
-    console.log('values', {
-      ...values,
-      profession: chosenProfession,
-      languages: formattedLanguages,
-    })
+
     router.replace('/account')
     toast({
       title: 'Registration complete!',
