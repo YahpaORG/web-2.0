@@ -1,6 +1,4 @@
-# blank
-
-blank
+# YAHPA - Website 2.0
 
 ## Attributes
 
