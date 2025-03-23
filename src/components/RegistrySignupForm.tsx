@@ -103,6 +103,10 @@ export function RegistrySignupForm({ professions, languages }: RegistrySignupFor
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      first_name: '',
+      last_name: '',
+      email: '',
+      primary_phone_number: '',
       sectors: [],
       languages: [],
     },
@@ -129,7 +133,7 @@ export function RegistrySignupForm({ professions, languages }: RegistrySignupFor
       profession: chosenProfession,
       languages: formattedLanguages,
     })
-    // router.replace('/account')
+    router.replace('/account')
     toast({
       title: 'Registration complete!',
       description: new Date().toUTCString(),
@@ -401,8 +405,8 @@ export function RegistrySignupForm({ professions, languages }: RegistrySignupFor
                     <CommandInput placeholder="Search profession..." />
                     <CommandList className="px-4">
                       <CommandEmpty>
-                        Sorry, we don't have that profession on our list. Please select "other" and
-                        let us know.
+                        Sorry, we don&apos;t have that profession on our list. Please select
+                        &quot;other&quot; and let us know.
                       </CommandEmpty>
                       <CommandGroup>
                         {professions.map((profession) => (
