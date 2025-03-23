@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { headers } from 'next/headers'
+import { deleteRegistryFormSubmission } from './register/actions'
 
 export default async function AccountPage() {
   const payload = await getPayload({
@@ -55,9 +56,14 @@ export default async function AccountPage() {
             communities.
           </p>
           {hasUploadedForm ? (
-            <div className="text-center">
+            <div className="flex flex-col gap-2 text-center">
               <p className="font-bold">Your submission is currently being reviewed.</p>
               <span>Submitted on {new Date(data.docs[0].createdAt).toDateString()}</span>
+              <div>
+                <Button variant="destructive" onClick={deleteRegistryFormSubmission}>
+                  Delete Submission
+                </Button>
+              </div>
             </div>
           ) : (
             <Button asChild>
