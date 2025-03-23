@@ -2,11 +2,10 @@
 
 import { LoginFormSchema } from '@/lib/formSchemas'
 import configPromise from '@payload-config'
-import { revalidatePath, revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 import { APIError, getPayload } from 'payload'
 
-export type FormState = {
+type FormState = {
   message: string
   data?: Record<string, string>
   errors?: string[]

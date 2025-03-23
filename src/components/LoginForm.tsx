@@ -17,7 +17,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/use-toast'
-import { useActionState, useEffect, useRef } from 'react'
+import { startTransition, useActionState, useEffect, useRef } from 'react'
 import { signin } from '@/app/(frontend)/login/actions'
 import { LoginFormSchema } from '@/lib/formSchemas'
 
@@ -49,7 +49,17 @@ export function LoginForm() {
 
   return (
     <Form {...form}>
-      <form ref={formRef} action={formAction} className="space-y-6">
+      <form
+        ref={formRef}
+        action={formAction}
+        onSubmit={(evt) => {
+          evt.preventDefault()
+          form.handleSubmit(() => {
+            startTransition(() => formAction(new FormData(formRef.current!)))
+          })(evt)
+        }}
+        className="space-y-6"
+      >
         <div className="max-w-md">
           <h3 className="text-2xl">Connect to your Account</h3>
           <p>Please enter your email and password to login to your YAHPA account.</p>
