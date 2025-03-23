@@ -17,66 +17,49 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/use-toast'
-import { useAuth } from '@/providers/AuthProvider'
-import { AuthenticationError } from 'payload'
+import { useActionState, useEffect, useRef } from 'react'
+import { signin } from '@/app/(frontend)/login/actions'
+import { LoginFormSchema } from '@/lib/formSchemas'
 
-type FormValues = z.infer<typeof formSchema>
-
-const formSchema = z.object({
-  email: z
-    .string({
-      required_error: 'You need to enter your email.',
-    })
-    .email('This is not a valid email.'),
-  password: z
-    .string({
-      required_error: 'You need to enter your password.',
-    })
-    .min(8),
-})
+type FormValues = z.infer<typeof LoginFormSchema>
 
 export function LoginForm() {
-  const { login } = useAuth()
   const router = useRouter()
   const { toast } = useToast()
+  const formRef = useRef<HTMLFormElement>(null)
+  const [state, formAction] = useActionState(signin, {
+    message: '',
+  })
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<FormValues>({
+    resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   })
 
-  async function onSubmit(values: FormValues) {
-    try {
-      const user = await login({
-        email: values.email,
-        password: values.password,
-      })
-
-      if (user) {
-        toast({
-          title: 'You are now connected.',
-          description: new Date().toUTCString(),
-        })
-        form.reset()
-        router.push('/account')
-      }
-    } catch (e) {
-      // TODO: use server side validation with server actions to send back error messages
-      const error = e as AuthenticationError
-      form.setError('root', { message: error.message })
+  useEffect(() => {
+    if (state.success) {
+      toast({ title: state.message })
+      router.push('/account')
+      router.refresh()
     }
-  }
+  }, [state.success])
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form ref={formRef} action={formAction} className="space-y-6">
         <div className="max-w-md">
           <h3 className="text-2xl">Connect to your Account</h3>
           <p>Please enter your email and password to login to your YAHPA account.</p>
         </div>
+
+        {state.message && (
+          <div>
+            <p className="text-sm text-red-500">{state.message}</p>
+          </div>
+        )}
 
         <FormField
           control={form.control}

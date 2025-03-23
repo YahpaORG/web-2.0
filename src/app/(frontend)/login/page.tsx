@@ -1,22 +1,11 @@
 import { LoginForm } from '@/components/LoginForm'
-import { isAuthenticated } from '../actions'
+import { getUser } from '@/lib/get-user'
 import { redirect } from 'next/navigation'
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
-import { headers } from 'next/headers'
 
 export default async function LoginPage() {
-  const headersList = await headers()
+  const user = await getUser()
 
-  const payload = await getPayload({
-    config: configPromise,
-  })
-
-  const result = await payload.auth({ headers: headersList })
-
-  console.log('result', result)
-
-  if (result.user) {
+  if (user) {
     redirect('/')
   }
 

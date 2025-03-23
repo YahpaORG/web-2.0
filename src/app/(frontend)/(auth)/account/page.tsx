@@ -1,17 +1,16 @@
 import { Button } from '@/components/ui/button'
+import { getUser } from '@/lib/get-user'
+import config from '@payload-config'
 import Link from 'next/link'
 import { getPayload } from 'payload'
-import config from '@payload-config'
-import { headers } from 'next/headers'
 import { deleteRegistryFormSubmission } from './register/actions'
 
 export default async function AccountPage() {
   const payload = await getPayload({
     config,
   })
-  const headersList = await headers()
 
-  const { user } = await payload.auth({ headers: headersList })
+  const user = await getUser()
 
   const data = await payload.find({
     collection: 'registry-forms',

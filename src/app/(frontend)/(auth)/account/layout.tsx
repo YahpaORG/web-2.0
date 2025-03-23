@@ -1,18 +1,12 @@
-import configPromise from '@payload-config'
-import { headers } from 'next/headers'
+import { getUser } from '@/lib/get-user'
 import { redirect } from 'next/navigation'
-import { getPayload } from 'payload'
 
 export default async function AccountLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const headersList = await headers()
-  const payload = await getPayload({
-    config: configPromise,
-  })
-  const { user } = await payload.auth({ headers: headersList })
+  const user = await getUser()
 
   if (!user) {
     redirect('/login')

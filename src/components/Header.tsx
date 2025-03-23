@@ -1,12 +1,14 @@
-'use client'
+'use server'
 
-import Link from 'next/link'
-import { ThemeDropdown } from './ThemeDropdown'
 import { Button } from '@/components/ui/button'
-import { useAuth } from '@/providers/AuthProvider'
+import { getUser } from '@/lib/get-user'
+import Link from 'next/link'
+import { LogoutButton } from './LogoutButton'
+import { ThemeDropdown } from './ThemeDropdown'
 
-export function Header() {
-  const { user, logout } = useAuth()
+export async function Header() {
+  const user = await getUser()
+
   return (
     <header className="flex items-center justify-between mx-6 mt-4 mb-12">
       <div className="flex flex-col justify-center flex-1">
@@ -37,7 +39,7 @@ export function Header() {
                 <Link href="/account">My Account</Link>
               </li>
               <li>
-                <Button onClick={logout}>Logout</Button>
+                <LogoutButton />
               </li>
             </>
           ) : (
