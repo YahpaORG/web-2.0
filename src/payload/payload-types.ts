@@ -54,6 +54,7 @@ export type SupportedTimezones =
   | 'Asia/Singapore'
   | 'Asia/Tokyo'
   | 'Asia/Seoul'
+  | 'Australia/Brisbane'
   | 'Australia/Sydney'
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
@@ -160,9 +161,10 @@ export interface User {
   primary_phone_number?: string | null;
   preferred_contact_method?: ('email' | 'phone') | null;
   relatedRegistry?: {
-    docs?: (string | RegistryMember)[] | null;
-    hasNextPage?: boolean | null;
-  } | null;
+    docs?: (string | RegistryMember)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
   email: string;
