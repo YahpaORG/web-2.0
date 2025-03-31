@@ -1,6 +1,6 @@
 'use client'
 
-import { logout } from '@/app/(frontend)/actions'
+import { logoutUser } from '@/lib/server/logoutUser.action'
 import { Button } from './ui/button'
 import { useRouter } from 'next/navigation'
 
@@ -9,7 +9,7 @@ export function LogoutButton() {
   return (
     <Button
       onClick={async () => {
-        await logout()
+        await logoutUser()
         router.refresh()
       }}
     >

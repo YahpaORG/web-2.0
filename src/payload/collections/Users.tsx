@@ -54,33 +54,5 @@ export const Users: CollectionConfig = {
   hooks: {
     beforeValidate: [checkExistingEmail],
   },
-  fields: [
-    {
-      name: 'email',
-      type: 'email',
-      unique: true,
-      required: true,
-    },
-    {
-      name: 'primary_phone_number',
-      label: 'Primary Phone Number',
-      type: 'text',
-    },
-    {
-      name: 'preferred_contact_method',
-      label: 'Preferred Contact Method',
-      type: 'radio',
-      options: [
-        { label: 'By email', value: 'email' },
-        { label: 'By phone', value: 'phone' },
-      ],
-      defaultValue: 'email',
-    },
-    {
-      name: 'relatedRegistry',
-      type: 'join',
-      collection: 'registry-members',
-      on: 'relatedUser',
-    },
-  ],
+  fields: [],
 }

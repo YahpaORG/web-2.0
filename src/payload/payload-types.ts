@@ -80,11 +80,7 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {
-    users: {
-      relatedRegistry: 'registry-members';
-    };
-  };
+  collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -158,13 +154,6 @@ export interface AdminAuthOperations {
  */
 export interface User {
   id: string;
-  primary_phone_number?: string | null;
-  preferred_contact_method?: ('email' | 'phone') | null;
-  relatedRegistry?: {
-    docs?: (string | RegistryMember)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -177,74 +166,6 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "registry-members".
- */
-export interface RegistryMember {
-  id: string;
-  relatedUser?: (string | null) | User;
-  first_name: string;
-  last_name: string;
-  profession: {
-    relationTo: 'professions';
-    value: string | Profession;
-  };
-  languages: {
-    relationTo: 'languages';
-    value: string | Language;
-  }[];
-  description?: string | null;
-  emails?:
-    | {
-        email?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  phone_numbers?:
-    | {
-        phone_number?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  clinics?:
-    | {
-        is_private: boolean;
-        name: string;
-        address: string;
-        email?: string | null;
-        phone_number?: string | null;
-        website?: string | null;
-        availability?: string | null;
-        consultation_methods?: ('in-person' | 'virtual' | 'walk-in') | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "professions".
- */
-export interface Profession {
-  id: string;
-  title: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "languages".
- */
-export interface Language {
-  id: string;
-  autonym: string;
-  code: string;
-  heteronym?: string | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -302,25 +223,54 @@ export interface Admin {
 export interface RegistryForm {
   id: string;
   registry_status?: ('approved' | 'review') | null;
-  user_id: string;
+  submittedBy?: string | null;
   first_name: string;
   last_name: string;
-  email: string;
   primary_phone_number: string;
   preferred_contact_method: 'email' | 'phone';
-  languages: {
-    relationTo: 'languages';
-    value: string | Language;
-  }[];
-  other_languages?: string | null;
+  languages: (string | Language)[];
   status: 'student' | 'unemployed' | 'employed';
-  'estimated graduation date'?: string | null;
   profession: {
     relationTo: 'professions';
     value: string | Profession;
   };
-  'other profession'?: string | null;
-  sectors?: ('public' | 'private')[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "languages".
+ */
+export interface Language {
+  id: string;
+  autonym: string;
+  code: string;
+  heteronym?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "professions".
+ */
+export interface Profession {
+  id: string;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "registry-members".
+ */
+export interface RegistryMember {
+  id: string;
+  profession: {
+    relationTo: 'professions';
+    value: string | Profession;
+  };
+  languages: (string | Language)[];
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -420,9 +370,6 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  primary_phone_number?: T;
-  preferred_contact_method?: T;
-  relatedRegistry?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -486,19 +433,14 @@ export interface AdminsSelect<T extends boolean = true> {
  */
 export interface RegistryFormsSelect<T extends boolean = true> {
   registry_status?: T;
-  user_id?: T;
+  submittedBy?: T;
   first_name?: T;
   last_name?: T;
-  email?: T;
   primary_phone_number?: T;
   preferred_contact_method?: T;
   languages?: T;
-  other_languages?: T;
   status?: T;
-  'estimated graduation date'?: T;
   profession?: T;
-  'other profession'?: T;
-  sectors?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -507,37 +449,9 @@ export interface RegistryFormsSelect<T extends boolean = true> {
  * via the `definition` "registry-members_select".
  */
 export interface RegistryMembersSelect<T extends boolean = true> {
-  relatedUser?: T;
-  first_name?: T;
-  last_name?: T;
   profession?: T;
   languages?: T;
   description?: T;
-  emails?:
-    | T
-    | {
-        email?: T;
-        id?: T;
-      };
-  phone_numbers?:
-    | T
-    | {
-        phone_number?: T;
-        id?: T;
-      };
-  clinics?:
-    | T
-    | {
-        is_private?: T;
-        name?: T;
-        address?: T;
-        email?: T;
-        phone_number?: T;
-        website?: T;
-        availability?: T;
-        consultation_methods?: T;
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
 }

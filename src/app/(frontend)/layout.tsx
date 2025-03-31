@@ -3,10 +3,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from '@/components/ui/toaster'
-
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { Header } from '@/components/Header'
-import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,8 +33,13 @@ export default function RootLayout({
           <div className="flex flex-1">
             <main className="flex-1">{children}</main>
           </div>
+          <footer className="flex flex-col items-center justify-center p-4 bg-neutral-900">
+            <span className="mb-2 text-white">All rights deserved YAHPA © 2021</span>
 
-          <Footer />
+            <Link href="/admin" className="text-sm text-white hover:underline">
+              Admin Portal
+            </Link>
+          </footer>
           <Toaster />
         </ThemeProvider>
       </body>

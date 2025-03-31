@@ -1,20 +1,7 @@
 import { z } from 'zod'
 
-export const LoginFormSchema = z.object({
-  email: z.string({ message: 'Please enter your email.' }).email({
-    message: 'This is not a valid email.',
-  }),
-  password: z
-    .string({
-      message: 'Please enter your password.',
-    })
-    .min(8),
-})
-
 export const SignUpFormSchema = z
   .object({
-    first_name: z.string().min(1, { message: 'Please enter your first name.' }),
-    last_name: z.string().min(1, { message: 'Please enter your last name.' }),
     email: z
       .string()
       .min(1, { message: 'You need to provide a valid email to create your account.' })
@@ -33,3 +20,5 @@ export const SignUpFormSchema = z
     message: "Your passwords don't match",
     path: ['confirm_password'],
   })
+
+export type SignUpFormValues = z.infer<typeof SignUpFormSchema>

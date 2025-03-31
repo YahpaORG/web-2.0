@@ -15,19 +15,18 @@ export const fetchSearchResults = async ({ query = '', currentPage = 1 }: Search
 
   const results = await payload.find({
     collection: 'registry-members',
-    select: { relatedUser: false },
     where: {
       or: [
-        {
-          first_name: {
-            like: query,
-          },
-        },
-        {
-          last_name: {
-            like: query,
-          },
-        },
+        // {
+        //   first_name: {
+        //     like: query,
+        //   },
+        // },
+        // {
+        //   last_name: {
+        //     like: query,
+        //   },
+        // },
         {
           profession: {
             like: query,

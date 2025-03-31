@@ -3,7 +3,7 @@ import { getUser } from '@/lib/get-user'
 import config from '@payload-config'
 import Link from 'next/link'
 import { getPayload } from 'payload'
-import { deleteRegistryFormSubmission } from './register/actions'
+import { deleteRegistry } from '@/lib/server/delete-registry.action'
 
 export default async function AccountPage() {
   const payload = await getPayload({
@@ -15,7 +15,7 @@ export default async function AccountPage() {
   const data = await payload.find({
     collection: 'registry-forms',
     where: {
-      user_id: {
+      submittedBy: {
         equals: user?.id,
       },
     },
@@ -59,7 +59,7 @@ export default async function AccountPage() {
               <p className="font-bold">Your submission is currently being reviewed.</p>
               <span>Submitted on {new Date(data.docs[0].createdAt).toDateString()}</span>
               <div>
-                <Button variant="destructive" onClick={deleteRegistryFormSubmission}>
+                <Button variant="destructive" onClick={deleteRegistry}>
                   Delete Submission
                 </Button>
               </div>

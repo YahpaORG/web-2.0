@@ -1,119 +1,73 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-
-import { zodResolver } from '@hookform/resolvers/zod'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { Input } from '@/components/ui/input'
-import { useToast } from '@/hooks/use-toast'
-import { startTransition, useActionState, useEffect, useRef } from 'react'
-import { signin } from '@/app/(frontend)/login/actions'
-import { LoginFormSchema } from '@/lib/formSchemas'
+import { loginUser } from '@/lib/server/login-user.action'
+import { useActionState } from 'react'
 import { LoadingSpinner } from './ui/LoadingSpinner'
-
-type FormValues = z.infer<typeof LoginFormSchema>
+import Link from 'next/link'
 
 export function LoginForm() {
-  const router = useRouter()
-  const { toast } = useToast()
-  const formRef = useRef<HTMLFormElement>(null)
-  const [state, formAction, isPending] = useActionState(signin, {
-    message: '',
-  })
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(LoginFormSchema),
-    defaultValues: {
+  const [state, formAction, isPending] = useActionState(loginUser, {
+    values: {
       email: '',
       password: '',
     },
+    errors: {},
   })
 
-  useEffect(() => {
-    if (state.success) {
-      toast({ title: state.message })
-      router.push('/account')
-      router.refresh()
-    }
-  }, [state.success])
-
   return (
-    <Form {...form}>
-      <form
-        ref={formRef}
-        action={formAction}
-        onSubmit={(evt) => {
-          evt.preventDefault()
-          form.handleSubmit(() => {
-            startTransition(() => formAction(new FormData(formRef.current!)))
-          })(evt)
-        }}
-        className="space-y-6"
-      >
-        <div className="max-w-md">
-          <h3 className="text-2xl">Connect to your Account</h3>
-          <p>Please enter your email and password to login to your YAHPA account.</p>
-        </div>
-
-        {state.message && !state.success && (
-          <div>
-            <p className="text-sm text-red-500">{state.message}</p>
-          </div>
-        )}
-        <FormField
-          control={form.control}
+    <form action={formAction} className="flex flex-col gap-4">
+      {state.errors.api && (
+        <p role="alert" className="text-red-500">
+          {state.errors.api.message}
+        </p>
+      )}
+      <div className="flex flex-col gap-2">
+        <label className="text-sm font-semibold">Email</label>
+        <input
           name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input type="text" placeholder="example@yahpa.org" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          type="email"
+          placeholder="jimmy.choo@gmail.com"
+          className="p-2 border rounded-lg"
+          defaultValue={state.values.email}
+          required
         />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input type="password" placeholder="not12345678" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        {form.formState.errors.root && (
-          <FormMessage>{form.formState.errors.root.message}</FormMessage>
-        )}
-        <div className="flex flex-col gap-2">
-          <p className="text-sm">
-            Don&apos;t have one?{' '}
-            <Link href="/signup" className="underline">
-              Create an account
-            </Link>
+        {state.errors.email && (
+          <p role="alert" className="text-red-500">
+            {state.errors.email.message}
           </p>
-          <div>
-            <Button type="submit">
-              {form.formState.isLoading || isPending ? <LoadingSpinner /> : 'Login'}
-            </Button>
-          </div>
-        </div>
-      </form>
-    </Form>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <label className="text-sm font-semibold">Password</label>
+        <input
+          name="password"
+          type="password"
+          placeholder="not12345678"
+          className="p-2 border rounded-lg"
+          defaultValue={state.values.password}
+          required
+        />
+        {state.errors.password && (
+          <p role="alert" className="text-red-500">
+            {state.errors.password.message}
+          </p>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <p className="text-sm">
+          Don&apos;t have an account?{' '}
+          <Link href="/signup" className="underline">
+            Sign up here.
+          </Link>
+        </p>
+      </div>
+      <div>
+        <button type="submit" className="px-4 py-2 text-white bg-black rounded-md">
+          {isPending ? <LoadingSpinner /> : 'Login'}
+        </button>
+      </div>
+    </form>
   )
 }

@@ -2,41 +2,23 @@ import type { CollectionConfig, FieldHook } from 'payload'
 
 import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
 import { admins } from '../access/admins'
+import { FirstNameField, LastNameField } from '../fields/registry-form'
 import { RegistryForm } from '../payload-types'
-import { FirstNameField, LastNameField, EmailField } from '../fields/registry-form'
 
-/**
- * Hook that creates a registry member after the registry form status has been changed to approved
- */
-const registerUserToRegistry: FieldHook<RegistryForm> = async ({
-  collection,
-  operation,
-  req,
-  data,
-  value,
-  ...rest
-}) => {
-  const { payload } = req
-  const formData = data as RegistryForm
+const createRegistryMember: FieldHook<RegistryForm> = async ({ value, operation, data, req }) => {
   if (operation === 'update') {
     if (value === 'approved') {
-      const result = await payload.create({
+      await req.payload.create({
         collection: 'registry-members',
         data: {
-          relatedUser: formData.user_id,
-          profession: formData.profession,
-          languages: formData.languages,
-          first_name: formData.first_name,
-          last_name: formData.last_name,
-          emails: [{ email: formData.email }],
-          phone_numbers: [{ phone_number: formData.primary_phone_number }],
+          languages: data?.languages!,
+          profession: data?.profession!,
         },
       })
     }
   }
 }
 
-// TODO: create afterChange hook to update User collection with data.
 export const RegistryForms: CollectionConfig = {
   labels: {
     singular: 'Registry Form',
@@ -49,7 +31,6 @@ export const RegistryForms: CollectionConfig = {
     delete: isSelfOrAdmin,
     update: admins,
   },
-
   fields: [
     {
       name: 'registry_status',
@@ -66,24 +47,19 @@ export const RegistryForms: CollectionConfig = {
         },
       ],
       defaultValue: 'review',
-      hooks: {
-        afterChange: [registerUserToRegistry],
-      },
       hasMany: false,
       required: false,
+      hooks: {
+        afterChange: [createRegistryMember],
+      },
     },
     {
-      name: 'user_id',
-      label: 'User ID',
+      name: 'submittedBy',
+      label: 'Submitted By User',
       type: 'text',
-      required: true,
-      access: {
-        update: () => false,
-      },
     },
     FirstNameField,
     LastNameField,
-    EmailField,
     {
       name: 'primary_phone_number',
       label: 'Primary Phone Number',
@@ -102,18 +78,18 @@ export const RegistryForms: CollectionConfig = {
     },
     {
       name: 'languages',
-      label: 'Languages',
+      label: 'Spoken Languages',
       type: 'relationship',
-      relationTo: ['languages'],
+      relationTo: 'languages',
       hasMany: true,
       required: true,
     },
-    {
-      label: 'Other Languages',
-      name: 'other_languages',
-      type: 'text',
-      required: false,
-    },
+    // {
+    //   label: 'Other Languages',
+    //   name: 'other_languages',
+    //   type: 'text',
+    //   required: false,
+    // },
     {
       label: 'Status',
       name: 'status',
@@ -134,11 +110,11 @@ export const RegistryForms: CollectionConfig = {
       ],
       required: true,
     },
-    {
-      name: 'estimated graduation date',
-      type: 'date',
-      required: false,
-    },
+    // {
+    //   name: 'estimated graduation date',
+    //   type: 'date',
+    //   required: false,
+    // },
     {
       name: 'profession',
       label: 'Professional Title',
@@ -147,26 +123,26 @@ export const RegistryForms: CollectionConfig = {
       hasMany: false,
       required: true,
     },
-    {
-      name: 'other profession',
-      type: 'text',
-      required: false,
-    },
-    {
-      name: 'sectors',
-      type: 'select',
-      options: [
-        {
-          label: 'Public',
-          value: 'public',
-        },
-        {
-          label: 'Private',
-          value: 'private',
-        },
-      ],
-      hasMany: true,
-      required: false,
-    },
+    // {
+    //   name: 'other profession',
+    //   type: 'text',
+    //   required: false,
+    // },
+    // {
+    //   name: 'sectors',
+    //   type: 'select',
+    //   options: [
+    //     {
+    //       label: 'Public',
+    //       value: 'public',
+    //     },
+    //     {
+    //       label: 'Private',
+    //       value: 'private',
+    //     },
+    //   ],
+    //   hasMany: true,
+    //   required: false,
+    // },
   ],
 }
