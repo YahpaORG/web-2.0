@@ -1,6 +1,5 @@
 import { fetchSearchResults } from '@/app/(frontend)/registry/search/actions'
 import { LanguagesSelect, Profession } from '@/payload/payload-types'
-import { Badge } from '../ui/badge'
 
 type SearchResultsProps = {
   query: string
@@ -20,27 +19,15 @@ export default async function SearchResults({ query, currentPage }: SearchResult
           {result.profession && (
             <p className="capitalize">{(result.profession.value as Profession).title}</p>
           )}
-          {/* {result.emails && result.emails.length > 0 && (
-            <div className="flex gap-2">
-              <span>Emails:</span>
-              {result.emails.map((email) => (
-                <p key={email.id}>{email.email}</p>
-              ))}
-            </div>
-          )}
-          {result.phone_numbers && result.phone_numbers.length > 0 && (
-            <div className="flex gap-2">
-              <span>Phone Numbers:</span>
-              {result.phone_numbers.map((phone_number) => (
-                <p key={phone_number.id}>{phone_number.phone_number}</p>
-              ))}
-            </div>
-          )} */}
           <div className="flex gap-2">
             <span>Spoken Languages:</span>
-            {(result.languages as LanguagesSelect[])?.map((language, index) => (
-              <Badge key={`${result.id}-${index}`}>{language.autonym}</Badge>
-            ))}
+            <ul className="flex flex-row items-center gap-4">
+              {(result.languages as LanguagesSelect[])?.map((language, index) => (
+                <div className="px-4 text-white bg-black rounded-3xl" key={`${result.id}-${index}`}>
+                  {language.autonym}
+                </div>
+              ))}
+            </ul>
           </div>
           <p>Joined since {new Date(result.createdAt).toDateString()}</p>
           <p>Last Updated on: {new Date(result.updatedAt).toDateString()}</p>

@@ -1,11 +1,10 @@
+import { Header } from '@/components/Header'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
-import { Toaster } from '@/components/ui/toaster'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
-import { Header } from '@/components/Header'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -40,7 +39,6 @@ export default function RootLayout({
               Admin Portal
             </Link>
           </footer>
-          <Toaster />
         </ThemeProvider>
       </body>
     </html>
