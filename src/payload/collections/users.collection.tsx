@@ -30,7 +30,7 @@ const checkExistingEmail: CollectionBeforeValidateHook = async ({ data, operatio
   return data
 }
 
-export const Users: CollectionConfig = {
+export const users: CollectionConfig = {
   slug: 'users',
   admin: {
     useAsTitle: 'email',

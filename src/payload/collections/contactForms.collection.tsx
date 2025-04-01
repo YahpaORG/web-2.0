@@ -1,5 +1,5 @@
 import type { CollectionConfig, CollectionAfterChangeHook } from 'payload'
-import { admins } from '@/payload/access/admins'
+import { adminsOnly } from '@/payload/access/adminsOnly'
 import { anyone } from '@/payload/access/anyone'
 import { render } from '@react-email/render'
 import ContactFormReceivedEmail from '../emails/ContactFormReceivedEmail'
@@ -28,16 +28,16 @@ const sendEmailAfterChange: CollectionAfterChangeHook<ContactForm> = async ({
   }
 }
 
-export const ContactForms: CollectionConfig = {
+export const contactForms: CollectionConfig = {
   labels: {
     singular: 'Contact Form',
     plural: 'Contact Forms',
   },
   slug: 'contact-forms',
   access: {
-    read: admins,
+    read: adminsOnly,
     create: anyone,
-    delete: admins,
+    delete: adminsOnly,
     update: () => false,
   },
   hooks: {

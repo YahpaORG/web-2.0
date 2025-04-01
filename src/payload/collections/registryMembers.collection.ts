@@ -1,9 +1,8 @@
 import { anyone } from '@/payload//access/anyone'
 import type { CollectionConfig } from 'payload'
 import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
-import { FirstNameField, LastNameField } from '../fields/registry-form'
 
-export const RegistryMembers: CollectionConfig = {
+export const registryMembers: CollectionConfig = {
   slug: 'registry-members',
   labels: { plural: 'Registry Members', singular: 'Registry Member' },
   access: {

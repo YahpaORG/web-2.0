@@ -1,8 +1,8 @@
 import type { CollectionConfig } from 'payload'
-import { admins } from '@/payload/access/admins'
+import { adminsOnly } from '@/payload/access/adminsOnly'
 import { anyone } from '../access/anyone'
 
-export const Professions: CollectionConfig = {
+export const professions: CollectionConfig = {
   slug: 'professions',
   admin: {
     useAsTitle: 'title',
@@ -10,9 +10,9 @@ export const Professions: CollectionConfig = {
   labels: { singular: 'Healthcare Profession', plural: 'Healthcare Professions' },
   access: {
     read: anyone,
-    create: admins,
-    update: admins,
-    delete: admins,
+    create: adminsOnly,
+    update: adminsOnly,
+    delete: adminsOnly,
   },
   fields: [{ name: 'title', label: 'Name of Profession', type: 'text', required: true }],
 }

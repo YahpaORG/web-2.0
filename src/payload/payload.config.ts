@@ -6,14 +6,14 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
-import { ContactForms } from './collections/ContactForms'
-import { Media } from './collections/Media'
-import { Users } from './collections/Users'
-import { Admins } from './collections/Admins'
-import { RegistryMembers } from './collections/RegistryMembers'
-import { RegistryForms } from './collections/RegistryForms'
-import { Professions } from './collections/Professions'
-import { Languages } from './collections/Languages'
+import { contactForms } from './collections/contactForms.collection'
+import { media } from './collections/media.collection'
+import { users } from './collections/users.collection'
+import { admins } from './collections/admins.collection'
+import { registryMembers } from './collections/registryMembers.collection'
+import { registryForms } from './collections/registryForms.collection'
+import { professions } from './collections/professions.collection'
+import { languages } from './collections/languages.collection'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -21,7 +21,7 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
   admin: {
-    user: Admins.slug,
+    user: admins.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -47,14 +47,14 @@ export default buildConfig({
     apiKey: process.env.RESEND_API_KEY || '',
   }),
   collections: [
-    Users,
-    Media,
-    ContactForms,
-    Admins,
-    RegistryForms,
-    RegistryMembers,
-    Professions,
-    Languages,
+    users,
+    media,
+    contactForms,
+    admins,
+    registryForms,
+    registryMembers,
+    professions,
+    languages,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

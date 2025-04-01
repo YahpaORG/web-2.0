@@ -1,7 +1,7 @@
 import type { CollectionConfig, FieldHook } from 'payload'
 
 import { isSelfOrAdmin } from '../access/isSelfOrAdmin'
-import { admins } from '../access/admins'
+import { adminsOnly } from '../access/adminsOnly'
 import { FirstNameField, LastNameField } from '../fields/registry-form'
 import { RegistryForm } from '../payload-types'
 
@@ -19,7 +19,7 @@ const createRegistryMember: FieldHook<RegistryForm> = async ({ value, operation,
   }
 }
 
-export const RegistryForms: CollectionConfig = {
+export const registryForms: CollectionConfig = {
   labels: {
     singular: 'Registry Form',
     plural: 'Registry Forms',
@@ -29,7 +29,7 @@ export const RegistryForms: CollectionConfig = {
     read: isSelfOrAdmin,
     create: isSelfOrAdmin,
     delete: isSelfOrAdmin,
-    update: admins,
+    update: adminsOnly,
   },
   fields: [
     {
