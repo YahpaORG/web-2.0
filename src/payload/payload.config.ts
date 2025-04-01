@@ -31,11 +31,11 @@ export default buildConfig({
     components: {
       graphics: {
         Logo: {
-          path: '@/components/graphics/Logo',
+          path: '@/payload/graphics/Logo',
           exportName: 'Logo',
         },
         Icon: {
-          path: '@/components/graphics/Icon',
+          path: '@/payload/graphics/Icon',
           exportName: 'Icon',
         },
       },
