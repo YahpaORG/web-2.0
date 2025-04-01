@@ -1,9 +1,10 @@
 import { ContactForm } from '@/components/ContactForm'
+import { createContactForm } from '@/lib/server/create-contact-form.action'
 
 export default function ContactPage() {
   return (
-    <section className="flex flex-col justify-center items-center h-full py-12">
-      <div className="flex flex-col justify-center items-center w-full gap-12 md:flex-row">
+    <section className="flex flex-col items-center justify-center h-full py-12">
+      <div className="flex flex-col items-center justify-center w-full gap-12 md:flex-row">
         <div className="flex flex-col max-w-md gap-4 mb-4 md:self-start">
           <h1 className="text-3xl">Contact Us</h1>
           <h2 className="font-bold">We&apos;re here to help</h2>
@@ -19,7 +20,15 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <ContactForm />
+        <ContactForm
+          action={createContactForm}
+          values={{
+            name: '',
+            email: '',
+            reason: '',
+            message: '',
+          }}
+        />
       </div>
     </section>
   )
