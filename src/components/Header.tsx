@@ -1,7 +1,7 @@
 'use server'
 
 import { Button } from '@/components/ui/button'
-import { getUser } from '@/lib/get-user'
+import { getUser } from '@/lib/server/get-user.action'
 import Link from 'next/link'
 import { LogoutButton } from './LogoutButton'
 import { ThemeDropdown } from './ThemeDropdown'

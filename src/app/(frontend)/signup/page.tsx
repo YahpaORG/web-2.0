@@ -1,5 +1,5 @@
 import { SignupForm } from '@/components/SignupForm'
-import { getUser } from '@/lib/get-user'
+import { getUser } from '@/lib/server/get-user.action'
 import { redirect } from 'next/navigation'
 import { createUser } from '@/lib/server/create-user.action'
 

@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { getUser } from '@/lib/get-user'
+import { getUser } from '@/lib/server/get-user.action'
 import config from '@payload-config'
 import Link from 'next/link'
 import { getPayload } from 'payload'
