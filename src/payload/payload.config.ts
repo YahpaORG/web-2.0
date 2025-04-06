@@ -28,7 +28,9 @@ export default buildConfig({
     meta: {
       title: 'YAHPA',
     },
+
     components: {
+      beforeDashboard: ['@/payload/components/Dashboard'],
       graphics: {
         Logo: {
           path: '@/payload/graphics/Logo',
