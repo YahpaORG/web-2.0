@@ -224,16 +224,53 @@ export interface RegistryForm {
   id: string;
   registry_status?: ('approved' | 'review') | null;
   submittedBy?: string | null;
-  first_name: string;
-  last_name: string;
-  primary_phone_number: string;
-  preferred_contact_method: 'email' | 'phone';
+  firstName: string;
+  lastName: string;
   languages: (string | Language)[];
-  status: 'student' | 'unemployed' | 'employed';
-  profession: {
-    relationTo: 'professions';
-    value: string | Profession;
-  };
+  email: string;
+  primaryPhoneNumber: string;
+  preferredContactMethod: 'email' | 'phone';
+  profession:
+    | 'acupuncturist'
+    | 'art_therapist'
+    | 'audiologist'
+    | 'chiropractor'
+    | 'dentist'
+    | 'dietitian'
+    | 'denturologist'
+    | 'occupational_therapist'
+    | 'nurse'
+    | 'kinesiologist'
+    | 'massage_therapist'
+    | 'physician'
+    | 'optometrist'
+    | 'osteopath'
+    | 'pharmacist'
+    | 'podiatrist'
+    | 'physiotherapist'
+    | 'psychologist'
+    | 'psychotherapist'
+    | 'social_worker'
+    | 'speech_language_pathologist';
+  specialty?: string | null;
+  graduationDate?: string | null;
+  professionalOrder:
+    | 'ooaq'
+    | 'ocq'
+    | 'oeq'
+    | 'ondq'
+    | 'psychologues'
+    | 'opiq'
+    | 'oppq'
+    | 'podiatres'
+    | 'oiiq'
+    | 'pharmaciens'
+    | 'dentistes'
+    | 'none'
+    | 'other';
+  sector: 'public' | 'private';
+  isAcceptingPatients: 'yes' | 'no' | 'yes_temporary' | 'no_later' | 'yes_private';
+  newPatientAcceptanceDate?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -251,26 +288,67 @@ export interface Language {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "professions".
+ * via the `definition` "registry-members".
  */
-export interface Profession {
+export interface RegistryMember {
   id: string;
-  title: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  primaryPhoneNumber: string;
+  preferredContactMethod: 'email' | 'phone';
+  languages: (string | Language)[];
+  profession:
+    | 'acupuncturist'
+    | 'art_therapist'
+    | 'audiologist'
+    | 'chiropractor'
+    | 'dentist'
+    | 'dietitian'
+    | 'denturologist'
+    | 'occupational_therapist'
+    | 'nurse'
+    | 'kinesiologist'
+    | 'massage_therapist'
+    | 'physician'
+    | 'optometrist'
+    | 'osteopath'
+    | 'pharmacist'
+    | 'podiatrist'
+    | 'physiotherapist'
+    | 'psychologist'
+    | 'psychotherapist'
+    | 'social_worker'
+    | 'speech_language_pathologist';
+  specialty?: string | null;
+  graduationDate?: string | null;
+  professionalOrder:
+    | 'ooaq'
+    | 'ocq'
+    | 'oeq'
+    | 'ondq'
+    | 'psychologues'
+    | 'opiq'
+    | 'oppq'
+    | 'podiatres'
+    | 'oiiq'
+    | 'pharmaciens'
+    | 'dentistes'
+    | 'none'
+    | 'other';
+  sector: 'public' | 'private';
+  isAcceptingPatients: 'yes' | 'no' | 'yes_temporary' | 'no_later' | 'yes_private';
+  newPatientAcceptanceDate?: string | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "registry-members".
+ * via the `definition` "professions".
  */
-export interface RegistryMember {
+export interface Profession {
   id: string;
-  profession: {
-    relationTo: 'professions';
-    value: string | Profession;
-  };
-  languages: (string | Language)[];
-  description?: string | null;
+  title: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -434,13 +512,19 @@ export interface AdminsSelect<T extends boolean = true> {
 export interface RegistryFormsSelect<T extends boolean = true> {
   registry_status?: T;
   submittedBy?: T;
-  first_name?: T;
-  last_name?: T;
-  primary_phone_number?: T;
-  preferred_contact_method?: T;
+  firstName?: T;
+  lastName?: T;
   languages?: T;
-  status?: T;
+  email?: T;
+  primaryPhoneNumber?: T;
+  preferredContactMethod?: T;
   profession?: T;
+  specialty?: T;
+  graduationDate?: T;
+  professionalOrder?: T;
+  sector?: T;
+  isAcceptingPatients?: T;
+  newPatientAcceptanceDate?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -449,9 +533,19 @@ export interface RegistryFormsSelect<T extends boolean = true> {
  * via the `definition` "registry-members_select".
  */
 export interface RegistryMembersSelect<T extends boolean = true> {
-  profession?: T;
+  firstName?: T;
+  lastName?: T;
+  email?: T;
+  primaryPhoneNumber?: T;
+  preferredContactMethod?: T;
   languages?: T;
-  description?: T;
+  profession?: T;
+  specialty?: T;
+  graduationDate?: T;
+  professionalOrder?: T;
+  sector?: T;
+  isAcceptingPatients?: T;
+  newPatientAcceptanceDate?: T;
   updatedAt?: T;
   createdAt?: T;
 }

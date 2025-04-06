@@ -1,13 +1,19 @@
 'use client'
 
-import { RegistryFormValues } from '@/lib/validation/registry-form.schema'
-import { Language, Profession } from '@/payload/payload-types'
+import {
+  CONTACT_METHODS,
+  ORDERS,
+  PATIENT_OPTIONS,
+  PROFESSIONS,
+  RegistryFormValues,
+  SECTORS,
+} from '@/lib/validation/registry-form.schema'
+import { Language } from '@/payload/payload-types'
 import { ActionState } from '@/types/action-state'
 import { useActionState } from 'react'
 import { LoadingSpinner } from './ui/LoadingSpinner'
 
 type RegistrySignupFormProps = {
-  professions: Profession[]
   languages: Language[]
   action: (
     initialState: ActionState<RegistryFormValues>,
@@ -16,12 +22,7 @@ type RegistrySignupFormProps = {
   values: RegistryFormValues
 }
 
-export function CreateRegistryForm({
-  professions,
-  languages,
-  action,
-  values,
-}: RegistrySignupFormProps) {
+export function CreateRegistryForm({ languages, action, values }: RegistrySignupFormProps) {
   const [state, formAction, isPending] = useActionState(action, {
     values,
     errors: {},
@@ -42,90 +43,35 @@ export function CreateRegistryForm({
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">First Name</label>
           <input
-            name="first_name"
+            name="firstName"
             type="text"
             placeholder="Jimmy"
             className="p-2 border rounded-lg"
-            defaultValue={state.values.first_name}
+            defaultValue={state.values.firstName}
             required
           />
-          {state.errors.first_name && (
+          {state.errors.firstName && (
             <p role="alert" className="text-red-500">
-              {state.errors.first_name.message}
+              {state.errors.firstName.message}
             </p>
           )}
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">Last Name</label>
           <input
-            name="last_name"
+            name="lastName"
             type="text"
             placeholder="Choo"
             className="p-2 border rounded-lg"
-            defaultValue={state.values.last_name}
+            defaultValue={state.values.lastName}
             required
           />
-          {state.errors.last_name && (
+          {state.errors.lastName && (
             <p role="alert" className="text-red-500">
-              {state.errors.last_name.message}
+              {state.errors.lastName.message}
             </p>
           )}
         </div>
-      </section>
-      <section className="flex flex-col gap-6">
-        <div>
-          <h4 className="p-0 m-0 text-xl font-medium">Contact Preferences</h4>
-          <p className="text-sm">Please let us know your preferred methods of communication.</p>
-        </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">Phone Number</label>
-          <input
-            name="primary_phone_number"
-            type="tel"
-            placeholder="(514) 123-4567"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.primary_phone_number}
-            required
-          />
-          {state.errors.primary_phone_number && (
-            <p role="alert" className="text-red-500">
-              {state.errors.primary_phone_number.message}
-            </p>
-          )}
-        </div>
-
-        <fieldset className="p-4 border rounded-md">
-          <legend className="px-2 text-sm font-semibold ">
-            Please select your preferred contact method
-          </legend>
-
-          <div className="flex flex-row items-center gap-2">
-            <input
-              name="preferred_contact_method"
-              type="radio"
-              defaultChecked
-              value="email"
-              required
-            />
-            <label>By Email</label>
-          </div>
-          <div className="flex flex-row items-center gap-2">
-            <input name="preferred_contact_method" type="radio" value="phone" />
-            <label>By Phone</label>
-          </div>
-          {state.errors.preferred_contact_method && (
-            <p role="alert" className="text-red-500">
-              {state.errors.preferred_contact_method.message}
-            </p>
-          )}
-        </fieldset>
-      </section>
-      <section className="flex flex-col gap-6">
-        <div>
-          <h4 className="p-0 m-0 text-xl font-medium">Professional Information</h4>
-          <p className="text-sm">Tell us more about your current professional status</p>
-        </div>
-
         <fieldset className="border rounded-md">
           <legend className="px-2 ml-4 text-sm font-semibold">
             Please indicate which languages you are fluent in
@@ -152,30 +98,76 @@ export function CreateRegistryForm({
             </p>
           )}
         </fieldset>
+      </section>
+      <section className="flex flex-col gap-6">
+        <div>
+          <h4 className="p-0 m-0 text-xl font-medium">Contact Preferences</h4>
+          <p className="text-sm">Please let us know your preferred methods of communication.</p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-semibold">Email</label>
+          <input
+            name="email"
+            disabled
+            type="email"
+            placeholder="Your email"
+            className="p-2 border rounded-lg"
+            defaultValue={state.values.email}
+            required
+          />
+          {state.errors.email && (
+            <p role="alert" className="text-red-500">
+              {state.errors.email.message}
+            </p>
+          )}
+        </div>
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-semibold">Phone Number</label>
+          <input
+            name="primaryPhoneNumber"
+            type="tel"
+            placeholder="(514) 123-4567"
+            className="p-2 border rounded-lg"
+            defaultValue={state.values.primaryPhoneNumber}
+            required
+          />
+          {state.errors.primary_phone_number && (
+            <p role="alert" className="text-red-500">
+              {state.errors.primary_phone_number.message}
+            </p>
+          )}
+        </div>
 
         <fieldset className="p-4 border rounded-md">
-          <legend className="px-2 text-sm font-semibold">
-            Please select your current employment status
+          <legend className="px-2 text-sm font-semibold ">
+            Please select your preferred contact method
           </legend>
 
-          <div className="flex flex-row items-center gap-2">
-            <input name="status" type="radio" value="student" />
-            <label>Student</label>
-          </div>
-          <div className="flex flex-row items-center gap-2">
-            <input name="status" type="radio" value="employed" />
-            <label>Employed</label>
-          </div>
-          <div className="flex flex-row items-center gap-2">
-            <input name="status" type="radio" value="unemployed" />
-            <label>Unemployed</label>
-          </div>
-          {state.errors.status && (
+          {CONTACT_METHODS.map((method) => (
+            <div key={method.label} className="flex flex-row items-center gap-2">
+              <input
+                name="preferredContactMethod"
+                type="radio"
+                defaultChecked={state.values.preferredContactMethod === method.value}
+                value={method.value}
+                required
+              />
+              <label>{method.label}</label>
+            </div>
+          ))}
+
+          {state.errors.preferred_contact_method && (
             <p role="alert" className="text-red-500">
-              {state.errors.status.message}
+              {state.errors.preferred_contact_method.message}
             </p>
           )}
         </fieldset>
+      </section>
+      <section className="flex flex-col gap-6">
+        <div>
+          <h4 className="p-0 m-0 text-xl font-medium">Professional Information</h4>
+          <p className="text-sm">Tell us more about your current professional status</p>
+        </div>
 
         <div className="flex flex-col gap-2">
           <label className="text-sm font-semibold">Job Title</label>
@@ -184,26 +176,140 @@ export function CreateRegistryForm({
           </p>
           <select
             name="profession"
-            className="p-2 border rounded-lg max-w-[12rem]"
-            defaultValue={state.values.profession}
+            className="p-2 border rounded-lg max-w-[15rem]"
+            defaultValue={state.values.profession ?? 'default'}
             required
           >
-            {professions.map((profession) => (
-              <option key={profession.id} value={profession.id}>
-                {profession.title}
+            <option value="default" disabled>
+              Please select a profession
+            </option>
+            {PROFESSIONS.map((profession) => (
+              <option key={profession.value} value={profession.value}>
+                {profession.label}
               </option>
             ))}
           </select>
-          {state.errors.primary_phone_number && (
+          {state.errors.profession && (
             <p role="alert" className="text-red-500">
-              {state.errors.primary_phone_number.message}
+              {state.errors.profession.message}
             </p>
           )}
         </div>
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-semibold">Specialty</label>
+          <p className="text-sm text-gray-500">Specify your specialty if applicable.</p>
+          <input
+            name="specialty"
+            type="text"
+            placeholder="E.g. Family medicine, Child psychology."
+            className="p-2 border rounded-lg"
+            defaultValue={state.values.specialty}
+          />
+          {state.errors.specialty && (
+            <p role="alert" className="text-red-500">
+              {state.errors.specialty.message}
+            </p>
+          )}
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-semibold">Professional Order or Association</label>
+          <p className="text-sm text-gray-500">
+            Please select the professional body or association that best applies to your profession.
+          </p>
+          <select
+            key={state.values.professionalOrder}
+            name="professionalOrder"
+            className="p-2 border rounded-lg"
+            defaultValue={state.values.professionalOrder ?? 'default'}
+            required
+          >
+            <option value="default" disabled>
+              Please select an order
+            </option>
+            {ORDERS.map((order) => (
+              <option key={order.value} value={order.value}>
+                {order.label}
+              </option>
+            ))}
+          </select>
+          {state.errors.professionalOrder && (
+            <p role="alert" className="text-red-500">
+              {state.errors.professionalOrder.message}
+            </p>
+          )}
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-semibold">Graduation Date</label>
+          <p className="text-sm text-gray-500">
+            If you are currently studying, this could also be your estimated graduation date.
+          </p>
+          <input
+            name="graduationDate"
+            type="date"
+            placeholder="Jimmy"
+            className="p-2 border rounded-lg max-w-[15rem]"
+            defaultValue={state.values.graduationDate}
+            required
+          />
+          {state.errors.graduationDate && (
+            <p role="alert" className="text-red-500">
+              {state.errors.graduationDate.message}
+            </p>
+          )}
+        </div>
+        <fieldset className="p-4 border rounded-md">
+          <legend className="px-2 text-sm font-semibold ">Please select your Sector of work</legend>
+
+          {SECTORS.map((sector) => (
+            <div key={sector.label} className="flex flex-row items-center gap-2">
+              <input
+                name="sector"
+                type="radio"
+                defaultChecked={state.values.sector === sector.value}
+                value={sector.value}
+              />
+              <label>{sector.label}</label>
+            </div>
+          ))}
+
+          {state.errors.sector && (
+            <p role="alert" className="text-red-500">
+              {state.errors.sector.message}
+            </p>
+          )}
+        </fieldset>
+        <fieldset className="p-4 border rounded-md">
+          <legend className="px-2 text-sm font-semibold ">Are you accepting new patients?</legend>
+
+          {PATIENT_OPTIONS.map((option) => (
+            <div key={option.label} className="flex flex-row items-center gap-2">
+              <input
+                name="isAcceptingPatients"
+                type="radio"
+                defaultChecked={state.values.isAcceptingPatients === option.value}
+                value={option.value}
+              />
+              <label>{option.label}</label>
+            </div>
+          ))}
+
+          {state.errors.isAcceptingPatients && (
+            <p role="alert" className="text-red-500">
+              {state.errors.isAcceptingPatients.message}
+            </p>
+          )}
+        </fieldset>
       </section>
-      <button type="submit" className="px-4 py-2 text-white bg-black rounded-md">
-        {isPending ? <LoadingSpinner /> : 'Submit'}
-      </button>
+      {Object.keys(state.errors).length > 0 && (
+        <p className="text-red-500">Please correct the errors before submitting.</p>
+      )}
+      <div>
+        <button type="submit" className="px-4 py-2 text-white bg-black rounded-md">
+          {isPending ? <LoadingSpinner /> : 'Submit'}
+        </button>
+      </div>
     </form>
   )
 }

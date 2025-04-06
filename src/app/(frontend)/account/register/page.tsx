@@ -1,28 +1,32 @@
-import { createRegistry } from '@/lib/server/create-registry.action'
+import { createRegistryForm } from '@/lib/server/create-registry-form.action'
 import { getLanguages } from '@/lib/server/get-languages'
-import { getProfessions } from '@/lib/server/get-professions'
 import { CreateRegistryForm } from '@/components/RegistryForm'
+import { getUser } from '@/lib/server/get-user.action'
 
 export default async function AccountRegisterPage() {
-  const professions = await getProfessions()
   const languages = await getLanguages()
+  const user = await getUser()
   return (
     <section className="flex flex-col items-center justify-center h-full py-12">
       <div className="flex flex-col items-center justify-center w-full gap-12 md:flex-row">
         <div className="flex flex-col w-full max-w-xl gap-4 mb-4 md:self-start">
           <h1 className="text-3xl">Registration Form</h1>
           <CreateRegistryForm
-            professions={professions.docs}
             languages={languages.docs}
-            action={createRegistry}
+            action={createRegistryForm}
             values={{
-              first_name: '',
-              last_name: '',
+              firstName: '',
+              lastName: '',
               languages: [],
-              preferred_contact_method: 'email',
-              primary_phone_number: '',
-              status: 'employed',
-              profession: '',
+              preferredContactMethod: 'email',
+              email: user?.email ?? '',
+              primaryPhoneNumber: '',
+              specialty: '',
+              graduationDate: new Date().toDateString(),
+              profession: 'acupuncturist',
+              sector: 'private',
+              professionalOrder: 'none',
+              isAcceptingPatients: 'yes',
             }}
           />
         </div>

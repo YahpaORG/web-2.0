@@ -14,5 +14,13 @@ export const professions: CollectionConfig = {
     update: adminsOnly,
     delete: adminsOnly,
   },
-  fields: [{ name: 'title', label: 'Name of Profession', type: 'text', required: true }],
+  fields: [
+    { name: 'title', label: 'Name of Profession', type: 'text', required: true },
+    // {
+    //   name: 'relatedMember',
+    //   type: 'join',
+    //   collection: 'registry-members',
+    //   on: 'profession',
+    // },
+  ],
 }
