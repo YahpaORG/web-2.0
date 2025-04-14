@@ -74,7 +74,6 @@ export interface Config {
     admins: Admin;
     'registry-forms': RegistryForm;
     'registry-members': RegistryMember;
-    professions: Profession;
     languages: Language;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -88,7 +87,6 @@ export interface Config {
     admins: AdminsSelect<false> | AdminsSelect<true>;
     'registry-forms': RegistryFormsSelect<false> | RegistryFormsSelect<true>;
     'registry-members': RegistryMembersSelect<false> | RegistryMembersSelect<true>;
-    professions: ProfessionsSelect<false> | ProfessionsSelect<true>;
     languages: LanguagesSelect<false> | LanguagesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -344,16 +342,6 @@ export interface RegistryMember {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "professions".
- */
-export interface Profession {
-  id: string;
-  title: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -382,10 +370,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'registry-members';
         value: string | RegistryMember;
-      } | null)
-    | ({
-        relationTo: 'professions';
-        value: string | Profession;
       } | null)
     | ({
         relationTo: 'languages';
@@ -546,15 +530,6 @@ export interface RegistryMembersSelect<T extends boolean = true> {
   sector?: T;
   isAcceptingPatients?: T;
   newPatientAcceptanceDate?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "professions_select".
- */
-export interface ProfessionsSelect<T extends boolean = true> {
-  title?: T;
   updatedAt?: T;
   createdAt?: T;
 }

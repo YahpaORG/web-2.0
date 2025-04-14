@@ -12,7 +12,6 @@ import { users } from './collections/users.collection'
 import { admins } from './collections/admins.collection'
 import { registryMembers } from './collections/registryMembers.collection'
 import { registryForms } from './collections/registryForms.collection'
-import { professions } from './collections/professions.collection'
 import { languages } from './collections/languages.collection'
 
 const filename = fileURLToPath(import.meta.url)
@@ -48,16 +47,7 @@ export default buildConfig({
     defaultFromName: 'YAHPA - Web (testing)',
     apiKey: process.env.RESEND_API_KEY || '',
   }),
-  collections: [
-    users,
-    media,
-    contactForms,
-    admins,
-    registryForms,
-    registryMembers,
-    professions,
-    languages,
-  ],
+  collections: [users, media, contactForms, admins, registryForms, registryMembers, languages],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
