@@ -5,6 +5,18 @@
         "en": "English",
         "fr": "Français"
     },
+    "header": {
+        "registry": "Notre registre",
+        "about": "À propos",
+        "contact": "Nous joindre",
+        "account": "Mon compte",
+        "login": "Connexion",
+        "logout": "Déconnexion"
+    },
+    "footer": {
+        "admin": "Portail d'administration",
+        "rights": "Tous droits réservés YAHPA © 2021"
+    },
     "home": {
         "hello": "Bonjour Monde"
     }

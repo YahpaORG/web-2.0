@@ -28,9 +28,9 @@ export default function TranslationProvider({
 export function useTranslation() {
   const context = useContext(TranslationContext)
 
-  if (context?.translation === null) {
+  if (!context) {
     throw new Error('useTranslation hook must be used within TranslationProvider')
   }
 
-  return { t: context?.translation, currentLocale: context?.currentLocale }
+  return { t: context.translation, currentLocale: context.currentLocale }
 }

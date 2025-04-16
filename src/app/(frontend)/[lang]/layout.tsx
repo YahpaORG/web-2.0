@@ -44,10 +44,10 @@ export default async function RootLayout(props: {
               <main className="flex-1">{props.children}</main>
             </div>
             <footer className="flex flex-col items-center justify-center p-4 bg-neutral-900">
-              <span className="mb-2 text-white">All rights deserved YAHPA © 2021</span>
+              <span className="mb-2 text-white">{t.footer.rights}</span>
 
               <Link href="/admin" className="text-sm text-white hover:underline">
-                Admin Portal
+                {t.footer.admin}
               </Link>
             </footer>
           </ThemeProvider>

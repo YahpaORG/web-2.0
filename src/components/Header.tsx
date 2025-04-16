@@ -23,13 +23,13 @@ export async function Header({ t }: PropsWithTranslation) {
       <nav className="flex justify-center flex-1">
         <ul className="flex flex-row items-center gap-4">
           <li>
-            <Link href="/registry">Registry</Link>
+            <Link href="/registry">{t.header.registry}</Link>
           </li>
           <li>
-            <Link href="/about">About</Link>
+            <Link href="/about">{t.header.about}</Link>
           </li>
           <li>
-            <Link href="/contact">Contact</Link>
+            <Link href="/contact">{t.header.contact}</Link>
           </li>
         </ul>
       </nav>
@@ -38,7 +38,7 @@ export async function Header({ t }: PropsWithTranslation) {
           {user ? (
             <>
               <li>
-                <Link href="/account">My Account</Link>
+                <Link href="/account">{t.header.account}</Link>
               </li>
               <li>
                 <LogoutButton />
@@ -47,7 +47,7 @@ export async function Header({ t }: PropsWithTranslation) {
           ) : (
             <li>
               <Button asChild>
-                <Link href="/login">Join YAHPA</Link>
+                <Link href="/login">{t.header.login}</Link>
               </Button>
             </li>
           )}
