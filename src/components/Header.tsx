@@ -5,7 +5,7 @@ import { getUser } from '@/lib/server/get-user.action'
 import { LogoutButton } from './LogoutButton'
 import { ThemeDropdown } from './ThemeDropdown'
 import LocaleSwitcher from './LocaleSwitcher'
-import Link from '@/components/ui/link'
+import { Link } from '@/i18n/navigation'
 import { getTranslations } from 'next-intl/server'
 
 export async function Header() {
