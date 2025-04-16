@@ -36,6 +36,12 @@ export function middleware(request: NextRequest) {
   // )
   //   return
 
+  // Check if the requested path is to the admin panel for PayloadCMS
+  const isAdminPath = pathname.startsWith(`/admin`)
+  const isPublicMedia = pathname.startsWith(`/media`)
+
+  if (isAdminPath || isPublicMedia) return
+
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
