@@ -4,7 +4,7 @@ import { ContactFormValues } from '@/lib/validation/contact-form.schema'
 import { ActionState } from '@/types/action-state'
 import { useActionState } from 'react'
 import { LoadingSpinner } from './ui/LoadingSpinner'
-import { useTranslation } from './providers/TranslationProvider'
+import { useTranslations } from 'next-intl'
 
 type ContactFormProps = {
   action: (
@@ -15,22 +15,22 @@ type ContactFormProps = {
 }
 
 export function ContactForm({ action, values }: ContactFormProps) {
-  const { t } = useTranslation()
+  const t = useTranslations('contact')
   const [state, formAction, isPending] = useActionState(action, {
     values,
     errors: {},
   })
 
   const REASONS = [
-    { label: t.contact.form.reasons.general, value: 'general' },
-    { label: t.contact.form.reasons.contact, value: 'contact' },
-    { label: t.contact.form.reasons.sponsor, value: 'sponsor' },
+    { label: t('form.reasons.general'), value: 'general' },
+    { label: t('form.reasons.contact'), value: 'contact' },
+    { label: t('form.reasons.sponsor'), value: 'sponsor' },
   ]
 
   return (
     <form action={formAction} className="max-w-md space-y-4">
       <div className="max-w-md">
-        <h3 className="font-medium">{t.contact.form.title}</h3>
+        <h3 className="font-medium">{t('form.title')}</h3>
       </div>
       {state.errors.complete && (
         <p role="alert" className="text-green-500">
@@ -43,7 +43,7 @@ export function ContactForm({ action, values }: ContactFormProps) {
         </p>
       )}
       <div className="flex flex-col gap-2 max-w-[16rem]">
-        <label className="text-sm font-semibold">{t.contact.form.name}</label>
+        <label className="text-sm font-semibold">{t('form.name')}</label>
         <input
           name="name"
           type="text"
@@ -59,7 +59,7 @@ export function ContactForm({ action, values }: ContactFormProps) {
         )}
       </div>
       <div className="flex flex-col gap-2 max-w-[16rem]">
-        <label className="text-sm font-semibold">{t.contact.form.email}</label>
+        <label className="text-sm font-semibold">{t('form.email')}</label>
         <input
           name="email"
           type="email"
@@ -75,8 +75,8 @@ export function ContactForm({ action, values }: ContactFormProps) {
         )}
       </div>
       <div className="flex flex-col mb-4">
-        <label className="text-sm font-semibold">{t.contact.form.reason}</label>
-        <p className="mb-2 text-sm text-gray-500">{t.contact.form.reason_description}</p>
+        <label className="text-sm font-semibold">{t('form.reason')}</label>
+        <p className="mb-2 text-sm text-gray-500">{t('form.reason_description')}</p>
         <select
           name="reason"
           className="p-2 border rounded-lg"
@@ -97,13 +97,13 @@ export function ContactForm({ action, values }: ContactFormProps) {
       </div>
 
       <div className="flex flex-col mb-4">
-        <label className="text-sm font-semibold">{t.contact.form.message}</label>
-        <p className="mb-2 text-sm text-gray-500">{t.contact.form.message_description}</p>
+        <label className="text-sm font-semibold">{t('form.message')}</label>
+        <p className="mb-2 text-sm text-gray-500">{t('form.message_description')}</p>
         <textarea
           name="message"
           maxLength={500}
           className="p-2 border rounded-lg min-h-[10rem]"
-          placeholder={t.contact.form.message_placeholder}
+          placeholder={t('form.message_placeholder')}
           required
           minLength={1}
         />
@@ -116,7 +116,7 @@ export function ContactForm({ action, values }: ContactFormProps) {
 
       <div className="mt-8">
         <button type="submit" className="px-4 py-2 text-white bg-black rounded-md">
-          {isPending ? <LoadingSpinner /> : t.contact.form.submit}
+          {isPending ? <LoadingSpinner /> : t('form.submit')}
         </button>
       </div>
     </form>
