@@ -18,6 +18,9 @@
         "rights": "Tous droits réservés YAHPA © 2021"
     },
     "home": {
-        "hello": "Bonjour Monde"
+        "header": "Bienvenue à YAHPA",
+        "subheader": "En faveur de soins de santé accessibles",
+        "description": "Nous sommes un groupe de jeunes professionnels et d'étudiants issus de divers domaines de la santé, dont la mission est d'aider et de soutenir la communauté asiatique sur diverses questions liées à la santé.",
+        "learn": "En savoir plus"
     }
 }
