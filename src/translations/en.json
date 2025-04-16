@@ -38,5 +38,27 @@
             "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you’ll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
             "button": "Join YAHPA"
         }
+    },
+    "contact": {
+        "title": "Contact Us",
+        "subtitle": "We're here to help",
+        "description": "Thank you for reaching out to us. Whether you're a healthcare professional looking for resources, or a patient seeking more information about healthcare providers, we're here to support you. Please feel free to share your questions, feedback, or inquiries, and our team will get back to you as soon as possible.",
+        "footer": "Your well-being and access to quality healthcare are our top priority. We look forward to connecting with you!",
+        "form": {
+            "title": "Please tell us more about yourself and how we can help you by filling out the form below",
+            "name": "Your name",
+            "email": "Your email",
+            "reason": "Your reason",
+            "reason_description": "Please select an option from the list that best suits your reason for contacting us.",
+            "reasons": {
+                "general": "General Inquiry",
+                "contact": "Contact Information",
+                "sponsor": "Sponsorship, Partnership or Collaboration"
+            },
+            "message": "Your message",
+            "message_description": "Can you tell us a bit more about why you are reaching out to us?",
+            "message_placeholder": "Hello YAHPA! I have a few questions...",
+            "submit": "Send message"
+        }
     }
 }

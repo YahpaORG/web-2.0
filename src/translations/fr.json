@@ -38,5 +38,27 @@
             "description": "YAHPA vous invite à rejoindre son réseau en ligne, vous permettant ainsi de rencontrer des patients et d'autres professionnels de la région du Grand Montréal. En vous joignant à nous, vous contribuerez à surmonter les barrières linguistiques et à rendre les soins de santé plus accessibles et plus efficaces pour diverses communautés.",
             "button": "Rejoindre YAHPA"
         }
+    },
+    "contact": {
+        "title": "Contactez-nous",
+        "subtitle": "Nous sommes là pour vous aider",
+        "description": "Merci de nous avoir contactés. Que vous soyez un professionnel de santé à la recherche de ressources ou un patient souhaitant obtenir plus d'informations sur les prestataires de soins, nous sommes là pour vous accompagner. N'hésitez pas à nous faire part de vos questions, commentaires ou demandes de renseignements, et notre équipe vous répondra dans les plus brefs délais.",
+        "footer": "Votre bien-être et l'accès à des soins de santé de qualité sont notre priorité absolue. Nous avons hâte de vous rencontrer!",
+        "form": {
+            "title": "Veuillez nous en dire plus sur vous et sur la façon dont nous pouvons vous aider en remplissant le formulaire ci-dessous",
+            "name": "Votre nom",
+            "email": "Votre adresse e-mail",
+            "reason": "Votre motif",
+            "reason_description": "Veuillez sélectionner l'option la plus adaptée à la raison pour laquelle vous nous contactez.",
+            "reasons": {
+                "general": "Demande générale",
+                "contact": "Demande pour nos coordonnées",
+                "sponsor": "Demande de partenariat ou collaboration"
+            },
+            "message": "Votre message",
+            "message_description": "Pourriez-vous nous en dire plus sur la raison pour laquelle vous nous contactez?",
+            "message_placeholder": "Bonjour YAHPA! J'ai quelques questions...",
+            "submit": "Envoyer un message"
+        }
     }
 }

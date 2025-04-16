@@ -4,13 +4,7 @@ import { ContactFormValues } from '@/lib/validation/contact-form.schema'
 import { ActionState } from '@/types/action-state'
 import { useActionState } from 'react'
 import { LoadingSpinner } from './ui/LoadingSpinner'
-
-const REASONS = [
-  { label: 'General Inquiry', value: 'general' },
-  { label: 'Contact Information', value: 'contact' },
-  { label: 'Sponsorship, Partnership or Collaboration', value: 'sponsor' },
-  { label: 'Other', value: 'other' },
-]
+import { useTranslation } from './providers/TranslationProvider'
 
 type ContactFormProps = {
   action: (
@@ -21,17 +15,22 @@ type ContactFormProps = {
 }
 
 export function ContactForm({ action, values }: ContactFormProps) {
+  const { t } = useTranslation()
   const [state, formAction, isPending] = useActionState(action, {
     values,
     errors: {},
   })
 
+  const REASONS = [
+    { label: t.contact.form.reasons.general, value: 'general' },
+    { label: t.contact.form.reasons.contact, value: 'contact' },
+    { label: t.contact.form.reasons.sponsor, value: 'sponsor' },
+  ]
+
   return (
     <form action={formAction} className="max-w-md space-y-4">
       <div className="max-w-md">
-        <h3 className="font-medium">
-          Please tell us more about yourself and how we can help you by filling out the form below
-        </h3>
+        <h3 className="font-medium">{t.contact.form.title}</h3>
       </div>
       {state.errors.complete && (
         <p role="alert" className="text-green-500">
@@ -44,7 +43,7 @@ export function ContactForm({ action, values }: ContactFormProps) {
         </p>
       )}
       <div className="flex flex-col gap-2 max-w-[16rem]">
-        <label className="text-sm font-semibold">Your name</label>
+        <label className="text-sm font-semibold">{t.contact.form.name}</label>
         <input
           name="name"
           type="text"
@@ -60,7 +59,7 @@ export function ContactForm({ action, values }: ContactFormProps) {
         )}
       </div>
       <div className="flex flex-col gap-2 max-w-[16rem]">
-        <label className="text-sm font-semibold">Your email</label>
+        <label className="text-sm font-semibold">{t.contact.form.email}</label>
         <input
           name="email"
           type="email"
@@ -76,13 +75,11 @@ export function ContactForm({ action, values }: ContactFormProps) {
         )}
       </div>
       <div className="flex flex-col mb-4">
-        <label className="text-sm font-semibold">Your reason</label>
-        <p className="mb-2 text-sm text-gray-500">
-          Please select an option from the list that best suits your reason for contacting us.
-        </p>
+        <label className="text-sm font-semibold">{t.contact.form.reason}</label>
+        <p className="mb-2 text-sm text-gray-500">{t.contact.form.reason_description}</p>
         <select
           name="reason"
-          className="p-2 border rounded-lg max-w-[12rem]"
+          className="p-2 border rounded-lg"
           defaultValue={state.values.reason}
           required
         >
@@ -100,15 +97,13 @@ export function ContactForm({ action, values }: ContactFormProps) {
       </div>
 
       <div className="flex flex-col mb-4">
-        <label className="text-sm font-semibold">Your message</label>
-        <p className="mb-2 text-sm text-gray-500">
-          Can you tell us a bit more about why you are reaching out to us?
-        </p>
+        <label className="text-sm font-semibold">{t.contact.form.message}</label>
+        <p className="mb-2 text-sm text-gray-500">{t.contact.form.message_description}</p>
         <textarea
           name="message"
           maxLength={500}
           className="p-2 border rounded-lg min-h-[10rem]"
-          placeholder="Hello YAHPA! I have a few questions..."
+          placeholder={t.contact.form.message_placeholder}
           required
           minLength={1}
         />
@@ -121,7 +116,7 @@ export function ContactForm({ action, values }: ContactFormProps) {
 
       <div className="mt-8">
         <button type="submit" className="px-4 py-2 text-white bg-black rounded-md">
-          {isPending ? <LoadingSpinner /> : 'Send message'}
+          {isPending ? <LoadingSpinner /> : t.contact.form.submit}
         </button>
       </div>
     </form>
