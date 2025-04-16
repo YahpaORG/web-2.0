@@ -27,5 +27,16 @@
         "header": "About YAHPA",
         "subheader": "Learn about who we are, our goals and our passion for better healthcare",
         "description": "YAHPA (Young Asian Health Professionals Association) was founded in the early days of the COVID-19 pandemic in spring 2020 to support Asian communities in Quebec facing challenges due to misinformation, language barriers, and limited access to healthcare. A dedicated group of healthcare professionals and students came together to create coronavirus information guides, develop community resource lists, and translate health announcements into languages like Mandarin, Cantonese, and Vietnamese. YAHPA aims to improve healthcare access, quality, and equity for Asian seniors and unilingual immigrants, addressing language barriers and reducing disparities in care."
+    },
+    "registry": {
+        "header": "Registry of Health Care Professionals",
+        "subheader": "Discover healthcare that speaks your language",
+        "description": "Our registry is designed specifically to help you find healthcare professionals in the Greater Montreal area who speak a range of Asian languages. Whether you're seeking a doctor, therapist, or specialist, our platform connects you with qualified professionals who understand your culture and language needs, making it easier to communicate and receive the care you deserve.",
+        "find": "Find a professional",
+        "register": {
+            "title": "Are you a healthcare professional?",
+            "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you’ll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
+            "button": "Join YAHPA"
+        }
     }
 }
