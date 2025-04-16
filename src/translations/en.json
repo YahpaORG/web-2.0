@@ -1,0 +1,11 @@
+{
+    "yahpa": "YAHPA",
+    "yahpa_full": "Young Asian Health Professionals Association",
+    "language": {
+        "en": "English",
+        "fr": "Français"
+    },
+    "home": {
+        "hello": "Hello World"
+    }
+}

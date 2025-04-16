@@ -1,0 +1,11 @@
+{
+    "yahpa": "AJPAS",
+    "yahpa_full": "Association des jeunes professionnels asiatiques de la santé",
+    "language": {
+        "en": "English",
+        "fr": "Français"
+    },
+    "home": {
+        "hello": "Bonjour Monde"
+    }
+}
