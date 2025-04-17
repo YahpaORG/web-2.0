@@ -64,5 +64,15 @@
             "message_placeholder": "Hello YAHPA! I have a few questions...",
             "submit": "Send message"
         }
+    },
+    "LoginPage": {
+        "title": "Connect to your Acount",
+        "subtitle": "Please enter your email and password to login to your YAHPA account."
+    },
+    "LoginForm": {
+        "email": "Email",
+        "password": "Password",
+        "createAccount": "Don't have an account? <link>Sign up here.</link>",
+        "submit": "Login"
     }
 }

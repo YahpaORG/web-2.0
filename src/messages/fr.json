@@ -64,5 +64,15 @@
             "message_placeholder": "Bonjour YAHPA! J'ai quelques questions...",
             "submit": "Envoyer un message"
         }
+    },
+    "LoginPage": {
+        "title": "Connectez-vous à votre compte",
+        "subtitle": "Veuillez saisir votre courriel et votre mot de passe pour vous connecter à votre compte AJPAS."
+    },
+    "LoginForm": {
+        "email": "Courriel",
+        "password": "Mot de passe",
+        "createAccount": "Vous n'avez pas de compte? <link>Inscrivez-vous ici.</link>",
+        "submit": "Se connecter"
     }
 }
