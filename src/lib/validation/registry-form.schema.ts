@@ -56,7 +56,7 @@ export const PATIENT_OPTIONS = [
     label: 'Yes - but in private only.',
     value: 'yes_private',
   },
-]
+] as const
 
 export const ORDERS = [
   {

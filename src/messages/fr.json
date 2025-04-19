@@ -32,15 +32,39 @@
         "subheader": "Découvrez qui nous sommes, nos objectifs et notre passion pour de meilleurs soins de santé",
         "description": "AJPAS (Association des jeunes professionnels asiatiques de la santé) a été fondée au début de la pandémie de COVID-19, au printemps 2020, pour soutenir les communautés asiatiques du Québec confrontées à des difficultés liées à la désinformation, aux barrières linguistiques et à un accès limité aux soins de santé. Un groupe dévoué de professionnels de la santé et d'étudiants s'est réuni pour créer des guides d'information sur le coronavirus, élaborer des listes de ressources communautaires et traduire des annonces sanitaires dans des langues comme le mandarin, le cantonais et le vietnamien. YAHPA vise à améliorer l'accès, la qualité et l'équité des soins de santé pour les aînés asiatiques et les immigrants unilingues, en s'attaquant aux barrières linguistiques et en réduisant les disparités en matière de soins."
     },
-    "registry": {
-        "header": "Registre des professionnels de la santé",
-        "subheader": "Découvrez des soins de santé qui parlent votre langue",
+    "RegistryPage": {
+        "title": "Registre des professionnels de la santé",
+        "subtitle": "Découvrez des soins de santé qui parlent votre langue",
         "description": "Notre registre est spécialement conçu pour vous aider à trouver des professionnels de la santé dans la région du Grand Montréal qui parlent plusieurs langues asiatiques. Que vous recherchiez un médecin, un thérapeute ou un spécialiste, notre plateforme vous met en contact avec des professionnels qualifiés qui comprennent votre culture et vos besoins linguistiques, facilitant ainsi la communication et l'obtention des soins que vous méritez.",
         "find": "Trouver un professionnel",
         "register": {
             "title": "Êtes-vous un professionnel de la santé?",
             "description": "YAHPA vous invite à rejoindre son réseau en ligne, vous permettant ainsi de rencontrer des patients et d'autres professionnels de la région du Grand Montréal. En vous joignant à nous, vous contribuerez à surmonter les barrières linguistiques et à rendre les soins de santé plus accessibles et plus efficaces pour diverses communautés.",
             "button": "Rejoindre YAHPA"
+        }
+    },
+    "RegistrySearchPage": {
+        "title": "Trouver un professionnel de santé",
+        "subtitle": "Parcourir notre liste de professionnels agréés",
+        "search": {
+            "label": "Saisissez un terme de recherche",
+            "placeholder": "Kinésithérapeute, Dentiste, Optométriste...",
+            "clear": "Effacer"
+        },
+        "results": {
+            "phoneNumber": "Numéro de téléphone",
+            "email": "Courriel",
+            "spokenLanguages": "Langues parlées",
+            "newPatients": {
+                "label": "Acceptez-vous de nouveaux patients? {answer}",
+                "yes": "Oui",
+                "no": "Non",
+                "yes_temporary": "Oui, mais temporairement",
+                "no_later": "Non, mais plus tard",
+                "yes_private": "Oui, mais seulement en privée"
+            },
+            "joinedSince": "Inscrit depuis",
+            "lastUpdate": "Dernière mise à jour depuis"
         }
     },
     "contact": {

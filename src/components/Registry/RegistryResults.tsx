@@ -1,6 +1,7 @@
 import { getRegistryResults } from '@/lib/server/get-registry-results'
 import { ORDERS, PATIENT_OPTIONS } from '@/lib/validation/registry-form.schema'
 import { LanguagesSelect } from '@/payload/payload-types'
+import { getTranslations } from 'next-intl/server'
 
 type SearchResultsProps = {
   query: string
@@ -9,6 +10,7 @@ type SearchResultsProps = {
 
 export default async function SearchResults({ query, currentPage }: SearchResultsProps) {
   const results = await getRegistryResults({ query, currentPage })
+  const t = await getTranslations('RegistrySearchPage')
 
   return (
     <ul className="flex flex-col w-full gap-4 py-4 mb-10">
@@ -22,10 +24,14 @@ export default async function SearchResults({ query, currentPage }: SearchResult
           </b>
           <p className="capitalize">{result.profession}</p>
           <p>{ORDERS.find((order) => order.value === result.professionalOrder)?.label}</p>
-          <p>Phone Number: {result.primaryPhoneNumber}</p>
-          <p>Email: {result.email}</p>
+          <p>
+            {t('results.phoneNumber')}: {result.primaryPhoneNumber}
+          </p>
+          <p>
+            {t('results.email')}: {result.email}
+          </p>
           <div className="flex gap-2">
-            <span>Spoken Languages:</span>
+            <span>{t('results.spokenLanguages')}:</span>
             <ul className="flex flex-row items-center gap-4">
               {(result.languages as LanguagesSelect[])?.map((language, index) => (
                 <div className="px-4 text-white bg-black rounded-3xl" key={`${result.id}-${index}`}>
@@ -38,16 +44,24 @@ export default async function SearchResults({ query, currentPage }: SearchResult
           <div className="flex flex-col gap-4">
             {result.isAcceptingPatients && (
               <p>
-                Are you taking new patients?{' '}
-                {
-                  PATIENT_OPTIONS.find((option) => option.value === result.isAcceptingPatients)
-                    ?.label
-                }
+                {t('results.newPatients.label', {
+                  answer: t(
+                    `results.newPatients.${
+                      PATIENT_OPTIONS.find(
+                        (option) => option.value === result.isAcceptingPatients,
+                      )!!.value
+                    }`,
+                  ),
+                })}
               </p>
             )}
           </div>
-          <p>Joined since {new Date(result.createdAt).toDateString()}</p>
-          <p>Last Updated on: {new Date(result.updatedAt).toDateString()}</p>
+          <p>
+            {t('results.joinedSince')} {new Date(result.createdAt).toDateString()}
+          </p>
+          <p>
+            {t('results.lastUpdate')} {new Date(result.updatedAt).toDateString()}
+          </p>
         </li>
       ))}
     </ul>
