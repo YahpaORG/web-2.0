@@ -7,11 +7,13 @@ import { cookies } from 'next/headers'
 import { APIError, getPayload } from 'payload'
 import { LoginFormValues } from '../validation/login-form.schema'
 import { redirect } from 'next/navigation'
+import { getTranslations } from 'next-intl/server'
 
 export const loginUser = async (
   initialState: ActionState<LoginFormValues>,
   formData: FormData,
 ): Promise<ActionState<LoginFormValues>> => {
+  const t = await getTranslations('LoginForm')
   const payload = await getPayload({
     config: configPromise,
   })
@@ -25,8 +27,16 @@ export const loginUser = async (
   // 2. Validate parsed data and check for field errors
   const { error: parseError } = LoginFormSchema.safeParse(values)
   const errors: ActionState<LoginFormValues>['errors'] = {}
+
+  // translate each error path message
   for (const { path, message } of parseError?.issues || []) {
-    errors[path.join('.')] = { message }
+    const issuePath = path.join('.')
+    const translatedMessage = {
+      email: t('errors.invalidEmail'),
+      password: t('errors.invalidPassword'),
+    }[issuePath]
+
+    errors[issuePath] = { message: translatedMessage ?? message }
   }
 
   if (Object.keys(errors).length) {
@@ -50,12 +60,15 @@ export const loginUser = async (
     }
   } catch (e) {
     const apiError = e as APIError
+    console.error('apiError', JSON.stringify(apiError, null, 2))
     return {
       values: { ...initialState.values, ...values },
       errors: {
         ...errors,
         api: {
-          message: apiError.message,
+          message:
+            t(`errors.api.${apiError.name as 'AuthenticationError' | 'LockedAuth'}`) ||
+            apiError.message,
         },
       },
     }

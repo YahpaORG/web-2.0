@@ -97,7 +97,15 @@
         "email": "Email",
         "password": "Password",
         "createAccount": "Don't have an account? <link>Sign up here.</link>",
-        "submit": "Login"
+        "submit": "Login",
+        "errors": {
+            "invalidEmail": "The email address is invalid.",
+            "invalidPassword": "The password is invalid. Please provide at least 8 characters.",
+            "api": {
+                "AuthenticationError": "The email or password provided is incorrect. Please try again.",
+                "LockedAuth": "Account is locked due to having too many failed login attempts. Please try again later."
+            }
+        }
     },
     "SignUpPage": {
         "title": "Create your account with YAHPA",

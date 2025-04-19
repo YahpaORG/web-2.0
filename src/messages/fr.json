@@ -97,7 +97,15 @@
         "email": "Courriel",
         "password": "Mot de passe",
         "createAccount": "Vous n'avez pas de compte? <link>Inscrivez-vous ici.</link>",
-        "submit": "Se connecter"
+        "submit": "Se connecter",
+        "errors": {
+            "invalidEmail": "Le courriel est invalide",
+            "invalidPassword": "Le mot de passe est invalide. Veuillez fournir au moins 8 caractères.",
+            "api": {
+                "AuthenticationError": "L'adresse e-mail ou le mot de passe fourni est incorrect. Veuillez réessayer.",
+                "LockedAuth": "Le compte est verrouillé en raison de trop nombreuses tentatives de connexion. Veuillez réessayer plus tard."
+            }
+        }
     },
     "SignUpPage": {
         "title": "Créez votre compte YAHPA",

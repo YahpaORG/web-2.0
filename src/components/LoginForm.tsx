@@ -31,7 +31,6 @@ export function LoginForm() {
           placeholder="jimmy.choo@gmail.com"
           className="p-2 border rounded-lg"
           defaultValue={state.values.email}
-          required
         />
         {state.errors.email && (
           <p role="alert" className="text-red-500">
@@ -48,7 +47,6 @@ export function LoginForm() {
           placeholder="not12345678"
           className="p-2 border rounded-lg"
           defaultValue={state.values.password}
-          required
         />
         {state.errors.password && (
           <p role="alert" className="text-red-500">
