@@ -134,5 +134,60 @@
             "description": "You can modify and update your information from YAHPA's online registry ofhealthcare professionals.",
             "manage": "Manage Information"
         }
+    },
+    "RegistryForm": {
+        "title": "Online Registry Registration Form",
+        "personalInfo": "Personal Information",
+        "personalInfoDescription": "Tell us a little about yourself.",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "fluentLanguages": "Please indicate which languages you are fluent in",
+        "contactPreferences": "Contact Preferences",
+        "contactPreferencesDescription": "Please let us know your preferred methods of communication.",
+        "email": "Email",
+        "phoneNumber": "Phone Number",
+        "contactMethod": {
+            "legend": "Please select your preferred contact method",
+            "email": "By email",
+            "phone": "By Phone"
+        },
+        "professionalInfo": "Professional Information",
+        "professionalInfoDescription": "Tell us more about your current professional status",
+        "jobTitle": {
+            "label": "Job Title",
+            "description": "Please select the title that best reflects your current work or field of study.",
+            "defaultOption": "Please select a profession"
+        },
+        "specialty": {
+            "label": "Specialty",
+            "description": "Specify your specialty if applicable.",
+            "placeholder": "E.g. Family medicine, Child psychology..."
+        },
+        "order": {
+            "label": "Professional Order or Association",
+            "description": "Please select the professional body or association that best applies to your profession.",
+            "defaultOption": "Please select an order"
+        },
+        "graduationDate": {
+            "label": "Graduation Date",
+            "description": "If you are currently studying, this could also be your estimated graduation date."
+        },
+        "sector": {
+            "legend": "Please select your Sector of work",
+            "public": "Public",
+            "private": "Private"
+        },
+        "newPatients": {
+            "label": "Are you accepting new patients?",
+            "yes": "Yes, I am accepting new patients",
+            "no": "No, I am not taking new patients",
+            "yes_temporary": "Yes - but only for a definite period.",
+            "no_later": "Not right now - but in the future.",
+            "yes_private": "Yes - but in private only."
+        },
+        "formErrors": {
+            "hasErrors": "Please correct the errors before submitting."
+        },
+        "submit": "Submit"
     }
 }

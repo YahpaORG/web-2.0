@@ -12,6 +12,7 @@ import { Language } from '@/payload/payload-types'
 import { ActionState } from '@/types/action-state'
 import { useActionState } from 'react'
 import { LoadingSpinner } from './ui/LoadingSpinner'
+import { useTranslations } from 'next-intl'
 
 type RegistrySignupFormProps = {
   languages: Language[]
@@ -23,6 +24,7 @@ type RegistrySignupFormProps = {
 }
 
 export function CreateRegistryForm({ languages, action, values }: RegistrySignupFormProps) {
+  const t = useTranslations('RegistryForm')
   const [state, formAction, isPending] = useActionState(action, {
     values,
     errors: {},
@@ -37,11 +39,11 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
       )}
       <section className="flex flex-col gap-6">
         <div>
-          <h4 className="p-0 m-0 text-xl font-medium">Personal Information</h4>
-          <p className="text-sm">Tell us a little about yourself.</p>
+          <h4 className="p-0 m-0 text-xl font-medium">{t('personalInfo')}</h4>
+          <p className="text-sm">{t('personalInfoDescription')}</p>
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">First Name</label>
+          <label className="text-sm font-semibold">{t('firstName')}</label>
           <input
             name="firstName"
             type="text"
@@ -57,7 +59,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
           )}
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">Last Name</label>
+          <label className="text-sm font-semibold">{t('lastName')}</label>
           <input
             name="lastName"
             type="text"
@@ -73,9 +75,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
           )}
         </div>
         <fieldset className="border rounded-md">
-          <legend className="px-2 ml-4 text-sm font-semibold">
-            Please indicate which languages you are fluent in
-          </legend>
+          <legend className="px-2 ml-4 text-sm font-semibold">{t('fluentLanguages')}</legend>
           <ul className="flex flex-row flex-wrap m-4">
             {languages.map((option) => (
               <li key={option.id} className="w-full max-w-[10rem]">
@@ -101,11 +101,11 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
       </section>
       <section className="flex flex-col gap-6">
         <div>
-          <h4 className="p-0 m-0 text-xl font-medium">Contact Preferences</h4>
-          <p className="text-sm">Please let us know your preferred methods of communication.</p>
+          <h4 className="p-0 m-0 text-xl font-medium">{t('contactPreferences')}</h4>
+          <p className="text-sm">{t('contactPreferencesDescription')}</p>
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">Email</label>
+          <label className="text-sm font-semibold">{t('email')}</label>
           <input
             name="email"
             disabled
@@ -122,7 +122,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
           )}
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">Phone Number</label>
+          <label className="text-sm font-semibold">{t('phoneNumber')}</label>
           <input
             name="primaryPhoneNumber"
             type="tel"
@@ -139,9 +139,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
         </div>
 
         <fieldset className="p-4 border rounded-md">
-          <legend className="px-2 text-sm font-semibold ">
-            Please select your preferred contact method
-          </legend>
+          <legend className="px-2 text-sm font-semibold ">{t('contactMethod.legend')}</legend>
 
           {CONTACT_METHODS.map((method) => (
             <div key={method.label} className="flex flex-row items-center gap-2">
@@ -152,7 +150,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
                 value={method.value}
                 required
               />
-              <label>{method.label}</label>
+              <label>{t(`contactMethod.${method.value}`)}</label>
             </div>
           ))}
 
@@ -165,15 +163,13 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
       </section>
       <section className="flex flex-col gap-6">
         <div>
-          <h4 className="p-0 m-0 text-xl font-medium">Professional Information</h4>
-          <p className="text-sm">Tell us more about your current professional status</p>
+          <h4 className="p-0 m-0 text-xl font-medium">{t('professionalInfo')}</h4>
+          <p className="text-sm">{t('professionalInfoDescription')}</p>
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">Job Title</label>
-          <p className="text-sm text-gray-500">
-            Please select the title that best reflects your current work or field of study.
-          </p>
+          <label className="text-sm font-semibold">{t('jobTitle.label')}</label>
+          <p className="text-sm text-gray-500">{t('jobTitle.description')} </p>
           <select
             name="profession"
             className="p-2 border rounded-lg max-w-[15rem]"
@@ -181,7 +177,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
             required
           >
             <option value="default" disabled>
-              Please select a profession
+              {t('jobTitle.defaultOption')}
             </option>
             {PROFESSIONS.map((profession) => (
               <option key={profession.value} value={profession.value}>
@@ -196,12 +192,12 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
           )}
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">Specialty</label>
-          <p className="text-sm text-gray-500">Specify your specialty if applicable.</p>
+          <label className="text-sm font-semibold">{t('specialty.label')}</label>
+          <p className="text-sm text-gray-500">{t('specialty.description')}</p>
           <input
             name="specialty"
             type="text"
-            placeholder="E.g. Family medicine, Child psychology."
+            placeholder={t('specialty.placeholder')}
             className="p-2 border rounded-lg"
             defaultValue={state.values.specialty}
           />
@@ -213,10 +209,8 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">Professional Order or Association</label>
-          <p className="text-sm text-gray-500">
-            Please select the professional body or association that best applies to your profession.
-          </p>
+          <label className="text-sm font-semibold">{t('order.label')}</label>
+          <p className="text-sm text-gray-500">{t('order.description')}</p>
           <select
             key={state.values.professionalOrder}
             name="professionalOrder"
@@ -225,7 +219,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
             required
           >
             <option value="default" disabled>
-              Please select an order
+              {t('order.defaultOption')}
             </option>
             {ORDERS.map((order) => (
               <option key={order.value} value={order.value}>
@@ -241,10 +235,8 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">Graduation Date</label>
-          <p className="text-sm text-gray-500">
-            If you are currently studying, this could also be your estimated graduation date.
-          </p>
+          <label className="text-sm font-semibold">{t('graduationDate.label')}</label>
+          <p className="text-sm text-gray-500">{t('graduationDate.description')}</p>
           <input
             name="graduationDate"
             type="date"
@@ -260,7 +252,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
           )}
         </div>
         <fieldset className="p-4 border rounded-md">
-          <legend className="px-2 text-sm font-semibold ">Please select your Sector of work</legend>
+          <legend className="px-2 text-sm font-semibold ">{t('sector.legend')}</legend>
 
           {SECTORS.map((sector) => (
             <div key={sector.label} className="flex flex-row items-center gap-2">
@@ -270,7 +262,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
                 defaultChecked={state.values.sector === sector.value}
                 value={sector.value}
               />
-              <label>{sector.label}</label>
+              <label>{t(`sector.${sector.value}`)}</label>
             </div>
           ))}
 
@@ -281,7 +273,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
           )}
         </fieldset>
         <fieldset className="p-4 border rounded-md">
-          <legend className="px-2 text-sm font-semibold ">Are you accepting new patients?</legend>
+          <legend className="px-2 text-sm font-semibold ">{t('newPatients.label')}</legend>
 
           {PATIENT_OPTIONS.map((option) => (
             <div key={option.label} className="flex flex-row items-center gap-2">
@@ -291,7 +283,7 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
                 defaultChecked={state.values.isAcceptingPatients === option.value}
                 value={option.value}
               />
-              <label>{option.label}</label>
+              <label>{t(`newPatients.${option.value}`)}</label>
             </div>
           ))}
 
@@ -303,11 +295,11 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
         </fieldset>
       </section>
       {Object.keys(state.errors).length > 0 && (
-        <p className="text-red-500">Please correct the errors before submitting.</p>
+        <p className="text-red-500">{t('formErrors.hasErrors')}</p>
       )}
       <div>
         <button type="submit" className="px-4 py-2 text-white bg-black rounded-md">
-          {isPending ? <LoadingSpinner /> : 'Submit'}
+          {isPending ? <LoadingSpinner /> : t('submit')}
         </button>
       </div>
     </form>

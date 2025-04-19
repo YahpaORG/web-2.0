@@ -125,7 +125,7 @@
             "title": "Inscription au Registre des professionnels de la santé",
             "description": "YAHPA vous invite à rejoindre notre réseau en ligne et à vous mettre en contact avec des patients et d'autres professionnels de la santé du Grand Montréal. En vous joignant, vous contribuerez à surmonter les barrières linguistiques et à rendre les soins de santé plus accessibles et plus efficaces pour diverses communautés.",
             "signup": "Inscription au Registre en ligne",
-            "inReview": "Votre soumission est en cours d'examen.",
+            "inReview": "Votre soumission est en cours d'approbation.",
             "submittedOn": "Soumis le",
             "delete": "Supprimer la soumission"
         },
@@ -134,5 +134,60 @@
             "description": "Vous pouvez modifier et mettre à jour vos informations à partir du registre en ligne des professionnels de santé de YAHPA.",
             "manage": "Gérer les informations"
         }
+    },
+    "RegistryForm": {
+        "title": "Formulaire d'inscription pour le registre en ligne",
+        "personalInfo": "Informations personnelles",
+        "personalInfoDescription": "Parlez-nous un peu de vous.",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "fluentLanguages": "Veuillez indiquer les langues que vous maîtrisez",
+        "contactPreferences": "Préférences de contact",
+        "contactPreferencesDescription": "Veuillez nous indiquer vos modes de communication préférés.",
+        "email": "Courriel",
+        "phoneNumber": "Numéro de téléphone",
+        "contactMethod": {
+            "legend": "Veuillez sélectionner votre mode de contact préféré",
+            "email": "Par courriel",
+            "phone": "Par téléphone"
+        },
+        "professionalInfo": "Informations personnelles",
+        "professionalInfoDescription": "Parlez-nous un peu de vous.",
+        "jobTitle": {
+            "label": "Intitulé du poste",
+            "description": "Veuillez sélectionner le titre qui correspond le mieux à votre travail actuel ou à votre domaine d'études.",
+            "defaultOption": "Veuillez sélectionner une profession."
+        },
+        "specialty": {
+            "label": "Spécialité",
+            "description": "Précisez votre spécialité, le cas échéant.",
+            "placeholder": "Par exemple: médecine familiale, psychologie de l'enfant..."
+        },
+        "order": {
+            "label": "Ordre ou association professionnelle",
+            "description": "Veuillez sélectionner l'organisme ou l'association professionnelle qui correspond le mieux à votre profession.",
+            "defaultOption": "Veuillez sélectionner un ordre"
+        },
+        "graduationDate": {
+            "label": "Date d'obtention du diplôme",
+            "description": "Si vous êtes actuellement aux études, cette date pourrait également correspondre à votre date d'obtention du diplôme."
+        },
+        "sector": {
+            "legend": "Veuillez sélectionner votre secteur d'activité",
+            "public": "Public",
+            "private": "Privé"
+        },
+        "newPatients": {
+            "label": "Acceptez-vous de nouveaux patients ?",
+            "yes": "Oui, j'accepte de nouveaux patients",
+            "no": "Non, je n'accepte pas de nouveaux patients",
+            "yes_temporary": "Oui, mais seulement pour une durée déterminée.",
+            "no_later": "Pas maintenant, mais plus tard.",
+            "yes_private": "Oui, mais en privé uniquement."
+        },
+        "formErrors": {
+            "hasErrors": "Veuillez corriger les erreurs avant de soumettre."
+        },
+        "submit": "Soumettre"
     }
 }
