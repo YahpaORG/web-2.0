@@ -117,5 +117,22 @@
         "acceptTerms": "J'accepte les conditions générales",
         "acceptTermsDescription": "Veuillez lire les conditions générales pour mieux comprendre notre plateforme et son utilisation.",
         "submit": "Créer un compte"
+    },
+    "AccountPage": {
+        "title": "Mon compte",
+        "subtitle": "Gérez votre compte YAHPA et votre registre en ligne.",
+        "join": {
+            "title": "Inscription au Registre des professionnels de la santé",
+            "description": "YAHPA vous invite à rejoindre notre réseau en ligne et à vous mettre en contact avec des patients et d'autres professionnels de la santé du Grand Montréal. En vous joignant, vous contribuerez à surmonter les barrières linguistiques et à rendre les soins de santé plus accessibles et plus efficaces pour diverses communautés.",
+            "signup": "Inscription au Registre en ligne",
+            "inReview": "Votre soumission est en cours d'examen.",
+            "submittedOn": "Soumis le",
+            "delete": "Supprimer la soumission"
+        },
+        "modify": {
+            "title": "Mon registre YAHPA",
+            "description": "Vous pouvez modifier et mettre à jour vos informations à partir du registre en ligne des professionnels de santé de YAHPA.",
+            "manage": "Gérer les informations"
+        }
     }
 }

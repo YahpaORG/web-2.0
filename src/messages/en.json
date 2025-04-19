@@ -117,5 +117,22 @@
         "acceptTerms": "I accept the general terms and conditions",
         "acceptTermsDescription": "Please read the terms and conditions to better understand our platform and its intended use.",
         "submit": "Create Account"
+    },
+    "AccountPage": {
+        "title": "My Account",
+        "subtitle": "Manage your YAHPA account and online registry.",
+        "join": {
+            "title": "Joining the Registry of Healthcare Professionals",
+            "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you’ll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
+            "signup": "Signup to Online Registry",
+            "inReview": "Your submission is currently being reviewed.",
+            "submittedOn": "Submitted on",
+            "delete": "Delete Submission"
+        },
+        "modify": {
+            "title": "My YAHPA Registry",
+            "description": "You can modify and update your information from YAHPA's online registry ofhealthcare professionals.",
+            "manage": "Manage Information"
+        }
     }
 }
