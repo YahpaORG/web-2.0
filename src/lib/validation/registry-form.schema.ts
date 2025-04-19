@@ -6,11 +6,11 @@ export const JOB_STATUS = ['student', 'employed', 'unemployed'] as const
 export const SECTORS = [
   { label: 'Private', value: 'private' },
   { label: 'Public', value: 'public' },
-]
+] as const
 export const CONTACT_METHODS = [
   { label: 'By Email', value: 'email' },
   { label: 'By Phone', value: 'phone' },
-]
+] as const
 export const PROFESSIONS = [
   { label: 'Acupuncturist', value: 'acupuncturist' },
   { label: 'Art Therapist', value: 'art_therapist' },
@@ -56,7 +56,7 @@ export const PATIENT_OPTIONS = [
     label: 'Yes - but in private only.',
     value: 'yes_private',
   },
-]
+] as const
 
 export const ORDERS = [
   {

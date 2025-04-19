@@ -3,9 +3,11 @@
 import { logoutUser } from '@/lib/server/logoutUser.action'
 import { Button } from './ui/button'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 export function LogoutButton() {
   const router = useRouter()
+  const t = useTranslations()
   return (
     <Button
       onClick={async () => {
@@ -13,7 +15,7 @@ export function LogoutButton() {
         router.refresh()
       }}
     >
-      Logout
+      {t('header.logout')}
     </Button>
   )
 }

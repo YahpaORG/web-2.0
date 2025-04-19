@@ -2,32 +2,35 @@
 
 import { Button } from '@/components/ui/button'
 import { getUser } from '@/lib/server/get-user.action'
-import Link from 'next/link'
 import { LogoutButton } from './LogoutButton'
 import { ThemeDropdown } from './ThemeDropdown'
+import LocaleSwitcher from './LocaleSwitcher'
+import { Link } from '@/i18n/navigation'
+import { getTranslations } from 'next-intl/server'
 
 export async function Header() {
   const user = await getUser()
+  const t = await getTranslations()
 
   return (
     <header className="flex items-center justify-between mx-6 mt-4 mb-12">
       <div className="flex flex-col justify-center flex-1">
         <span className="text-2xl font-semibold">
-          <Link href="/">YAHPA</Link>
+          <Link href="/">{t('yahpa')}</Link>
         </span>
-        <span className="text-sm">Young Asian Health Professional Association</span>
+        <span className="text-sm">{t('yahpa_full')}</span>
       </div>
 
       <nav className="flex justify-center flex-1">
         <ul className="flex flex-row items-center gap-4">
           <li>
-            <Link href="/registry">Registry</Link>
+            <Link href="/registry">{t('header.registry')}</Link>
           </li>
           <li>
-            <Link href="/about">About</Link>
+            <Link href="/about">{t('header.about')}</Link>
           </li>
           <li>
-            <Link href="/contact">Contact</Link>
+            <Link href="/contact">{t('header.contact')}</Link>
           </li>
         </ul>
       </nav>
@@ -36,7 +39,7 @@ export async function Header() {
           {user ? (
             <>
               <li>
-                <Link href="/account">My Account</Link>
+                <Link href="/account">{t('header.account')}</Link>
               </li>
               <li>
                 <LogoutButton />
@@ -45,11 +48,13 @@ export async function Header() {
           ) : (
             <li>
               <Button asChild>
-                <Link href="/login">Join YAHPA</Link>
+                <Link href="/login">{t('header.login')}</Link>
               </Button>
             </li>
           )}
-
+          <li>
+            <LocaleSwitcher />
+          </li>
           <li>
             <ThemeDropdown />
           </li>
