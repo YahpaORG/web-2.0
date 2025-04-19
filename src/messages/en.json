@@ -74,5 +74,18 @@
         "password": "Password",
         "createAccount": "Don't have an account? <link>Sign up here.</link>",
         "submit": "Login"
+    },
+    "SignUpPage": {
+        "title": "Create your account with YAHPA",
+        "subtitle": "Please enter your email and password to create to your account."
+    },
+    "SignUpForm": {
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "terms": "Terms and Conditions",
+        "acceptTerms": "I accept the general terms and conditions",
+        "acceptTermsDescription": "Please read the terms and conditions to better understand our platform and its intended use.",
+        "submit": "Create Account"
     }
 }

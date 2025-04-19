@@ -4,6 +4,7 @@ import { ActionState } from '@/types/action-state'
 import { useActionState } from 'react'
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
 import { SignUpFormValues } from '@/lib/validation/signup-form.schema'
+import { useTranslations } from 'next-intl'
 
 type SignupFormProps = {
   action: (
@@ -14,6 +15,7 @@ type SignupFormProps = {
 }
 
 export function SignupForm({ action, values }: SignupFormProps) {
+  const t = useTranslations('SignUpForm')
   const [state, formAction, isPending] = useActionState(action, {
     values,
     errors: {},
@@ -27,7 +29,7 @@ export function SignupForm({ action, values }: SignupFormProps) {
         </p>
       )}
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-semibold">Email</label>
+        <label className="text-sm font-semibold">{t('email')}</label>
         <input
           name="email"
           type="email"
@@ -44,7 +46,7 @@ export function SignupForm({ action, values }: SignupFormProps) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-semibold">Password</label>
+        <label className="text-sm font-semibold">{t('password')}</label>
         <input
           name="password"
           type="password"
@@ -61,7 +63,7 @@ export function SignupForm({ action, values }: SignupFormProps) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-semibold">Confirm Password</label>
+        <label className="text-sm font-semibold">{t('confirmPassword')}</label>
         <input
           name="confirm_password"
           type="password"
@@ -78,17 +80,14 @@ export function SignupForm({ action, values }: SignupFormProps) {
       </div>
 
       <fieldset className="p-4 border rounded-md">
-        <legend className="px-2 text-sm font-semibold ">Terms and Conditions</legend>
+        <legend className="px-2 text-sm font-semibold ">{t('terms')}</legend>
 
         <div className="flex flex-col">
           <div className="flex flex-row gap-2">
             <input name="agreeToTerms" type="checkbox" required />
-            <label>I accept the general terms and conditions</label>
+            <label>{t('acceptTerms')}</label>
           </div>
-          <p className="text-sm text-gray-500">
-            Please read the terms and conditions to better understand our platform and its intended
-            use.
-          </p>
+          <p className="text-sm text-gray-500">{t('acceptTermsDescription')}</p>
         </div>
         {state.errors.agreeToTerms && (
           <p role="alert" className="text-red-500">
@@ -99,7 +98,7 @@ export function SignupForm({ action, values }: SignupFormProps) {
 
       <div>
         <button type="submit" className="px-4 py-2 text-white bg-black rounded-md">
-          {isPending ? <LoadingSpinner /> : 'Create Account'}
+          {isPending ? <LoadingSpinner /> : t('submit')}
         </button>
       </div>
     </form>
