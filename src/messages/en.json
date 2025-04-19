@@ -101,7 +101,13 @@
     },
     "SignUpPage": {
         "title": "Create your account with YAHPA",
-        "subtitle": "Please enter your email and password to create to your account."
+        "subtitle": "Please enter your email and password to create to your account.",
+        "ConfirmPage": {
+            "title": "Confirm your account by email",
+            "description1": " An email has been sent to you. Please use the verification link to complete the creation of your account with YAHPA.",
+            "description2": "If you have already clicked on the verification link, please sign in here.",
+            "login": "Login to my YAHPA account"
+        }
     },
     "SignUpForm": {
         "email": "Email",

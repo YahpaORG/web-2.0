@@ -101,7 +101,13 @@
     },
     "SignUpPage": {
         "title": "Créez votre compte YAHPA",
-        "subtitle": "Veuillez saisir votre adresse e-mail et votre mot de passe pour créer votre compte."
+        "subtitle": "Veuillez saisir votre adresse courriel et votre mot de passe pour créer votre compte.",
+        "ConfirmPage": {
+            "title": "Confirmez votre compte par courriel",
+            "description1": "Un courriel vous a été envoyé. Veuillez utiliser le lien de vérification pour finaliser la création de votre compte YAHPA.",
+            "description2": "Si vous avez déjà cliqué sur le lien de vérification, veuillez vous connecter ici.",
+            "login": "Se connecter à mon compte YAHPA"
+        }
     },
     "SignUpForm": {
         "email": "Courriel",
