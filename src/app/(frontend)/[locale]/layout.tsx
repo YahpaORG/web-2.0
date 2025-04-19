@@ -28,10 +28,6 @@ export async function generateMetadata({
   }
 }
 
-export async function generateStaticParams() {
-  return routing.locales.map((locale) => ({ lang: locale }))
-}
-
 export default async function RootLayout(props: {
   children: React.ReactNode
   params: Promise<{ locale: string }>
