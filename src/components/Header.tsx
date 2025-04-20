@@ -13,7 +13,7 @@ export async function Header() {
   const t = await getTranslations()
 
   return (
-    <header className="flex items-center justify-between mx-6 mt-4 mb-12">
+    <header className="flex items-center justify-between m-6">
       <div className="flex flex-col justify-center flex-1">
         <span className="text-2xl font-semibold">
           <Link href="/">{t('yahpa')}</Link>
