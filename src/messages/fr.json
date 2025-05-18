@@ -21,11 +21,19 @@
         "admin": "Portail d'administration",
         "rights": "Tous droits réservés AJPAS © 2021"
     },
-    "home": {
-        "header": "Bienvenue à AJPAS",
-        "subheader": "En faveur de soins de santé accessibles",
-        "description": "Nous sommes un groupe de jeunes professionnels et d'étudiants issus de divers domaines de la santé, dont la mission est d'aider et de soutenir la communauté asiatique sur diverses questions liées à la santé.",
-        "learn": "En savoir plus"
+    "HomePage": {
+        "Hero": {
+            "title": "En faveur de soins de santé accessibles",
+            "description": "Nous sommes un groupe de jeunes professionnels et d'étudiants issus de divers domaines de la santé, dont la mission est d'aider et de soutenir la communauté asiatique sur diverses questions liées à la santé.",
+            "learn": "En savoir plus"
+        },
+        "Carousel": {
+            "title": "Agir pour bâtir une communauté meilleure",
+            "description": "Notre objectif est de donner les moyens à la communauté asiatique en fournissant des informations scientifiques et médicales précises afin d'éliminer toute désinformation due aux barrières linguistiques. YAHPA souhaite agir activement en tant qu'intermédiaire, traducteur, promoteur et conférencier afin que chacun puisse avoir un accès équitable aux ressources médicales existantes."
+        },
+        "Sponsors": {
+            "title": "Nous sommes ravis d'être commandité par"
+        }
     },
     "about": {
         "header": "À propos de AJPAS",

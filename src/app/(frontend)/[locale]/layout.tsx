@@ -46,7 +46,7 @@ export default async function RootLayout(props: {
       <body className={cn([inter.className, 'flex', 'min-h-screen', 'flex-col'])}>
         <NextIntlClientProvider>
           <ThemeProvider
-            attribute="class"
+            attribute={['class', 'data-theme']}
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange

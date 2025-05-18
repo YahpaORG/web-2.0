@@ -21,11 +21,19 @@
         "admin": "Admin portal",
         "rights": "All rights deserved YAHPA © 2021"
     },
-    "home": {
-        "header": "Welcome to YAHPA",
-        "subheader": "Striving for accessible healthcare",
-        "description": "We are a group of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
-        "learn": "Learn more"
+    "HomePage": {
+        "Hero": {
+            "title": "Striving for accessible healthcare",
+            "description": "We are a group of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
+            "learn": "Learn more"
+        },
+        "Carousel": {
+            "title": "Taking action to towards building a better community",
+            "description": "Our goal is to empower the Asian community by providing accurate scientific and medical information to eliminate any misinformation due to language barriers. YAHPA wishes to act actively as an intermediary, translator, promoter, and speaker so that everyone can have equitable access to existing medical resources."
+        },
+        "Sponsors": {
+            "title": "We are delighted to be sponsored by"
+        }
     },
     "about": {
         "header": "About YAHPA",
