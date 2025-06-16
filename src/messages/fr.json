@@ -9,8 +9,29 @@
         "en": "English",
         "fr": "Français"
     },
-    "header": {
-        "registry": "Notre registre",
+    "Header": {
+        "registry": {
+            "title": "Notre registre",
+            "search": {
+                "title": "Rechercher",
+                "description": "Trouvez un professionnel de la santé dans notre registre en ligne."
+            },
+            "about": {
+                "title": "À propos du registre",
+                "description": "En savoir plus sur notre registre de professionnels de la santé."
+            }
+        },
+        "projects": {
+            "title": "Projets",
+            "events": {
+                "title": "Actualités et événements",
+                "description": "Consultez nos événements passés et à venir."
+            },
+            "guide": {
+                "title": "Guide des soins de santé en ligne",
+                "description": "Comment trouver des ressources en soins de santé dans la région du Grand Montréal."
+            }
+        },
         "about": "À propos",
         "contact": "Nous joindre",
         "account": "Mon compte",

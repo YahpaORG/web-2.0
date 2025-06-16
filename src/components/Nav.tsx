@@ -14,7 +14,7 @@ import Link from 'next/link'
 import * as React from 'react'
 
 export function NavigationMenuDesktop() {
-  const t = useTranslations('header')
+  const t = useTranslations('Header')
 
   return (
     <NavigationMenu>
@@ -25,27 +25,27 @@ export function NavigationMenuDesktop() {
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>{t('registry')}</NavigationMenuTrigger>
+          <NavigationMenuTrigger>{t('registry.title')}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="flex flex-col w-[300px] lg:w-[400px] p-2">
-              <ListItem href="/registry/search" title="Search">
-                Find a healthcare professional from our online registry.
+              <ListItem href="/registry/search" title={t('registry.search.title')}>
+                {t('registry.search.description')}
               </ListItem>
-              <ListItem href="/registry" title="About the registry">
-                Learn about our registry of healthcare professionals.
+              <ListItem href="/registry" title={t('registry.about.title')}>
+                {t('registry.about.description')}
               </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Projects</NavigationMenuTrigger>
+          <NavigationMenuTrigger>{t('projects.title')}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="flex flex-col w-[300px] lg:w-[400px] p-2">
-              <ListItem href="/" title="Events">
-                See our upcoming and past events.
+              <ListItem href="/" title={t('projects.events.title')}>
+                {t('projects.events.description')}
               </ListItem>
-              <ListItem href="/" title="Online Healthcare Guide">
-                How to find healthcare resources in the Greater Montreal Area.
+              <ListItem href="/" title={t('projects.guide.title')}>
+                {t('projects.guide.description')}
               </ListItem>
             </ul>
           </NavigationMenuContent>

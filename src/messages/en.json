@@ -9,8 +9,29 @@
         "en": "English",
         "fr": "Français"
     },
-    "header": {
-        "registry": "Registry",
+    "Header": {
+        "registry": {
+            "title": "Registry",
+            "search": {
+                "title": "Search",
+                "description": "Find a healthcare professional from our online registry."
+            },
+            "about": {
+                "title": "About the Registry",
+                "description": "Learn about our registry of healthcare professionals."
+            }
+        },
+        "projects": {
+            "title": "Projects",
+            "events": {
+                "title": "News and Events",
+                "description": "See our upcoming and past events."
+            },
+            "guide": {
+                "title": "Online Healthcare Guide",
+                "description": "How to find healthcare resources in the Greater Montreal Area."
+            }
+        },
         "about": "About",
         "contact": "Contact",
         "account": "Account",

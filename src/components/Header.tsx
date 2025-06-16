@@ -16,16 +16,15 @@ export async function Header() {
 
   return (
     <header className="flex items-center justify-between m-6">
-      <div className="flex flex-row items-center flex-1 gap-1">
+      <Link href="/" className="flex flex-row items-center flex-1 gap-1">
         <Image src="/media/6_w_b.png" alt="" width={72} height={72} />
         <div className="flex flex-col justify-center">
-          <span className="text-xl font-semibold">
-            <Link href="/">{t('yahpa')}</Link>
-          </span>
-          <span className="text-xs hidden md:inline-block w-[300px]">{t('yahpa_full')}</span>
+          <span className="text-xl font-semibold">{t('yahpa')}</span>
+          <span className="text-xs hidden md:inline-block w-[250px]">{t('yahpa_full')}</span>
         </div>
-      </div>
-      <div className="flex-row flex-1 hidden w-full md:flex">
+      </Link>
+
+      <div className="flex-row justify-center flex-1 hidden w-full md:flex">
         <NavigationMenuDesktop />
       </div>
 
@@ -34,7 +33,7 @@ export async function Header() {
           {user ? (
             <>
               <li>
-                <Link href="/account">{t('header.account')}</Link>
+                <Link href="/account">{t('Header.account')}</Link>
               </li>
               <li>
                 <LogoutButton />
@@ -43,7 +42,7 @@ export async function Header() {
           ) : (
             <li>
               <Button asChild>
-                <Link href="/login">{t('header.login')}</Link>
+                <Link href="/login">{t('Header.login')}</Link>
               </Button>
             </li>
           )}
