@@ -5,7 +5,9 @@
     "hello": "Bonjour Monde",
     "yahpa": "AJPAS",
     "yahpa_full": "Association des jeunes professionnels asiatiques de la santé",
-    "language": {
+    "LocaleSwitcher": {
+        "label": "Langues",
+        "placeholder": "Selectionnez une langue",
         "en": "English",
         "fr": "Français"
     },

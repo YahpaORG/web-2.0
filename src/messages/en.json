@@ -5,7 +5,9 @@
     "hello": "Hello World",
     "yahpa": "YAHPA",
     "yahpa_full": "Young Asian Health Professionals Association",
-    "language": {
+    "LocaleSwitcher": {
+        "label": "Languages",
+        "placeholder": "Select a language",
         "en": "English",
         "fr": "Français"
     },
