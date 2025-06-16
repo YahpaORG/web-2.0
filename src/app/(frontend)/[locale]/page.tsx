@@ -97,6 +97,7 @@ export default async function HomePage() {
           />
         </div>
       </section>
+      <section id="latest">{/* TODO: add news section here */}</section>
     </div>
   )
 }

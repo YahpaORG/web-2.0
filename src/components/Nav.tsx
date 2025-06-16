@@ -38,17 +38,22 @@ export function NavigationMenuDesktop() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>{t('projects.title')}</NavigationMenuTrigger>
+          <NavigationMenuTrigger>{t('news.title')}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="flex flex-col w-[300px] lg:w-[400px] p-2">
-              <ListItem href="/" title={t('projects.events.title')}>
-                {t('projects.events.description')}
+              <ListItem href="/#latest" title={t('news.latest.title')}>
+                {t('news.latest.description')}
               </ListItem>
-              <ListItem href="/" title={t('projects.guide.title')}>
-                {t('projects.guide.description')}
+              <ListItem href="/" title={t('news.events.title')}>
+                {t('news.events.description')}
               </ListItem>
             </ul>
           </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link href="/projects">{t('projects')}</Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>

@@ -21,15 +21,16 @@
                 "description": "Learn about our registry of healthcare professionals."
             }
         },
-        "projects": {
-            "title": "Projects",
-            "events": {
-                "title": "News and Events",
-                "description": "See our upcoming and past events."
+        "projects": "Projects",
+        "news": {
+            "title": "News",
+            "latest": {
+                "title": "Latest News",
+                "description": "Read all about the latest news and upcoming events by YAHPA."
             },
-            "guide": {
-                "title": "Online Healthcare Guide",
-                "description": "How to find healthcare resources in the Greater Montreal Area."
+            "events": {
+                "title": "Past Events",
+                "description": "See all of our past events and announcements by year."
             }
         },
         "about": "About",

@@ -21,15 +21,16 @@
                 "description": "En savoir plus sur notre registre de professionnels de la santé."
             }
         },
-        "projects": {
-            "title": "Projets",
-            "events": {
-                "title": "Actualités et événements",
-                "description": "Consultez nos événements passés et à venir."
+        "projects": "Projets",
+        "news": {
+            "title": "Actualités",
+            "latest": {
+                "title": "Dernières nouvelles",
+                "description": "Découvrez toutes les actualités et les événements à venir de YAHPA."
             },
-            "guide": {
-                "title": "Guide des soins de santé en ligne",
-                "description": "Comment trouver des ressources en soins de santé dans la région du Grand Montréal."
+            "events": {
+                "title": "Événements passés",
+                "description": "Consultez tous nos événements passés et nos annonces par année."
             }
         },
         "about": "À propos",
