@@ -42,9 +42,30 @@
         "login": "Login",
         "logout": "Logout"
     },
-    "footer": {
-        "admin": "Admin portal",
-        "rights": "All rights deserved YAHPA © 2021"
+    "Footer": {
+        "rights": "All rights deserved YAHPA © 2021",
+        "terms": "Terms and Conditions",
+        "privacy": "Privacy Policy",
+        "general": {
+            "title": "General",
+            "about": "About Us",
+            "contact": "Contact Us",
+            "projects": "Our Projects"
+        },
+        "registry": {
+            "title": "Registry",
+            "search": "YAHPA Professional Registry",
+            "about": "About the Registry"
+        },
+        "news": {
+            "title": "News",
+            "latest": "Latest news",
+            "past": "Past events"
+        },
+        "admin": {
+            "title": "Administration",
+            "portal": "Portal"
+        }
     },
     "HomePage": {
         "Hero": {

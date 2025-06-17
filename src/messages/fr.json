@@ -42,9 +42,30 @@
         "login": "Connexion",
         "logout": "Déconnexion"
     },
-    "footer": {
-        "admin": "Portail d'administration",
-        "rights": "Tous droits réservés AJPAS © 2021"
+    "Footer": {
+        "rights": "Tous droits réservés YAHPA © 2021",
+        "terms": "Conditions générales",
+        "privacy": "Politique de confidentialité",
+        "general": {
+            "title": "Général",
+            "about": "À propos de nous",
+            "contact": "Nous contacter",
+            "projects": "Nos projets"
+        },
+        "registry": {
+            "title": "Registre",
+            "search": "Registre professionnel YAHPA",
+            "about": "À propos du registre"
+        },
+        "news": {
+            "title": "Actualités",
+            "latest": "Dernières actualités",
+            "past": "Événements passés"
+        },
+        "admin": {
+            "title": "Administration",
+            "portal": "Portail"
+        }
     },
     "HomePage": {
         "Hero": {
