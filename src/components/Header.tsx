@@ -1,15 +1,15 @@
 'use server'
 
 import { Button } from '@/components/ui/button'
-import { getUser } from '@/lib/server/get-user.action'
-import { LogoutButton } from './LogoutButton'
-import { ThemeDropdown } from './ThemeDropdown'
-import LocaleSwitcher from './LocaleSwitcher'
 import { Link } from '@/i18n/navigation'
+import { getUser } from '@/lib/server/get-user.action'
 import { getTranslations } from 'next-intl/server'
+import LocaleSwitcher from './LocaleSwitcher'
+import { YahpaLogo } from './Logo'
+import { LogoutButton } from './LogoutButton'
 import { NavigationMenuDesktop } from './Nav'
-import Image from 'next/image'
 import { NavSheet } from './NavSheet'
+import { ThemeDropdown } from './ThemeDropdown'
 
 export async function Header() {
   const user = await getUser()
@@ -17,13 +17,7 @@ export async function Header() {
 
   return (
     <header className="flex items-center justify-between m-3 xl:m-6">
-      <Link href="/" className="flex flex-row items-center flex-1 gap-1">
-        <Image src="/media/6_w_b.png" alt="" width={72} height={72} />
-        <div className="flex flex-col justify-center">
-          <span className="text-xl font-semibold">{t('yahpa')}</span>
-          <span className="text-xs hidden xl:inline-block w-[250px]">{t('yahpa_full')}</span>
-        </div>
-      </Link>
+      <YahpaLogo />
 
       <div className="flex-row justify-center flex-1 hidden w-full xl:flex">
         <NavigationMenuDesktop />
