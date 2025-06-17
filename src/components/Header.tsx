@@ -37,7 +37,7 @@ export async function Header() {
                 <Link href="/account">{t('Header.account')}</Link>
               </li>
               <li>
-                <LogoutButton />
+                <LogoutButton className="text-sm" />
               </li>
             </>
           ) : (
