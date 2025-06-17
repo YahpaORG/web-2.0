@@ -12,6 +12,7 @@
         "fr": "Français"
     },
     "Header": {
+        "home": "Home",
         "registry": {
             "title": "Registry",
             "search": {

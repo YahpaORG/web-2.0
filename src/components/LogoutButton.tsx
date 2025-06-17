@@ -15,7 +15,7 @@ export function LogoutButton() {
         router.refresh()
       }}
     >
-      {t('header.logout')}
+      {t('Header.logout')}
     </Button>
   )
 }
