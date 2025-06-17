@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import { CallToAction } from '@/components/CallToAction'
 
 const IMAGES = [
   { src: '/media/1.jpg' },
@@ -98,6 +99,21 @@ export default async function HomePage() {
         </div>
       </section>
       <section id="latest">{/* TODO: add news section here */}</section>
+      <CallToAction
+        heading={t('CTA.title')}
+        description={t('CTA.description')}
+        buttons={{
+          primary: {
+            text: t('CTA.primary'),
+            url: '/signup',
+          },
+          secondary: {
+            text: t('CTA.secondary'),
+            url: '/registry',
+          },
+        }}
+        className="flex justify-center w-full"
+      />
     </div>
   )
 }

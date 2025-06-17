@@ -58,6 +58,12 @@
         },
         "Sponsors": {
             "title": "We are delighted to be sponsored by"
+        },
+        "CTA": {
+            "title": "Join our Registry",
+            "description": "If you are a healthcare professional and want to be listed on our registry, please sign up with YAHPA and create your free profile today.",
+            "primary": "Sign up",
+            "secondary": "Learn more"
         }
     },
     "about": {

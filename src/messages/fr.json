@@ -58,6 +58,12 @@
         },
         "Sponsors": {
             "title": "Nous sommes ravis d'être commandité par"
+        },
+        "CTA": {
+            "title": "Rejoignez notre registre",
+            "description": "Si vous êtes un professionnel de santé et souhaitez figurer sur notre registre, inscrivez-vous auprès de YAHPA et créez votre profil gratuitement dès aujourd'hui.",
+            "primary": "S'inscrire",
+            "secondary": "En savoir plus"
         }
     },
     "about": {
