@@ -9,7 +9,7 @@ import { Link } from '@/i18n/navigation'
 import { getTranslations } from 'next-intl/server'
 import { NavigationMenuDesktop } from './Nav'
 import Image from 'next/image'
-import { NavDrawer } from './NavDrawer'
+import { NavSheet } from './NavSheet'
 
 export async function Header() {
   const user = await getUser()
@@ -57,7 +57,7 @@ export async function Header() {
       </div>
 
       <div className="flex xl:hidden">
-        <NavDrawer isAuth={!!user} />
+        <NavSheet isAuth={!!user} />
       </div>
     </header>
   )
