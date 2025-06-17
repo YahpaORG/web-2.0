@@ -5,12 +5,37 @@
     "hello": "Hello World",
     "yahpa": "YAHPA",
     "yahpa_full": "Young Asian Health Professionals Association",
-    "language": {
+    "LocaleSwitcher": {
+        "label": "Languages",
+        "placeholder": "Select a language",
         "en": "English",
         "fr": "Français"
     },
-    "header": {
-        "registry": "Registry",
+    "Header": {
+        "home": "Home",
+        "registry": {
+            "title": "Registry",
+            "search": {
+                "title": "Search",
+                "description": "Find a healthcare professional from our online registry."
+            },
+            "about": {
+                "title": "About the Registry",
+                "description": "Learn about our registry of healthcare professionals."
+            }
+        },
+        "projects": "Projects",
+        "news": {
+            "title": "News",
+            "latest": {
+                "title": "Latest News",
+                "description": "Read all about the latest news and upcoming events by YAHPA."
+            },
+            "events": {
+                "title": "Past Events",
+                "description": "See all of our past events and announcements by year."
+            }
+        },
         "about": "About",
         "contact": "Contact",
         "account": "Account",

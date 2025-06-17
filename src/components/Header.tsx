@@ -7,48 +7,43 @@ import { ThemeDropdown } from './ThemeDropdown'
 import LocaleSwitcher from './LocaleSwitcher'
 import { Link } from '@/i18n/navigation'
 import { getTranslations } from 'next-intl/server'
+import { NavigationMenuDesktop } from './Nav'
+import Image from 'next/image'
+import { NavSheet } from './NavSheet'
 
 export async function Header() {
   const user = await getUser()
   const t = await getTranslations()
 
   return (
-    <header className="flex items-center justify-between m-6">
-      <div className="flex flex-col justify-center flex-1">
-        <span className="text-2xl font-semibold">
-          <Link href="/">{t('yahpa')}</Link>
-        </span>
-        <span className="text-sm">{t('yahpa_full')}</span>
+    <header className="flex items-center justify-between m-3 xl:m-6">
+      <Link href="/" className="flex flex-row items-center flex-1 gap-1">
+        <Image src="/media/6_w_b.png" alt="" width={72} height={72} />
+        <div className="flex flex-col justify-center">
+          <span className="text-xl font-semibold">{t('yahpa')}</span>
+          <span className="text-xs hidden xl:inline-block w-[250px]">{t('yahpa_full')}</span>
+        </div>
+      </Link>
+
+      <div className="flex-row justify-center flex-1 hidden w-full xl:flex">
+        <NavigationMenuDesktop />
       </div>
 
-      <nav className="flex justify-center flex-1">
-        <ul className="flex flex-row items-center gap-4">
-          <li>
-            <Link href="/registry">{t('header.registry')}</Link>
-          </li>
-          <li>
-            <Link href="/about">{t('header.about')}</Link>
-          </li>
-          <li>
-            <Link href="/contact">{t('header.contact')}</Link>
-          </li>
-        </ul>
-      </nav>
-      <div className="flex justify-end flex-1">
+      <div className="justify-end flex-1 hidden xl:flex">
         <ul className="flex flex-row items-center gap-4">
           {user ? (
             <>
               <li>
-                <Link href="/account">{t('header.account')}</Link>
+                <Link href="/account">{t('Header.account')}</Link>
               </li>
               <li>
-                <LogoutButton />
+                <LogoutButton className="text-sm" />
               </li>
             </>
           ) : (
             <li>
               <Button asChild>
-                <Link href="/login">{t('header.login')}</Link>
+                <Link href="/login">{t('Header.login')}</Link>
               </Button>
             </li>
           )}
@@ -59,6 +54,10 @@ export async function Header() {
             <ThemeDropdown />
           </li>
         </ul>
+      </div>
+
+      <div className="flex xl:hidden">
+        <NavSheet isAuth={!!user} />
       </div>
     </header>
   )

@@ -1,11 +1,11 @@
 'use client'
 
 import { logoutUser } from '@/lib/server/logoutUser.action'
-import { Button } from './ui/button'
+import { Button, ButtonProps } from './ui/button'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
-export function LogoutButton() {
+export function LogoutButton(props: ButtonProps) {
   const router = useRouter()
   const t = useTranslations()
   return (
@@ -14,8 +14,9 @@ export function LogoutButton() {
         await logoutUser()
         router.refresh()
       }}
+      {...props}
     >
-      {t('header.logout')}
+      {t('Header.logout')}
     </Button>
   )
 }

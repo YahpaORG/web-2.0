@@ -5,12 +5,37 @@
     "hello": "Bonjour Monde",
     "yahpa": "AJPAS",
     "yahpa_full": "Association des jeunes professionnels asiatiques de la santé",
-    "language": {
+    "LocaleSwitcher": {
+        "label": "Langues",
+        "placeholder": "Selectionnez une langue",
         "en": "English",
         "fr": "Français"
     },
-    "header": {
-        "registry": "Notre registre",
+    "Header": {
+        "home": "Accueil",
+        "registry": {
+            "title": "Notre registre",
+            "search": {
+                "title": "Rechercher",
+                "description": "Trouvez un professionnel de la santé dans notre registre en ligne."
+            },
+            "about": {
+                "title": "À propos du registre",
+                "description": "En savoir plus sur notre registre de professionnels de la santé."
+            }
+        },
+        "projects": "Projets",
+        "news": {
+            "title": "Actualités",
+            "latest": {
+                "title": "Dernières nouvelles",
+                "description": "Découvrez toutes les actualités et les événements à venir de YAHPA."
+            },
+            "events": {
+                "title": "Événements passés",
+                "description": "Consultez tous nos événements passés et nos annonces par année."
+            }
+        },
         "about": "À propos",
         "contact": "Nous joindre",
         "account": "Mon compte",
