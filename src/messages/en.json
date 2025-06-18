@@ -70,8 +70,9 @@
     "HomePage": {
         "Hero": {
             "title": "Striving for accessible healthcare",
-            "description": "We are a group of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
-            "learn": "Learn more"
+            "description": "We are a gproup of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
+            "discover": "Discover YAHPA",
+            "trust": "An officially recognized non-profit organization since 2021"
         },
         "Carousel": {
             "title": "Taking action to towards building a better community",
