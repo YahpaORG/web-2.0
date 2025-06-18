@@ -1,13 +1,13 @@
 import { Header } from '@/components/Header'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 
+import { Footer } from '@/components/Footer'
 import { routing } from '@/i18n/routing'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Inter } from 'next/font/google'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import './globals.css'
 
@@ -38,8 +38,6 @@ export default async function RootLayout(props: {
     notFound()
   }
 
-  const t = await getTranslations()
-
   return (
     <html lang={params.locale} suppressHydrationWarning>
       <head />
@@ -55,13 +53,7 @@ export default async function RootLayout(props: {
             <div className="flex flex-1">
               <main className="flex-1">{props.children}</main>
             </div>
-            <footer className="flex flex-col items-center justify-center p-4 bg-neutral-900">
-              <span className="mb-2 text-white">{t('footer.rights')}</span>
-
-              <Link href="/admin" className="text-sm text-white hover:underline">
-                {t('footer.admin')}
-              </Link>
-            </footer>
+            <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

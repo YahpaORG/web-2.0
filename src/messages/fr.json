@@ -42,15 +42,37 @@
         "login": "Connexion",
         "logout": "Déconnexion"
     },
-    "footer": {
-        "admin": "Portail d'administration",
-        "rights": "Tous droits réservés AJPAS © 2021"
+    "Footer": {
+        "rights": "Tous droits réservés YAHPA © 2021",
+        "terms": "Conditions générales",
+        "privacy": "Politique de confidentialité",
+        "general": {
+            "title": "Général",
+            "about": "À propos de nous",
+            "contact": "Nous contacter",
+            "projects": "Nos projets"
+        },
+        "registry": {
+            "title": "Registre",
+            "search": "Registre professionnel YAHPA",
+            "about": "À propos du registre"
+        },
+        "news": {
+            "title": "Actualités",
+            "latest": "Dernières actualités",
+            "past": "Événements passés"
+        },
+        "admin": {
+            "title": "Administration",
+            "portal": "Portail"
+        }
     },
     "HomePage": {
         "Hero": {
             "title": "En faveur de soins de santé accessibles",
             "description": "Nous sommes un groupe de jeunes professionnels et d'étudiants issus de divers domaines de la santé, dont la mission est d'aider et de soutenir la communauté asiatique sur diverses questions liées à la santé.",
-            "learn": "En savoir plus"
+            "discover": "Découvrez YAHPA",
+            "trust": "Un OBNL officiellement reconnu depuis 2021"
         },
         "Carousel": {
             "title": "Agir pour bâtir une meilleure communauté",
@@ -58,6 +80,12 @@
         },
         "Sponsors": {
             "title": "Nous sommes ravis d'être commandité par"
+        },
+        "CTA": {
+            "title": "Rejoignez notre registre",
+            "description": "Si vous êtes un professionnel de santé et souhaitez figurer sur notre registre, inscrivez-vous auprès de YAHPA et créez votre profil gratuitement dès aujourd'hui.",
+            "primary": "S'inscrire",
+            "secondary": "En savoir plus"
         }
     },
     "about": {
