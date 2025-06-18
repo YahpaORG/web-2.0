@@ -31,8 +31,8 @@ export const FeatureCarousel = ({
 }: FeatureCarouselProps) => {
   return (
     <section {...props}>
-      <div className="container p-8 lg:p-16">
-        <div className="flex flex-row gap-8">
+      <div className="container p-8 mx-auto lg:p-16">
+        <div className="flex flex-col-reverse gap-8 lg:flex-row">
           <Carousel className="w-full max-w-sm mx-auto md:max-w-xl">
             <CarouselContent>
               {imageSlides.map((image, index) => (

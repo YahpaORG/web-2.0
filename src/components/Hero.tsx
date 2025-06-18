@@ -2,6 +2,8 @@ import { HeartHandshakeIcon, Zap } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import Image from 'next/image'
+import { AspectRatio } from './ui/aspect-ratio'
 
 type HeroProps = {
   icon?: React.ReactNode
@@ -32,8 +34,8 @@ export const Hero = ({
   ...props
 }: HeroProps) => {
   return (
-    <section className="py-32 overflow-hidden" {...props}>
-      <div className="container p-8 lg:p-16">
+    <section className="py-8 overflow-hidden lg:py-32" {...props}>
+      <div className="container p-8 mx-auto lg:p-16">
         <div className="flex flex-col gap-5">
           <div className="relative flex flex-col gap-5">
             <div
@@ -64,11 +66,9 @@ export const Hero = ({
               {trustText && <div className="text-xs text-muted-foreground">{trustText}</div>}
             </div>
           </div>
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className="mx-auto h-full max-h-[524px] w-full max-w-5xl rounded-2xl object-cover"
-          />
+          <AspectRatio ratio={16 / 9} className="overflow-hidden shadow-xl rounded-2xl">
+            <Image src={imageSrc} alt={imageAlt} fill className="object-cover" />
+          </AspectRatio>
         </div>
       </div>
     </section>
