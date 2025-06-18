@@ -74,27 +74,31 @@ export default async function HomePage() {
       </section>
       <section className="p-12 my-4">
         <h2 className="p-6 text-2xl font-semibold text-center">{t('Sponsors.title')}</h2>
-        <div className="flex flex-row flex-wrap items-center justify-center gap-4">
-          <Image
-            alt=""
-            src="/media/sponsors/patisseriecocobun.svg"
-            className="object-contain "
-            width={320}
-            height={240}
-          />
-          <Image
-            alt=""
-            src="/media/sponsors/preso.webp"
-            className="object-contain"
-            width={320}
-            height={240}
-          />
+        <div className="flex flex-row flex-wrap items-center justify-center gap-8">
+          <div className="rounded-lg dark:bg-foreground">
+            <Image
+              alt=""
+              src="/media/sponsors/patisseriecocobun.svg"
+              width={320}
+              height={240}
+              className="object-contain"
+            />
+          </div>
+          <div className="rounded-lg dark:bg-foreground">
+            <Image
+              alt=""
+              src="/media/sponsors/preso.webp"
+              width={320}
+              height={240}
+              className="object-contain rounded-lg"
+            />
+          </div>
           <Image
             alt=""
             src="/media/sponsors/kimphat.svg"
-            className="object-contain"
             width={320}
             height={240}
+            className="object-contain rounded-lg"
           />
         </div>
       </section>
