@@ -16,8 +16,8 @@ export async function Header() {
   const t = await getTranslations()
 
   return (
-    <header className="flex items-center justify-between m-3 xl:m-6">
-      <Link href="/" className="flex flex-row items-center flex-1 gap-1">
+    <header className="flex items-center justify-between m-3">
+      <Link href="/" className="flex flex-row items-center gap-1">
         <Image src="/media/6_w_b.png" alt="" width={72} height={72} />
         <div className="flex flex-col justify-center">
           <span className="text-xl font-semibold">{t('yahpa')}</span>

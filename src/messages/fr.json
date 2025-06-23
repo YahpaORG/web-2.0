@@ -1,234 +1,237 @@
 {
-    "seo": {
-        "title": "AJPAS | Association des jeunes professionnels asiatiques de la santé"
+  "seo": {
+    "title": "AJPAS | Association des jeunes professionnels asiatiques de la santé"
+  },
+  "hello": "Bonjour Monde",
+  "yahpa": "AJPAS",
+  "yahpa_full": "Association des jeunes professionnels asiatiques de la santé",
+  "LocaleSwitcher": {
+    "label": "Langues",
+    "placeholder": "Selectionnez une langue",
+    "en": "English",
+    "fr": "Français"
+  },
+  "Header": {
+    "home": "Accueil",
+    "registry": {
+      "title": "Notre registre",
+      "search": {
+        "title": "Rechercher",
+        "description": "Trouvez un professionnel de la santé dans notre registre en ligne."
+      },
+      "about": {
+        "title": "À propos du registre",
+        "description": "En savoir plus sur notre registre de professionnels de la santé."
+      }
     },
-    "hello": "Bonjour Monde",
-    "yahpa": "AJPAS",
-    "yahpa_full": "Association des jeunes professionnels asiatiques de la santé",
-    "LocaleSwitcher": {
-        "label": "Langues",
-        "placeholder": "Selectionnez une langue",
-        "en": "English",
-        "fr": "Français"
+    "projects": "Projets",
+    "news": {
+      "title": "Actualités",
+      "latest": {
+        "title": "Dernières nouvelles",
+        "description": "Découvrez toutes les actualités et les événements à venir de YAHPA."
+      },
+      "events": {
+        "title": "Événements passés",
+        "description": "Consultez tous nos événements passés et nos annonces par année."
+      }
     },
-    "Header": {
-        "home": "Accueil",
-        "registry": {
-            "title": "Notre registre",
-            "search": {
-                "title": "Rechercher",
-                "description": "Trouvez un professionnel de la santé dans notre registre en ligne."
-            },
-            "about": {
-                "title": "À propos du registre",
-                "description": "En savoir plus sur notre registre de professionnels de la santé."
-            }
-        },
-        "projects": "Projets",
-        "news": {
-            "title": "Actualités",
-            "latest": {
-                "title": "Dernières nouvelles",
-                "description": "Découvrez toutes les actualités et les événements à venir de YAHPA."
-            },
-            "events": {
-                "title": "Événements passés",
-                "description": "Consultez tous nos événements passés et nos annonces par année."
-            }
-        },
-        "about": "À propos",
-        "contact": "Nous joindre",
-        "account": "Mon compte",
-        "login": "Connexion",
-        "logout": "Déconnexion"
+    "about": "À propos",
+    "contact": "Nous joindre",
+    "account": "Mon compte",
+    "login": "Connexion",
+    "logout": "Déconnexion"
+  },
+  "footer": {
+    "admin": "Portail d'administration",
+    "rights": "Tous droits réservés AJPAS © 2021"
+  },
+  "HomePage": {
+    "Hero": {
+      "title": "En faveur de soins de santé accessibles",
+      "description": "Nous sommes un groupe de jeunes professionnels et d'étudiants issus de divers domaines de la santé, dont la mission est d'aider et de soutenir la communauté asiatique sur diverses questions liées à la santé.",
+      "learn": "En savoir plus"
     },
-    "footer": {
-        "admin": "Portail d'administration",
-        "rights": "Tous droits réservés AJPAS © 2021"
+    "Carousel": {
+      "title": "Agir pour bâtir une meilleure communauté",
+      "description": "Notre objectif est de donner les moyens à la communauté asiatique en fournissant des informations scientifiques et médicales précises afin d'éliminer toute désinformation due aux barrières linguistiques. YAHPA souhaite agir activement en tant qu'intermédiaire, traducteur, promoteur et conférencier afin que chacun puisse avoir un accès équitable aux ressources médicales existantes."
     },
-    "HomePage": {
-        "Hero": {
-            "title": "En faveur de soins de santé accessibles",
-            "description": "Nous sommes un groupe de jeunes professionnels et d'étudiants issus de divers domaines de la santé, dont la mission est d'aider et de soutenir la communauté asiatique sur diverses questions liées à la santé.",
-            "learn": "En savoir plus"
-        },
-        "Carousel": {
-            "title": "Agir pour bâtir une meilleure communauté",
-            "description": "Notre objectif est de donner les moyens à la communauté asiatique en fournissant des informations scientifiques et médicales précises afin d'éliminer toute désinformation due aux barrières linguistiques. YAHPA souhaite agir activement en tant qu'intermédiaire, traducteur, promoteur et conférencier afin que chacun puisse avoir un accès équitable aux ressources médicales existantes."
-        },
-        "Sponsors": {
-            "title": "Nous sommes ravis d'être commandité par"
-        }
-    },
-    "about": {
-        "header": "À propos de AJPAS",
-        "subheader": "Découvrez qui nous sommes, nos objectifs et notre passion pour de meilleurs soins de santé",
-        "description": "AJPAS (Association des jeunes professionnels asiatiques de la santé) a été fondée au début de la pandémie de COVID-19, au printemps 2020, pour soutenir les communautés asiatiques du Québec confrontées à des difficultés liées à la désinformation, aux barrières linguistiques et à un accès limité aux soins de santé. Un groupe dévoué de professionnels de la santé et d'étudiants s'est réuni pour créer des guides d'information sur le coronavirus, élaborer des listes de ressources communautaires et traduire des annonces sanitaires dans des langues comme le mandarin, le cantonais et le vietnamien. YAHPA vise à améliorer l'accès, la qualité et l'équité des soins de santé pour les aînés asiatiques et les immigrants unilingues, en s'attaquant aux barrières linguistiques et en réduisant les disparités en matière de soins."
-    },
-    "RegistryPage": {
-        "title": "Registre des professionnels de la santé",
-        "subtitle": "Découvrez des soins de santé qui parlent votre langue",
-        "description": "Notre registre est spécialement conçu pour vous aider à trouver des professionnels de la santé dans la région du Grand Montréal qui parlent plusieurs langues asiatiques. Que vous recherchiez un médecin, un thérapeute ou un spécialiste, notre plateforme vous met en contact avec des professionnels qualifiés qui comprennent votre culture et vos besoins linguistiques, facilitant ainsi la communication et l'obtention des soins que vous méritez.",
-        "find": "Trouver un professionnel",
-        "register": {
-            "title": "Êtes-vous un professionnel de la santé?",
-            "description": "YAHPA vous invite à rejoindre son réseau en ligne, vous permettant ainsi de rencontrer des patients et d'autres professionnels de la région du Grand Montréal. En vous joignant à nous, vous contribuerez à surmonter les barrières linguistiques et à rendre les soins de santé plus accessibles et plus efficaces pour diverses communautés.",
-            "button": "Rejoindre YAHPA"
-        }
-    },
-    "RegistrySearchPage": {
-        "title": "Trouver un professionnel de santé",
-        "subtitle": "Parcourir notre liste de professionnels agréés",
-        "search": {
-            "label": "Saisissez un terme de recherche",
-            "placeholder": "Kinésithérapeute, Dentiste, Optométriste...",
-            "clear": "Effacer"
-        },
-        "results": {
-            "phoneNumber": "Numéro de téléphone",
-            "email": "Courriel",
-            "spokenLanguages": "Langues parlées",
-            "newPatients": {
-                "label": "Acceptez-vous de nouveaux patients? {answer}",
-                "yes": "Oui",
-                "no": "Non",
-                "yes_temporary": "Oui, mais temporairement",
-                "no_later": "Non, mais plus tard",
-                "yes_private": "Oui, mais seulement en privée"
-            },
-            "joinedSince": "Inscrit depuis",
-            "lastUpdate": "Dernière mise à jour depuis"
-        }
-    },
-    "contact": {
-        "title": "Contactez-nous",
-        "subtitle": "Nous sommes là pour vous aider",
-        "description": "Merci de nous avoir contactés. Que vous soyez un professionnel de santé à la recherche de ressources ou un patient souhaitant obtenir plus d'informations sur les prestataires de soins, nous sommes là pour vous accompagner. N'hésitez pas à nous faire part de vos questions, commentaires ou demandes de renseignements, et notre équipe vous répondra dans les plus brefs délais.",
-        "footer": "Votre bien-être et l'accès à des soins de santé de qualité sont notre priorité absolue. Nous avons hâte de vous rencontrer!",
-        "form": {
-            "title": "Veuillez nous en dire plus sur vous et sur la façon dont nous pouvons vous aider en remplissant le formulaire ci-dessous",
-            "name": "Votre nom",
-            "email": "Votre adresse e-mail",
-            "reason": "Votre motif",
-            "reason_description": "Veuillez sélectionner l'option la plus adaptée à la raison pour laquelle vous nous contactez.",
-            "reasons": {
-                "general": "Demande générale",
-                "contact": "Demande pour nos coordonnées",
-                "sponsor": "Demande de partenariat ou collaboration"
-            },
-            "message": "Votre message",
-            "message_description": "Pourriez-vous nous en dire plus sur la raison pour laquelle vous nous contactez?",
-            "message_placeholder": "Bonjour YAHPA! J'ai quelques questions...",
-            "submit": "Envoyer un message"
-        }
-    },
-    "LoginPage": {
-        "title": "Connectez-vous à votre compte",
-        "subtitle": "Veuillez saisir votre courriel et votre mot de passe pour vous connecter à votre compte AJPAS."
-    },
-    "LoginForm": {
-        "email": "Courriel",
-        "password": "Mot de passe",
-        "createAccount": "Vous n'avez pas de compte? <link>Inscrivez-vous ici.</link>",
-        "submit": "Se connecter",
-        "errors": {
-            "invalidEmail": "Le courriel est invalide",
-            "invalidPassword": "Le mot de passe est invalide. Veuillez fournir au moins 8 caractères.",
-            "api": {
-                "AuthenticationError": "L'adresse e-mail ou le mot de passe fourni est incorrect. Veuillez réessayer.",
-                "LockedAuth": "Le compte est verrouillé en raison de trop nombreuses tentatives de connexion. Veuillez réessayer plus tard."
-            }
-        }
-    },
-    "SignUpPage": {
-        "title": "Créez votre compte YAHPA",
-        "subtitle": "Veuillez saisir votre adresse courriel et votre mot de passe pour créer votre compte.",
-        "ConfirmPage": {
-            "title": "Confirmez votre compte par courriel",
-            "description1": "Un courriel vous a été envoyé. Veuillez utiliser le lien de vérification pour finaliser la création de votre compte YAHPA.",
-            "description2": "Si vous avez déjà cliqué sur le lien de vérification, veuillez vous connecter ici.",
-            "login": "Se connecter à mon compte YAHPA"
-        }
-    },
-    "SignUpForm": {
-        "email": "Courriel",
-        "password": "Mot de passe",
-        "confirmPassword": "Confirmer le mot de passe",
-        "terms": "Conditions générales",
-        "acceptTerms": "J'accepte les conditions générales",
-        "acceptTermsDescription": "Veuillez lire les conditions générales pour mieux comprendre notre plateforme et son utilisation.",
-        "submit": "Créer un compte"
-    },
-    "AccountPage": {
-        "title": "Mon compte",
-        "subtitle": "Gérez votre compte YAHPA et votre registre en ligne.",
-        "join": {
-            "title": "Inscription au Registre des professionnels de la santé",
-            "description": "YAHPA vous invite à rejoindre notre réseau en ligne et à vous mettre en contact avec des patients et d'autres professionnels de la santé du Grand Montréal. En vous joignant, vous contribuerez à surmonter les barrières linguistiques et à rendre les soins de santé plus accessibles et plus efficaces pour diverses communautés.",
-            "signup": "Inscription au Registre en ligne",
-            "inReview": "Votre soumission est en cours d'approbation.",
-            "submittedOn": "Soumis le",
-            "delete": "Supprimer la soumission"
-        },
-        "modify": {
-            "title": "Mon registre YAHPA",
-            "description": "Vous pouvez modifier et mettre à jour vos informations à partir du registre en ligne des professionnels de santé de YAHPA.",
-            "manage": "Gérer les informations"
-        }
-    },
-    "RegistryForm": {
-        "title": "Formulaire d'inscription pour le registre en ligne",
-        "personalInfo": "Informations personnelles",
-        "personalInfoDescription": "Parlez-nous un peu de vous.",
-        "firstName": "Prénom",
-        "lastName": "Nom",
-        "fluentLanguages": "Veuillez indiquer les langues que vous maîtrisez",
-        "contactPreferences": "Préférences de contact",
-        "contactPreferencesDescription": "Veuillez nous indiquer vos modes de communication préférés.",
-        "email": "Courriel",
-        "phoneNumber": "Numéro de téléphone",
-        "contactMethod": {
-            "legend": "Veuillez sélectionner votre mode de contact préféré",
-            "email": "Par courriel",
-            "phone": "Par téléphone"
-        },
-        "professionalInfo": "Informations personnelles",
-        "professionalInfoDescription": "Parlez-nous un peu de vous.",
-        "jobTitle": {
-            "label": "Intitulé du poste",
-            "description": "Veuillez sélectionner le titre qui correspond le mieux à votre travail actuel ou à votre domaine d'études.",
-            "defaultOption": "Veuillez sélectionner une profession."
-        },
-        "specialty": {
-            "label": "Spécialité",
-            "description": "Précisez votre spécialité, le cas échéant.",
-            "placeholder": "Par exemple: médecine familiale, psychologie de l'enfant..."
-        },
-        "order": {
-            "label": "Ordre ou association professionnelle",
-            "description": "Veuillez sélectionner l'organisme ou l'association professionnelle qui correspond le mieux à votre profession.",
-            "defaultOption": "Veuillez sélectionner un ordre"
-        },
-        "graduationDate": {
-            "label": "Date d'obtention du diplôme",
-            "description": "Si vous êtes actuellement aux études, cette date pourrait également correspondre à votre date d'obtention du diplôme."
-        },
-        "sector": {
-            "legend": "Veuillez sélectionner votre secteur d'activité",
-            "public": "Public",
-            "private": "Privé"
-        },
-        "newPatients": {
-            "label": "Acceptez-vous de nouveaux patients ?",
-            "yes": "Oui, j'accepte de nouveaux patients",
-            "no": "Non, je n'accepte pas de nouveaux patients",
-            "yes_temporary": "Oui, mais seulement pour une durée déterminée.",
-            "no_later": "Pas maintenant, mais plus tard.",
-            "yes_private": "Oui, mais en privé uniquement."
-        },
-        "formErrors": {
-            "hasErrors": "Veuillez corriger les erreurs avant de soumettre."
-        },
-        "submit": "Soumettre"
+    "Sponsors": {
+      "title": "Nous sommes ravis d'être commandité par"
     }
+  },
+  "about": {
+    "header": "À propos de AJPAS",
+    "subheader": "Découvrez qui nous sommes, nos objectifs et notre passion pour de meilleurs soins de santé",
+    "description": "AJPAS (Association des jeunes professionnels asiatiques de la santé) a été fondée au début de la pandémie de COVID-19, au printemps 2020, pour soutenir les communautés asiatiques du Québec confrontées à des difficultés liées à la désinformation, aux barrières linguistiques et à un accès limité aux soins de santé. Un groupe dévoué de professionnels de la santé et d'étudiants s'est réuni pour créer des guides d'information sur le coronavirus, élaborer des listes de ressources communautaires et traduire des annonces sanitaires dans des langues comme le mandarin, le cantonais et le vietnamien. YAHPA vise à améliorer l'accès, la qualité et l'équité des soins de santé pour les aînés asiatiques et les immigrants unilingues, en s'attaquant aux barrières linguistiques et en réduisant les disparités en matière de soins."
+  },
+  "RegistryPage": {
+    "title": "Registre des professionnels de la santé",
+    "subtitle": "Découvrez des soins de santé qui parlent votre langue",
+    "description": "Notre registre est spécialement conçu pour vous aider à trouver des professionnels de la santé dans la région du Grand Montréal qui parlent plusieurs langues asiatiques. Que vous recherchiez un médecin, un thérapeute ou un spécialiste, notre plateforme vous met en contact avec des professionnels qualifiés qui comprennent votre culture et vos besoins linguistiques, facilitant ainsi la communication et l'obtention des soins que vous méritez.",
+    "find": "Trouver un professionnel",
+    "register": {
+      "title": "Êtes-vous un professionnel de la santé?",
+      "description": "YAHPA vous invite à rejoindre son réseau en ligne, vous permettant ainsi de rencontrer des patients et d'autres professionnels de la région du Grand Montréal. En vous joignant à nous, vous contribuerez à surmonter les barrières linguistiques et à rendre les soins de santé plus accessibles et plus efficaces pour diverses communautés.",
+      "button": "Rejoindre YAHPA"
+    }
+  },
+  "RegistrySearchPage": {
+    "title": "Trouver un professionnel de santé",
+    "subtitle": "Parcourir notre liste de professionnels agréés",
+    "search": {
+      "label": "Saisissez un terme de recherche",
+      "placeholder": "Kinésithérapeute, Dentiste, Optométriste...",
+      "clear": "Effacer"
+    },
+    "results": {
+      "phoneNumber": "Numéro de téléphone",
+      "email": "Courriel",
+      "spokenLanguages": "Langues parlées",
+      "newPatients": {
+        "label": "Acceptez-vous de nouveaux patients? {answer}",
+        "yes": "Oui",
+        "no": "Non",
+        "yes_temporary": "Oui, mais temporairement",
+        "no_later": "Non, mais plus tard",
+        "yes_private": "Oui, mais seulement en privée"
+      },
+      "joinedSince": "Inscrit depuis",
+      "lastUpdate": "Dernière mise à jour depuis"
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes là pour vous aider",
+    "description": "Merci de nous avoir contactés. Que vous soyez un professionnel de santé à la recherche de ressources ou un patient souhaitant obtenir plus d'informations sur les prestataires de soins, nous sommes là pour vous accompagner. N'hésitez pas à nous faire part de vos questions, commentaires ou demandes de renseignements, et notre équipe vous répondra dans les plus brefs délais.",
+    "footer": "Votre bien-être et l'accès à des soins de santé de qualité sont notre priorité absolue. Nous avons hâte de vous rencontrer!",
+    "form": {
+      "title": "Veuillez nous en dire plus sur vous et sur la façon dont nous pouvons vous aider en remplissant le formulaire ci-dessous",
+      "name": "Votre nom",
+      "email": "Votre adresse e-mail",
+      "reason": "Votre motif",
+      "reason_description": "Veuillez sélectionner l'option la plus adaptée à la raison pour laquelle vous nous contactez.",
+      "reasons": {
+        "general": "Demande générale",
+        "contact": "Demande pour nos coordonnées",
+        "sponsor": "Demande de partenariat ou collaboration"
+      },
+      "message": "Votre message",
+      "message_description": "Pourriez-vous nous en dire plus sur la raison pour laquelle vous nous contactez?",
+      "message_placeholder": "Bonjour YAHPA! J'ai quelques questions...",
+      "submit": "Envoyer un message"
+    }
+  },
+  "LoginPage": {
+    "title": "Connectez-vous à votre compte",
+    "subtitle": "Veuillez saisir votre courriel et votre mot de passe pour vous connecter à votre compte AJPAS."
+  },
+  "LoginForm": {
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "createAccount": "Vous n'avez pas de compte? <link>Inscrivez-vous ici.</link>",
+    "submit": "Se connecter",
+    "errors": {
+      "invalidEmail": "Le courriel est invalide",
+      "invalidPassword": "Le mot de passe est invalide. Veuillez fournir au moins 8 caractères.",
+      "api": {
+        "AuthenticationError": "L'adresse e-mail ou le mot de passe fourni est incorrect. Veuillez réessayer.",
+        "LockedAuth": "Le compte est verrouillé en raison de trop nombreuses tentatives de connexion. Veuillez réessayer plus tard."
+      }
+    }
+  },
+  "SignUpPage": {
+    "title": "Créez votre compte YAHPA",
+    "subtitle": "Veuillez saisir votre adresse courriel et votre mot de passe pour créer votre compte.",
+    "ConfirmPage": {
+      "title": "Confirmez votre compte par courriel",
+      "description1": "Un courriel vous a été envoyé. Veuillez utiliser le lien de vérification pour finaliser la création de votre compte YAHPA.",
+      "description2": "Si vous avez déjà cliqué sur le lien de vérification, veuillez vous connecter ici.",
+      "login": "Se connecter à mon compte YAHPA"
+    }
+  },
+  "SignUpForm": {
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "terms": "Conditions générales",
+    "acceptTerms": "J'accepte les conditions générales",
+    "acceptTermsDescription": "Veuillez lire les conditions générales pour mieux comprendre notre plateforme et son utilisation.",
+    "submit": "Créer un compte"
+  },
+  "AccountPage": {
+    "title": "Mon compte",
+    "subtitle": "Gérez votre compte YAHPA et votre registre en ligne.",
+    "join": {
+      "title": "Inscription au Registre des professionnels de la santé",
+      "description": "YAHPA vous invite à rejoindre notre réseau en ligne et à vous mettre en contact avec des patients et d'autres professionnels de la santé du Grand Montréal. En vous joignant, vous contribuerez à surmonter les barrières linguistiques et à rendre les soins de santé plus accessibles et plus efficaces pour diverses communautés.",
+      "signup": "Inscription au Registre en ligne",
+      "inReview": "Votre soumission est en cours d'approbation.",
+      "submittedOn": "Soumis le",
+      "delete": "Supprimer la soumission"
+    },
+    "modify": {
+      "title": "Mon registre YAHPA",
+      "description": "Vous pouvez modifier et mettre à jour vos informations à partir du registre en ligne des professionnels de santé de YAHPA.",
+      "manage": "Gérer les informations"
+    }
+  },
+  "RegistryForm": {
+    "title": "Formulaire d'inscription pour le registre en ligne",
+    "personalInfo": "Informations personnelles",
+    "personalInfoDescription": "Parlez-nous un peu de vous.",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "fluentLanguages": "Veuillez indiquer les langues que vous maîtrisez",
+    "contactPreferences": "Préférences de contact",
+    "contactPreferencesDescription": "Veuillez nous indiquer vos modes de communication préférés.",
+    "email": "Courriel",
+    "phoneNumber": "Numéro de téléphone",
+    "contactMethod": {
+      "legend": "Veuillez sélectionner votre mode de contact préféré",
+      "email": "Par courriel",
+      "phone": "Par téléphone"
+    },
+    "professionalInfo": "Informations personnelles",
+    "professionalInfoDescription": "Parlez-nous un peu de vous.",
+    "jobTitle": {
+      "label": "Intitulé du poste",
+      "description": "Veuillez sélectionner le titre qui correspond le mieux à votre travail actuel ou à votre domaine d'études.",
+      "defaultOption": "Veuillez sélectionner une profession."
+    },
+    "specialty": {
+      "label": "Spécialité",
+      "description": "Précisez votre spécialité, le cas échéant.",
+      "placeholder": "Par exemple: médecine familiale, psychologie de l'enfant..."
+    },
+    "order": {
+      "label": "Ordre ou association professionnelle",
+      "description": "Veuillez sélectionner l'organisme ou l'association professionnelle qui correspond le mieux à votre profession.",
+      "defaultOption": "Veuillez sélectionner un ordre"
+    },
+    "graduationDate": {
+      "label": "Date d'obtention du diplôme",
+      "description": "Si vous êtes actuellement aux études, cette date pourrait également correspondre à votre date d'obtention du diplôme."
+    },
+    "sector": {
+      "legend": "Veuillez sélectionner votre secteur d'activité",
+      "public": "Public",
+      "private": "Privé"
+    },
+    "newPatients": {
+      "label": "Acceptez-vous de nouveaux patients ?",
+      "yes": "Oui, j'accepte de nouveaux patients",
+      "no": "Non, je n'accepte pas de nouveaux patients",
+      "yes_temporary": "Oui, mais seulement pour une durée déterminée.",
+      "no_later": "Pas maintenant, mais plus tard.",
+      "yes_private": "Oui, mais en privé uniquement."
+    },
+    "formErrors": {
+      "hasErrors": "Veuillez corriger les erreurs avant de soumettre."
+    },
+    "submit": "Soumettre"
+  },
+  "ProjectsPage": {
+    "header": "Our Journey So Far"
+  }
 }

@@ -43,7 +43,7 @@ export default async function RootLayout(props: {
   return (
     <html lang={params.locale} suppressHydrationWarning>
       <head />
-      <body className={cn([inter.className, 'flex', 'min-h-screen', 'flex-col'])}>
+      <body className={cn([inter.className, 'min-h-screen', 'flex-col'])}>
         <NextIntlClientProvider>
           <ThemeProvider
             attribute={['class', 'data-theme']}
@@ -52,8 +52,8 @@ export default async function RootLayout(props: {
             disableTransitionOnChange
           >
             <Header />
-            <div className="flex flex-1">
-              <main className="flex-1">{props.children}</main>
+            <div>
+              <main>{props.children}</main>
             </div>
             <footer className="flex flex-col items-center justify-center p-4 bg-neutral-900">
               <span className="mb-2 text-white">{t('footer.rights')}</span>

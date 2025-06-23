@@ -1,234 +1,237 @@
 {
-    "seo": {
-        "title": "YAHPA | Young Asian Health Professionals Association"
+  "seo": {
+    "title": "YAHPA | Young Asian Health Professionals Association"
+  },
+  "hello": "Hello World",
+  "yahpa": "YAHPA",
+  "yahpa_full": "Young Asian Health Professionals Association",
+  "LocaleSwitcher": {
+    "label": "Languages",
+    "placeholder": "Select a language",
+    "en": "English",
+    "fr": "Français"
+  },
+  "Header": {
+    "home": "Home",
+    "registry": {
+      "title": "Registry",
+      "search": {
+        "title": "Search",
+        "description": "Find a healthcare professional from our online registry."
+      },
+      "about": {
+        "title": "About the Registry",
+        "description": "Learn about our registry of healthcare professionals."
+      }
     },
-    "hello": "Hello World",
-    "yahpa": "YAHPA",
-    "yahpa_full": "Young Asian Health Professionals Association",
-    "LocaleSwitcher": {
-        "label": "Languages",
-        "placeholder": "Select a language",
-        "en": "English",
-        "fr": "Français"
+    "projects": "Projects",
+    "news": {
+      "title": "News",
+      "latest": {
+        "title": "Latest News",
+        "description": "Read all about the latest news and upcoming events by YAHPA."
+      },
+      "events": {
+        "title": "Past Events",
+        "description": "See all of our past events and announcements by year."
+      }
     },
-    "Header": {
-        "home": "Home",
-        "registry": {
-            "title": "Registry",
-            "search": {
-                "title": "Search",
-                "description": "Find a healthcare professional from our online registry."
-            },
-            "about": {
-                "title": "About the Registry",
-                "description": "Learn about our registry of healthcare professionals."
-            }
-        },
-        "projects": "Projects",
-        "news": {
-            "title": "News",
-            "latest": {
-                "title": "Latest News",
-                "description": "Read all about the latest news and upcoming events by YAHPA."
-            },
-            "events": {
-                "title": "Past Events",
-                "description": "See all of our past events and announcements by year."
-            }
-        },
-        "about": "About",
-        "contact": "Contact",
-        "account": "Account",
-        "login": "Login",
-        "logout": "Logout"
+    "about": "About",
+    "contact": "Contact",
+    "account": "Account",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "footer": {
+    "admin": "Admin portal",
+    "rights": "All rights deserved YAHPA © 2021"
+  },
+  "HomePage": {
+    "Hero": {
+      "title": "Striving for accessible healthcare",
+      "description": "We are a group of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
+      "learn": "Learn more"
     },
-    "footer": {
-        "admin": "Admin portal",
-        "rights": "All rights deserved YAHPA © 2021"
+    "Carousel": {
+      "title": "Taking action to towards building a better community",
+      "description": "Our goal is to empower the Asian community by providing accurate scientific and medical information to eliminate any misinformation due to language barriers. YAHPA wishes to act actively as an intermediary, translator, promoter, and speaker so that everyone can have equitable access to existing medical resources."
     },
-    "HomePage": {
-        "Hero": {
-            "title": "Striving for accessible healthcare",
-            "description": "We are a group of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
-            "learn": "Learn more"
-        },
-        "Carousel": {
-            "title": "Taking action to towards building a better community",
-            "description": "Our goal is to empower the Asian community by providing accurate scientific and medical information to eliminate any misinformation due to language barriers. YAHPA wishes to act actively as an intermediary, translator, promoter, and speaker so that everyone can have equitable access to existing medical resources."
-        },
-        "Sponsors": {
-            "title": "We are delighted to be sponsored by"
-        }
-    },
-    "about": {
-        "header": "About YAHPA",
-        "subheader": "Learn about who we are, our goals and our passion for better healthcare",
-        "description": "YAHPA (Young Asian Health Professionals Association) was founded in the early days of the COVID-19 pandemic in spring 2020 to support Asian communities in Quebec facing challenges due to misinformation, language barriers, and limited access to healthcare. A dedicated group of healthcare professionals and students came together to create coronavirus information guides, develop community resource lists, and translate health announcements into languages like Mandarin, Cantonese, and Vietnamese. YAHPA aims to improve healthcare access, quality, and equity for Asian seniors and unilingual immigrants, addressing language barriers and reducing disparities in care."
-    },
-    "RegistryPage": {
-        "title": "Registry of Health Care Professionals",
-        "subtitle": "Discover healthcare that speaks your language",
-        "description": "Our registry is designed specifically to help you find healthcare professionals in the Greater Montreal area who speak a range of Asian languages. Whether you're seeking a doctor, therapist, or specialist, our platform connects you with qualified professionals who understand your culture and language needs, making it easier to communicate and receive the care you deserve.",
-        "find": "Find a professional",
-        "register": {
-            "title": "Are you a healthcare professional?",
-            "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you’ll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
-            "button": "Join YAHPA"
-        }
-    },
-    "RegistrySearchPage": {
-        "title": "Find a healthcare professional",
-        "subtitle": "Browse our list of registered professionals",
-        "search": {
-            "label": "Enter a search term",
-            "placeholder": "Physiotherapist, Dentist, Optometrist...",
-            "clear": "Clear"
-        },
-        "results": {
-            "phoneNumber": "Phone number",
-            "email": "Email",
-            "spokenLanguages": "Spoken Languages",
-            "newPatients": {
-                "label": "Are you taking new patients? {answer}",
-                "yes": "Yes",
-                "no": "No",
-                "yes_temporary": "Yes, but temporarily",
-                "no_later": "No, but later",
-                "yes_private": "Yes, but only privately"
-            },
-            "joinedSince": "Joined since",
-            "lastUpdate": "Last update since"
-        }
-    },
-    "contact": {
-        "title": "Contact Us",
-        "subtitle": "We're here to help",
-        "description": "Thank you for reaching out to us. Whether you're a healthcare professional looking for resources, or a patient seeking more information about healthcare providers, we're here to support you. Please feel free to share your questions, feedback, or inquiries, and our team will get back to you as soon as possible.",
-        "footer": "Your well-being and access to quality healthcare are our top priority. We look forward to connecting with you!",
-        "form": {
-            "title": "Please tell us more about yourself and how we can help you by filling out the form below",
-            "name": "Your name",
-            "email": "Your email",
-            "reason": "Your reason",
-            "reason_description": "Please select an option from the list that best suits your reason for contacting us.",
-            "reasons": {
-                "general": "General Inquiry",
-                "contact": "Contact Information",
-                "sponsor": "Sponsorship, Partnership or Collaboration"
-            },
-            "message": "Your message",
-            "message_description": "Can you tell us a bit more about why you are reaching out to us?",
-            "message_placeholder": "Hello YAHPA! I have a few questions...",
-            "submit": "Send message"
-        }
-    },
-    "LoginPage": {
-        "title": "Connect to your Acount",
-        "subtitle": "Please enter your email and password to login to your YAHPA account."
-    },
-    "LoginForm": {
-        "email": "Email",
-        "password": "Password",
-        "createAccount": "Don't have an account? <link>Sign up here.</link>",
-        "submit": "Login",
-        "errors": {
-            "invalidEmail": "The email address is invalid.",
-            "invalidPassword": "The password is invalid. Please provide at least 8 characters.",
-            "api": {
-                "AuthenticationError": "The email or password provided is incorrect. Please try again.",
-                "LockedAuth": "Account is locked due to having too many failed login attempts. Please try again later."
-            }
-        }
-    },
-    "SignUpPage": {
-        "title": "Create your account with YAHPA",
-        "subtitle": "Please enter your email and password to create to your account.",
-        "ConfirmPage": {
-            "title": "Confirm your account by email",
-            "description1": " An email has been sent to you. Please use the verification link to complete the creation of your account with YAHPA.",
-            "description2": "If you have already clicked on the verification link, please sign in here.",
-            "login": "Login to my YAHPA account"
-        }
-    },
-    "SignUpForm": {
-        "email": "Email",
-        "password": "Password",
-        "confirmPassword": "Confirm Password",
-        "terms": "Terms and Conditions",
-        "acceptTerms": "I accept the general terms and conditions",
-        "acceptTermsDescription": "Please read the terms and conditions to better understand our platform and its intended use.",
-        "submit": "Create Account"
-    },
-    "AccountPage": {
-        "title": "My Account",
-        "subtitle": "Manage your YAHPA account and online registry.",
-        "join": {
-            "title": "Joining the Registry of Healthcare Professionals",
-            "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you’ll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
-            "signup": "Signup to Online Registry",
-            "inReview": "Your submission is currently being reviewed.",
-            "submittedOn": "Submitted on",
-            "delete": "Delete Submission"
-        },
-        "modify": {
-            "title": "My YAHPA Registry",
-            "description": "You can modify and update your information from YAHPA's online registry ofhealthcare professionals.",
-            "manage": "Manage Information"
-        }
-    },
-    "RegistryForm": {
-        "title": "Online Registry Registration Form",
-        "personalInfo": "Personal Information",
-        "personalInfoDescription": "Tell us a little about yourself.",
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "fluentLanguages": "Please indicate which languages you are fluent in",
-        "contactPreferences": "Contact Preferences",
-        "contactPreferencesDescription": "Please let us know your preferred methods of communication.",
-        "email": "Email",
-        "phoneNumber": "Phone Number",
-        "contactMethod": {
-            "legend": "Please select your preferred contact method",
-            "email": "By email",
-            "phone": "By Phone"
-        },
-        "professionalInfo": "Professional Information",
-        "professionalInfoDescription": "Tell us more about your current professional status",
-        "jobTitle": {
-            "label": "Job Title",
-            "description": "Please select the title that best reflects your current work or field of study.",
-            "defaultOption": "Please select a profession"
-        },
-        "specialty": {
-            "label": "Specialty",
-            "description": "Specify your specialty if applicable.",
-            "placeholder": "E.g. Family medicine, Child psychology..."
-        },
-        "order": {
-            "label": "Professional Order or Association",
-            "description": "Please select the professional body or association that best applies to your profession.",
-            "defaultOption": "Please select an order"
-        },
-        "graduationDate": {
-            "label": "Graduation Date",
-            "description": "If you are currently studying, this could also be your estimated graduation date."
-        },
-        "sector": {
-            "legend": "Please select your Sector of work",
-            "public": "Public",
-            "private": "Private"
-        },
-        "newPatients": {
-            "label": "Are you accepting new patients?",
-            "yes": "Yes, I am accepting new patients",
-            "no": "No, I am not taking new patients",
-            "yes_temporary": "Yes - but only for a definite period.",
-            "no_later": "Not right now - but in the future.",
-            "yes_private": "Yes - but in private only."
-        },
-        "formErrors": {
-            "hasErrors": "Please correct the errors before submitting."
-        },
-        "submit": "Submit"
+    "Sponsors": {
+      "title": "We are delighted to be sponsored by"
     }
+  },
+  "about": {
+    "header": "About YAHPA",
+    "subheader": "Learn about who we are, our goals and our passion for better healthcare",
+    "description": "YAHPA (Young Asian Health Professionals Association) was founded in the early days of the COVID-19 pandemic in spring 2020 to support Asian communities in Quebec facing challenges due to misinformation, language barriers, and limited access to healthcare. A dedicated group of healthcare professionals and students came together to create coronavirus information guides, develop community resource lists, and translate health announcements into languages like Mandarin, Cantonese, and Vietnamese. YAHPA aims to improve healthcare access, quality, and equity for Asian seniors and unilingual immigrants, addressing language barriers and reducing disparities in care."
+  },
+  "RegistryPage": {
+    "title": "Registry of Health Care Professionals",
+    "subtitle": "Discover healthcare that speaks your language",
+    "description": "Our registry is designed specifically to help you find healthcare professionals in the Greater Montreal area who speak a range of Asian languages. Whether you're seeking a doctor, therapist, or specialist, our platform connects you with qualified professionals who understand your culture and language needs, making it easier to communicate and receive the care you deserve.",
+    "find": "Find a professional",
+    "register": {
+      "title": "Are you a healthcare professional?",
+      "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you’ll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
+      "button": "Join YAHPA"
+    }
+  },
+  "RegistrySearchPage": {
+    "title": "Find a healthcare professional",
+    "subtitle": "Browse our list of registered professionals",
+    "search": {
+      "label": "Enter a search term",
+      "placeholder": "Physiotherapist, Dentist, Optometrist...",
+      "clear": "Clear"
+    },
+    "results": {
+      "phoneNumber": "Phone number",
+      "email": "Email",
+      "spokenLanguages": "Spoken Languages",
+      "newPatients": {
+        "label": "Are you taking new patients? {answer}",
+        "yes": "Yes",
+        "no": "No",
+        "yes_temporary": "Yes, but temporarily",
+        "no_later": "No, but later",
+        "yes_private": "Yes, but only privately"
+      },
+      "joinedSince": "Joined since",
+      "lastUpdate": "Last update since"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help",
+    "description": "Thank you for reaching out to us. Whether you're a healthcare professional looking for resources, or a patient seeking more information about healthcare providers, we're here to support you. Please feel free to share your questions, feedback, or inquiries, and our team will get back to you as soon as possible.",
+    "footer": "Your well-being and access to quality healthcare are our top priority. We look forward to connecting with you!",
+    "form": {
+      "title": "Please tell us more about yourself and how we can help you by filling out the form below",
+      "name": "Your name",
+      "email": "Your email",
+      "reason": "Your reason",
+      "reason_description": "Please select an option from the list that best suits your reason for contacting us.",
+      "reasons": {
+        "general": "General Inquiry",
+        "contact": "Contact Information",
+        "sponsor": "Sponsorship, Partnership or Collaboration"
+      },
+      "message": "Your message",
+      "message_description": "Can you tell us a bit more about why you are reaching out to us?",
+      "message_placeholder": "Hello YAHPA! I have a few questions...",
+      "submit": "Send message"
+    }
+  },
+  "LoginPage": {
+    "title": "Connect to your Acount",
+    "subtitle": "Please enter your email and password to login to your YAHPA account."
+  },
+  "LoginForm": {
+    "email": "Email",
+    "password": "Password",
+    "createAccount": "Don't have an account? <link>Sign up here.</link>",
+    "submit": "Login",
+    "errors": {
+      "invalidEmail": "The email address is invalid.",
+      "invalidPassword": "The password is invalid. Please provide at least 8 characters.",
+      "api": {
+        "AuthenticationError": "The email or password provided is incorrect. Please try again.",
+        "LockedAuth": "Account is locked due to having too many failed login attempts. Please try again later."
+      }
+    }
+  },
+  "SignUpPage": {
+    "title": "Create your account with YAHPA",
+    "subtitle": "Please enter your email and password to create to your account.",
+    "ConfirmPage": {
+      "title": "Confirm your account by email",
+      "description1": " An email has been sent to you. Please use the verification link to complete the creation of your account with YAHPA.",
+      "description2": "If you have already clicked on the verification link, please sign in here.",
+      "login": "Login to my YAHPA account"
+    }
+  },
+  "SignUpForm": {
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "terms": "Terms and Conditions",
+    "acceptTerms": "I accept the general terms and conditions",
+    "acceptTermsDescription": "Please read the terms and conditions to better understand our platform and its intended use.",
+    "submit": "Create Account"
+  },
+  "AccountPage": {
+    "title": "My Account",
+    "subtitle": "Manage your YAHPA account and online registry.",
+    "join": {
+      "title": "Joining the Registry of Healthcare Professionals",
+      "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you’ll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
+      "signup": "Signup to Online Registry",
+      "inReview": "Your submission is currently being reviewed.",
+      "submittedOn": "Submitted on",
+      "delete": "Delete Submission"
+    },
+    "modify": {
+      "title": "My YAHPA Registry",
+      "description": "You can modify and update your information from YAHPA's online registry ofhealthcare professionals.",
+      "manage": "Manage Information"
+    }
+  },
+  "RegistryForm": {
+    "title": "Online Registry Registration Form",
+    "personalInfo": "Personal Information",
+    "personalInfoDescription": "Tell us a little about yourself.",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "fluentLanguages": "Please indicate which languages you are fluent in",
+    "contactPreferences": "Contact Preferences",
+    "contactPreferencesDescription": "Please let us know your preferred methods of communication.",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "contactMethod": {
+      "legend": "Please select your preferred contact method",
+      "email": "By email",
+      "phone": "By Phone"
+    },
+    "professionalInfo": "Professional Information",
+    "professionalInfoDescription": "Tell us more about your current professional status",
+    "jobTitle": {
+      "label": "Job Title",
+      "description": "Please select the title that best reflects your current work or field of study.",
+      "defaultOption": "Please select a profession"
+    },
+    "specialty": {
+      "label": "Specialty",
+      "description": "Specify your specialty if applicable.",
+      "placeholder": "E.g. Family medicine, Child psychology..."
+    },
+    "order": {
+      "label": "Professional Order or Association",
+      "description": "Please select the professional body or association that best applies to your profession.",
+      "defaultOption": "Please select an order"
+    },
+    "graduationDate": {
+      "label": "Graduation Date",
+      "description": "If you are currently studying, this could also be your estimated graduation date."
+    },
+    "sector": {
+      "legend": "Please select your Sector of work",
+      "public": "Public",
+      "private": "Private"
+    },
+    "newPatients": {
+      "label": "Are you accepting new patients?",
+      "yes": "Yes, I am accepting new patients",
+      "no": "No, I am not taking new patients",
+      "yes_temporary": "Yes - but only for a definite period.",
+      "no_later": "Not right now - but in the future.",
+      "yes_private": "Yes - but in private only."
+    },
+    "formErrors": {
+      "hasErrors": "Please correct the errors before submitting."
+    },
+    "submit": "Submit"
+  },
+  "ProjectsPage": {
+    "header": "Projects"
+  }
 }
