@@ -20,11 +20,12 @@ type GroupedEventsByYear = {
 }
 
 type TimelineProps = {
+  type?: 'asc' | 'desc'
   className?: string
   items: TimelineItem[]
 }
 
-export function Timeline({ className, items }: TimelineProps) {
+export function Timeline({ type = 'asc', className, items }: TimelineProps) {
   const groupedItems: GroupedEventsByYear = {}
 
   for (const item of items) {
@@ -38,51 +39,70 @@ export function Timeline({ className, items }: TimelineProps) {
     groupedItems[year][month].push(item)
   }
 
+  // Get sorted years descending
+  const sortedYears = Object.keys(groupedItems).sort((a, b) =>
+    type === 'asc' ? Number(a) - Number(b) : Number(b) - Number(a),
+  )
+
   return (
     <div className={`${className}`}>
-      {Object.entries(groupedItems).map(([year, months]) => (
-        <div key={year} className="ml-4 mb-16">
-          <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">{year}</h3>
+      {sortedYears.map((year) => {
+        const months = groupedItems[year]
 
-          {Object.entries(months).map(([month, items]) => (
-            <div key={month} className="mb-8">
-              <ol className="relative border-s border-gray-200 dark:border-gray-700 m-4">
-                {items.map((item, idx) => (
-                  <li key={idx} className="mb-10 ms-4">
-                    <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+        // Sort months descending by month index
+        const sortedMonths = Object.keys(months).sort((a, b) => {
+          const monthIndex = (m: string) => new Date(`${m} 1, 2000`).getMonth()
+          return type === 'asc' ? monthIndex(a) - monthIndex(b) : monthIndex(b) - monthIndex(a)
+        })
 
-                    <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-                      {`${month} ${new Date(item.date).getDate()}, ${year}`}
-                    </time>
+        return (
+          <div key={year} className="ml-4 mb-16">
+            <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">{year}</h3>
 
-                    {item.title && (
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        {item.title}
-                      </h4>
-                    )}
+            {sortedMonths.map((month) => {
+              const items = months[month]
 
-                    <div className="mt-2 text-base font-normal text-gray-500 dark:text-gray-400 prose dark:prose-invert max-w-full break-words">
-                      <RichText data={item.description} />
-                    </div>
+              return (
+                <div key={month} className="mb-8">
+                  <ol className="relative border-s border-gray-200 dark:border-gray-700 m-4">
+                    {items.map((item, idx) => (
+                      <li key={idx} className="mb-10 ms-4">
+                        <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
 
-                    {typeof item.image === 'object' && item.image?.url && (
-                      <div className="mt-4">
-                        <Image
-                          src={item.image.url}
-                          width={item.image.width!}
-                          height={item.image.height!}
-                          alt={item.title || 'Timeline image'}
-                          className="rounded-lg border shadow-sm"
-                        />
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </div>
-          ))}
-        </div>
-      ))}
+                        <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                          {`${month} ${new Date(item.date).getDate()}, ${year}`}
+                        </time>
+
+                        {item.title && (
+                          <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                            {item.title}
+                          </h4>
+                        )}
+
+                        <div className="mt-2 text-base font-normal text-gray-500 dark:text-gray-400 prose dark:prose-invert max-w-full break-words">
+                          <RichText data={item.description} />
+                        </div>
+
+                        {typeof item.image === 'object' && item.image?.url && (
+                          <div className="mt-4">
+                            <Image
+                              src={item.image.url}
+                              width={item.image.width!}
+                              height={item.image.height!}
+                              alt={item.title || 'Timeline image'}
+                              className="rounded-lg border shadow-sm"
+                            />
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )
+            })}
+          </div>
+        )
+      })}
     </div>
   )
 }
