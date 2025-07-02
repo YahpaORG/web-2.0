@@ -42,15 +42,37 @@
     "login": "Login",
     "logout": "Logout"
   },
-  "footer": {
-    "admin": "Admin portal",
-    "rights": "All rights deserved YAHPA © 2021"
+  "Footer": {
+    "rights": "All rights deserved YAHPA © 2021",
+    "terms": "Terms and Conditions",
+    "privacy": "Privacy Policy",
+    "general": {
+      "title": "General",
+      "about": "About Us",
+      "contact": "Contact Us",
+      "projects": "Our Projects"
+    },
+    "registry": {
+      "title": "Registry",
+      "search": "YAHPA Professional Registry",
+      "about": "About the Registry"
+    },
+    "news": {
+      "title": "News",
+      "latest": "Latest news",
+      "past": "Past events"
+    },
+    "admin": {
+      "title": "Administration",
+      "portal": "Portal"
+    }
   },
   "HomePage": {
     "Hero": {
       "title": "Striving for accessible healthcare",
-      "description": "We are a group of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
-      "learn": "Learn more"
+      "description": "We are a gproup of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
+      "discover": "Discover YAHPA",
+      "trust": "An officially recognized non-profit organization since 2021"
     },
     "Carousel": {
       "title": "Taking action to towards building a better community",
@@ -58,6 +80,12 @@
     },
     "Sponsors": {
       "title": "We are delighted to be sponsored by"
+    },
+    "CTA": {
+      "title": "Join our Registry",
+      "description": "If you are a healthcare professional and want to be listed on our registry, please sign up with YAHPA and create your free profile today.",
+      "primary": "Sign up",
+      "secondary": "Learn more"
     }
   },
   "about": {
