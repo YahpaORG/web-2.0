@@ -1,7 +1,11 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { resendAdapter } from '@payloadcms/email-resend'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import {
+  defaultEditorFeatures,
+  FixedToolbarFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
@@ -13,6 +17,7 @@ import { admins } from './collections/admins.collection'
 import { registryMembers } from './collections/registryMembers.collection'
 import { registryForms } from './collections/registryForms.collection'
 import { languages } from './collections/languages.collection'
+import { projects } from './collections/projects.collection'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -47,8 +52,23 @@ export default buildConfig({
     defaultFromName: 'YAHPA - Web (testing)',
     apiKey: process.env.RESEND_API_KEY || '',
   }),
-  collections: [users, media, contactForms, admins, registryForms, registryMembers, languages],
-  editor: lexicalEditor(),
+  localization: {
+    locales: ['en', 'fr'], // required
+    defaultLocale: 'en', // required
+  },
+  collections: [
+    users,
+    media,
+    contactForms,
+    admins,
+    registryForms,
+    registryMembers,
+    languages,
+    projects,
+  ],
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature()],
+  }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, './payload-types.ts'),
