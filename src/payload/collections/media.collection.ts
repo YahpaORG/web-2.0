@@ -15,6 +15,7 @@ export const media: CollectionConfig = {
       name: 'alt',
       type: 'text',
       required: true,
+      localized: true,
     },
   ],
   upload: true,

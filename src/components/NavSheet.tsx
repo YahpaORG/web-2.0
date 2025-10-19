@@ -34,7 +34,7 @@ export function NavSheet({ isAuth }: { isAuth: boolean }) {
         className="w-[400px] sm:w-[540px]"
       >
         <SheetHeader className="flex flex-col items-center justify-center">
-          <Image src="/media/6_w_b.png" alt="" width={72} height={72} />
+          <Image src="/media/logo_w_b.png" alt="" width={72} height={72} />
           <SheetTitle>Welcome to YAHPA</SheetTitle>
           <SheetDescription>What are you looking for today?</SheetDescription>
         </SheetHeader>

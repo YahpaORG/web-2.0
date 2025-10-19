@@ -18,6 +18,7 @@ import { registryMembers } from './collections/registryMembers.collection'
 import { registryForms } from './collections/registryForms.collection'
 import { languages } from './collections/languages.collection'
 import { projects } from './collections/projects.collection'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -78,6 +79,15 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    // storage-adapter-placeholder
+    vercelBlobStorage({
+      enabled: true,
+      clientUploads: true,
+      collections: {
+        media: {
+          prefix: 'media',
+        },
+      },
+      token: process.env.dev_READ_WRITE_TOKEN,
+    }),
   ],
 })
