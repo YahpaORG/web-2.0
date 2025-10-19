@@ -83,7 +83,9 @@ export default buildConfig({
       enabled: true,
       clientUploads: true,
       collections: {
-        media: true,
+        media: {
+          prefix: 'media',
+        },
       },
       token: process.env.dev_READ_WRITE_TOKEN,
     }),
