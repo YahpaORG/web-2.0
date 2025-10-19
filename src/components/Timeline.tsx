@@ -5,6 +5,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import { format } from 'date-fns'
+import { useLocale } from 'next-intl'
 
 export type TimelineItem = {
   date: string | Date
@@ -26,12 +27,13 @@ type TimelineProps = {
 }
 
 export function Timeline({ type = 'asc', className, items }: TimelineProps) {
+  const locale = useLocale()
   const groupedItems: GroupedEventsByYear = {}
 
   for (const item of items) {
     const date = new Date(item.date)
     const year = String(date.getFullYear())
-    const month = date.toLocaleString('default', { month: 'long' })
+    const month = date.toLocaleString(locale, { month: 'long' })
 
     if (!groupedItems[year]) groupedItems[year] = {}
     if (!groupedItems[year][month]) groupedItems[year][month] = []
@@ -56,15 +58,15 @@ export function Timeline({ type = 'asc', className, items }: TimelineProps) {
         })
 
         return (
-          <div key={year} className="ml-4 mb-16">
-            <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">{year}</h3>
+          <div key={year} className="mb-16 ml-4">
+            <h3 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-gray-200">{year}</h3>
 
             {sortedMonths.map((month) => {
               const items = months[month]
 
               return (
                 <div key={month} className="mb-8">
-                  <ol className="relative border-s border-gray-200 dark:border-gray-700 m-4">
+                  <ol className="relative m-4 border-gray-200 border-s dark:border-gray-700">
                     {items.map((item, idx) => (
                       <li key={idx} className="mb-10 ms-4">
                         <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
@@ -79,7 +81,7 @@ export function Timeline({ type = 'asc', className, items }: TimelineProps) {
                           </h4>
                         )}
 
-                        <div className="mt-2 text-base font-normal text-gray-500 dark:text-gray-400 prose dark:prose-invert max-w-full break-words">
+                        <div className="max-w-full mt-2 text-base font-normal prose text-gray-500 break-words dark:text-gray-400 dark:prose-invert">
                           <RichText data={item.description} />
                         </div>
 
@@ -90,7 +92,7 @@ export function Timeline({ type = 'asc', className, items }: TimelineProps) {
                               width={item.image.width!}
                               height={item.image.height!}
                               alt={item.title || 'Timeline image'}
-                              className="rounded-lg border shadow-sm"
+                              className="border rounded-lg shadow-sm"
                             />
                           </div>
                         )}
