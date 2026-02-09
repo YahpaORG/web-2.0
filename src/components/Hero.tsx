@@ -34,10 +34,10 @@ export const Hero = ({
   ...props
 }: HeroProps) => {
   return (
-    <section className="py-8 overflow-hidden lg:py-32" {...props}>
-      <div className="container p-8 mx-auto lg:p-16">
+    <section className="overflow-hidden pt-4" {...props}>
+      <div className="container p-4 mx-auto lg:p-16">
         <div className="flex flex-col gap-5">
-          <div className="relative flex flex-col gap-5">
+          <div className="relative flex flex-col gap-5 pb-5">
             <div
               style={{
                 transform: 'translate(-50%, -50%)',
@@ -57,8 +57,8 @@ export const Hero = ({
             <p className="max-w-3xl mx-auto text-center text-muted-foreground md:text-lg">
               {description}
             </p>
-            <div className="flex flex-col items-center justify-center gap-3 pt-3 pb-12">
-              <Button size="lg" asChild>
+            <div className="flex flex-col items-center justify-center gap-3 pt-3 lg:pb-12">
+              <Button className="mb-4" size="lg" asChild>
                 <Link href={button.url}>
                   {button.text} {button.icon}
                 </Link>

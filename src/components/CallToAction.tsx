@@ -32,7 +32,7 @@ export function CallToAction({
 }: CallToActionProps) {
   return (
     <section {...props}>
-      <div className="container">
+      <div className="container lg:max-w-full">
         <div className="flex flex-col items-center p-8 text-center rounded-lg bg-accent md:rounded-xl lg:p-16">
           <h3 className="max-w-3xl mb-3 text-2xl font-semibold md:mb-4 md:text-4xl lg:mb-6">
             {heading}
