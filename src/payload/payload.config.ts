@@ -19,6 +19,7 @@ import { registryForms } from './collections/registryForms.collection'
 import { languages } from './collections/languages.collection'
 import { projects } from './collections/projects.collection'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing';
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -79,15 +80,30 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    vercelBlobStorage({
-      enabled: true,
-      clientUploads: true,
+    // Vercel Blob Storage if we need it 1GB free
+    // vercelBlobStorage({
+    //   enabled: true,
+    //   clientUploads: true,
+    //   collections: {
+    //     media: {
+    //       prefix: 'media',
+    //     },
+    //   },
+    //   token: process.env.dev_READ_WRITE_TOKEN,
+    // }),
+    uploadthingStorage({
       collections: {
         media: {
-          prefix: 'media',
+          disablePayloadAccessControl: true,
+          // generateFileURL: ({ filename }) => {
+          //   return `https://zorg3s99oz.ufs.sh/f/${filename}`
+          // }
         },
       },
-      token: process.env.dev_READ_WRITE_TOKEN,
+      options: {
+        token: process.env.UPLOADTHING_TOKEN || '',
+        acl: 'public-read',
+      },
     }),
   ],
 })

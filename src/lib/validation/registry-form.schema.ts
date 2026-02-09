@@ -119,9 +119,9 @@ export const RegistryFormSchema = z.object({
   }),
 
   // Contact info
-  email: z.string().email(),
+  email: z.email(),
   primaryPhoneNumber: z
-    .string({ required_error: 'Your phone number is required.' })
+    .string({ message: 'Your phone number is required.' })
     .refine(validator.isMobilePhone, { message: 'Please provide a valid phone number.' }),
   preferredContactMethod: z.enum(['email', 'phone']),
 

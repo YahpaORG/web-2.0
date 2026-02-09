@@ -1,13 +1,8 @@
 import type { CollectionConfig } from 'payload'
-import { adminsOnly } from '@/payload/access/adminsOnly'
 
 export const media: CollectionConfig = {
   slug: 'media',
-  admin: {},
   access: {
-    update: adminsOnly,
-    delete: adminsOnly,
-    create: adminsOnly,
     read: () => true,
   },
   fields: [
@@ -18,5 +13,17 @@ export const media: CollectionConfig = {
       localized: true,
     },
   ],
-  upload: true,
+  upload: {
+    formatOptions: {
+      format: 'webp',
+    },
+    imageSizes: [
+      {
+        name: 'small',
+        width: 1200,
+        height: 600,
+      },
+    ],
+    mimeTypes: ['image/png', 'image/webp', 'image/jpg'],
+  },
 }
