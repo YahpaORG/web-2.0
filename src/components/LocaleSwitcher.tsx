@@ -38,7 +38,7 @@ export default function LocaleSwitcher() {
         setLocal(newLocale)
       }}
     >
-      <SelectTrigger className="min-w-[8rem]">
+      <SelectTrigger className="min-w-32">
         <SelectValue placeholder={t('placeholder')} />
       </SelectTrigger>
       <SelectContent>
