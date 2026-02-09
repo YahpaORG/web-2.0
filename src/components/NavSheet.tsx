@@ -31,7 +31,7 @@ export function NavSheet({ isAuth }: { isAuth: boolean }) {
       <SheetContent
         side="left"
         onCloseAutoFocus={(e) => e.preventDefault()}
-        className="w-[400px] sm:w-[540px]"
+        className="w-100 sm:w-135"
       >
         <SheetHeader className="flex flex-col items-center justify-center">
           <Image src="/media/logo_w_b.png" alt="" width={72} height={72} />

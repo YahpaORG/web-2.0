@@ -102,7 +102,7 @@ export function ContactForm({ action, values }: ContactFormProps) {
         <textarea
           name="message"
           maxLength={500}
-          className="p-2 border rounded-lg min-h-[10rem]"
+          className="p-2 border rounded-lg min-h-40"
           placeholder={t('form.message_placeholder')}
           required
           minLength={1}

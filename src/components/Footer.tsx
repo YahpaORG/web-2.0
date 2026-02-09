@@ -35,16 +35,12 @@ export async function Footer() {
   ]
 
   return (
-    <section className="px-6 py-32">
-      <div className="container">
-        <footer>
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
-            <div className="col-span-2 mb-8 lg:mb-0">
-              <YahpaLogo />
-            </div>
+    <section className="px-6 py-8">
 
+        <footer>
+          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 container m-auto max-w-240">
             {menuItems.map((section, sectionIdx) => (
-              <div key={sectionIdx}>
+              <div key={sectionIdx} className="px-4">
                 <h3 className="mb-4 font-bold">{section.title}</h3>
                 <ul className="space-y-4 text-muted-foreground">
                   {section.links.map((link, linkIdx) => (
@@ -68,7 +64,7 @@ export async function Footer() {
             </ul>
           </div>
         </footer>
-      </div>
+
     </section>
   )
 }

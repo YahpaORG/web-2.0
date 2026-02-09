@@ -34,15 +34,15 @@ export const Hero = ({
   ...props
 }: HeroProps) => {
   return (
-    <section className="py-8 overflow-hidden lg:py-32" {...props}>
-      <div className="container p-8 mx-auto lg:p-16">
+    <section className="overflow-hidden pt-4" {...props}>
+      <div className="container p-4 mx-auto lg:p-16">
         <div className="flex flex-col gap-5">
-          <div className="relative flex flex-col gap-5">
+          <div className="relative flex flex-col gap-5 pb-5">
             <div
               style={{
                 transform: 'translate(-50%, -50%)',
               }}
-              className="absolute top-1/2 left-1/2 -z-10 mx-auto size-[800px] rounded-full border [mask-image:linear-gradient(to_top,transparent,transparent,white,white,white,transparent,transparent)] p-16 md:size-[1300px] md:p-32"
+              className="absolute top-1/2 left-1/2 -z-10 mx-auto size-200 rounded-full border mask-[linear-gradient(to_top,transparent,transparent,white,white,white,transparent,transparent)] p-16 md:size-325 md:p-32"
             >
               <div className="p-16 border rounded-full size-full md:p-32">
                 <div className="border rounded-full size-full"></div>
@@ -57,8 +57,8 @@ export const Hero = ({
             <p className="max-w-3xl mx-auto text-center text-muted-foreground md:text-lg">
               {description}
             </p>
-            <div className="flex flex-col items-center justify-center gap-3 pt-3 pb-12">
-              <Button size="lg" asChild>
+            <div className="flex flex-col items-center justify-center gap-3 pt-3 lg:pb-12">
+              <Button className="mb-4" size="lg" asChild>
                 <Link href={button.url}>
                   {button.text} {button.icon}
                 </Link>

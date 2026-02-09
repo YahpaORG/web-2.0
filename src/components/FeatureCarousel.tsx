@@ -31,13 +31,13 @@ export const FeatureCarousel = ({
 }: FeatureCarouselProps) => {
   return (
     <section {...props}>
-      <div className="container p-8 mx-auto lg:p-16">
+      <div className="container p-4 mx-auto lg:p-16">
         <div className="flex flex-col-reverse gap-8 lg:flex-row">
           <Carousel className="w-full max-w-sm mx-auto md:max-w-xl">
             <CarouselContent>
               {imageSlides.map((image, index) => (
                 <CarouselItem key={index}>
-                  <div className="mx-auto relative w-[24rem] h-[18rem] lg:w-[36rem] lg:h-[26rem]">
+                  <div className="mx-auto relative h-72 lg:w-xl lg:h-104 rounded-xl">
                     <Image src={image.src} alt="" className="object-cover rounded-xl" fill />
                   </div>
                 </CarouselItem>
@@ -48,7 +48,7 @@ export const FeatureCarousel = ({
               <CarouselNext className="static translate-y-0" />
             </div>
           </Carousel>
-          <div className="p-8 rounded-lg bg-accent max-h-min">
+          <div className="py-4 px-8 rounded-lg bg-accent max-h-min">
             <h2 className="mb-4 text-2xl font-semibold text-center">{heading}</h2>
             <p className="text-muted-foreground lg:text-lg">{description}</p>
           </div>

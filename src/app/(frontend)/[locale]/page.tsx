@@ -51,7 +51,7 @@ export default async function HomePage() {
             url: '/registry',
           },
         }}
-        className="flex justify-center w-full"
+        className="flex justify-center w-full mb-16"
       />
     </div>
   )

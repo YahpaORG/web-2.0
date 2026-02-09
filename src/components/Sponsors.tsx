@@ -16,7 +16,7 @@ export const Sponsors = ({
 }: SponsorsProps) => {
   return (
     <section className="my-4" {...props}>
-      <div className="container p-8 lg:p-16">
+      <div className="container p-8 lg:p-16 m-auto">
         <h2 className="p-6 text-2xl font-semibold text-center">{title}</h2>
         <div className="flex flex-row flex-wrap items-center justify-center gap-8">
           {logos.map((logo, index) => (
