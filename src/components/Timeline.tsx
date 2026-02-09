@@ -81,7 +81,7 @@ export function Timeline({ type = 'asc', className, items }: TimelineProps) {
                           </h4>
                         )}
 
-                        <div className="max-w-full mt-2 text-base font-normal prose text-gray-500 break-words dark:text-gray-400 dark:prose-invert">
+                        <div className="max-w-full mt-2 text-base font-normal prose text-gray-500 wrap-break-word dark:text-gray-400 dark:prose-invert">
                           <RichText data={item.description} />
                         </div>
 

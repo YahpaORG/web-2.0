@@ -35,10 +35,10 @@ export async function Footer() {
   ]
 
   return (
-    <section className="px-6 py-32">
-      <div className="container">
+    <section className="px-6 py-8">
+
         <footer>
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-8 lg:grid-cols-6 container">
             <div className="col-span-2 mb-8 lg:mb-0">
               <YahpaLogo />
             </div>
@@ -68,7 +68,7 @@ export async function Footer() {
             </ul>
           </div>
         </footer>
-      </div>
+
     </section>
   )
 }
