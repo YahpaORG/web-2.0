@@ -1,11 +1,7 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { resendAdapter } from '@payloadcms/email-resend'
-import {
-  defaultEditorFeatures,
-  FixedToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
@@ -18,8 +14,8 @@ import { registryMembers } from './collections/registryMembers.collection'
 import { registryForms } from './collections/registryForms.collection'
 import { languages } from './collections/languages.collection'
 import { projects } from './collections/projects.collection'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
-import { uploadthingStorage } from '@payloadcms/storage-uploadthing';
+// import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

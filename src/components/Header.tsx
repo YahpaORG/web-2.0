@@ -25,7 +25,7 @@ export async function Header() {
 
       <div className="justify-end flex-1 hidden xl:flex">
         <ul className="flex flex-row items-center gap-4">
-          {user ? (
+          {/* TODO account stuff {user ? (
             <>
               <li>
                 <Link href="/account">{t('Header.account')}</Link>
@@ -40,7 +40,7 @@ export async function Header() {
                 <Link href="/login">{t('Header.login')}</Link>
               </Button>
             </li>
-          )}
+          )} */}
           <li>
             <LocaleSwitcher />
           </li>

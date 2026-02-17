@@ -13,9 +13,13 @@ export default async function AboutPage() {
             <div className="grid col-span-2 gap-16">
               <div className="flex flex-col">
                 <div className="p-6 rounded-lg">
-                  <h1 className="mb-4 text-6xl font-bold">{t('about.header')}</h1>
+                  <h1 className="mb-4 text-6xl font-bold">
+                    {t.rich('about.header', {
+                      blue: (chunks) => <span className="text-primary">{chunks}</span>,
+                    })}
+                  </h1>
                   <h2 className="mb-8 text-2xl font-semibold">{t('about.subheader')}</h2>
-                  <p className="text-lg text-primary">{t('about.description')}</p>
+                  <p className="text-lg">{t('about.description')}</p>
                 </div>
               </div>
               <AspectRatio ratio={16 / 9}>
