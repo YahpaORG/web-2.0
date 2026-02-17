@@ -39,7 +39,7 @@ export default async function RootLayout(props: {
   }
 
   return (
-    <html className='h-full' lang={params.locale} suppressHydrationWarning>
+    <html className="h-full" lang={params.locale} suppressHydrationWarning>
       <head />
       <body className={cn([inter.className, 'flex-col', 'h-full'])}>
         <NextIntlClientProvider>
@@ -50,8 +50,8 @@ export default async function RootLayout(props: {
             disableTransitionOnChange
           >
             <Header />
-            <main className='flex-1'>{props.children}</main>
-            <Footer />
+            <main className="flex-1">{props.children}</main>
+            {/* TODO: Not enough content yet <Footer /> */}
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
