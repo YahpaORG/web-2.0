@@ -26,7 +26,7 @@ type TimelineProps = {
   items: TimelineItem[]
 }
 
-export function Timeline({ type = 'asc', className, items }: TimelineProps) {
+export function Timeline({ type = 'desc', className, items }: TimelineProps) {
   const locale = useLocale()
   const groupedItems: GroupedEventsByYear = {}
 
@@ -65,10 +65,10 @@ export function Timeline({ type = 'asc', className, items }: TimelineProps) {
               const items = months[month]
 
               return (
-                <div key={month} className="mb-8">
-                  <ol className="relative m-4 border-gray-200 border-s dark:border-gray-700">
+                <div key={month}>
+                  <ol className="relative border-gray-200 border-s dark:border-gray-700">
                     {items.map((item, idx) => (
-                      <li key={idx} className="mb-10 ms-4">
+                      <li key={idx} className={`pb-8 ms-4`}>
                         <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
 
                         <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">

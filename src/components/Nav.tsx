@@ -25,6 +25,11 @@ export function NavigationMenuDesktop() {
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link href="/registry/search">{t('registry.title')}</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger>{t('registry.title')}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="flex flex-col w-[300px] lg:w-[400px] p-2">
@@ -36,8 +41,8 @@ export function NavigationMenuDesktop() {
               </ListItem>
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
+        </NavigationMenuItem> */}
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger>{t('news.title')}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="flex flex-col w-[300px] lg:w-[400px] p-2">
@@ -49,7 +54,7 @@ export function NavigationMenuDesktop() {
               </ListItem>
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <Link href="/projects">{t('projects')}</Link>

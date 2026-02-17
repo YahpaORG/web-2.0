@@ -1,0 +1,35 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run ESLint with Prettier",
+			"type": "shell",
+			"command": "pnpm lint",
+			"isBackground": false,
+			"problemMatcher": [
+				"$eslint-stylish"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run ESLint with Prettier (retry)",
+			"type": "shell",
+			"command": "pnpm lint",
+			"isBackground": false,
+			"problemMatcher": [
+				"$eslint-stylish"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run ESLint with Prettier (final test)",
+			"type": "shell",
+			"command": "pnpm lint",
+			"isBackground": false,
+			"problemMatcher": [
+				"$eslint-stylish"
+			],
+			"group": "test"
+		}
+	]
+}

@@ -13,6 +13,7 @@ export const getProjects = async ({ locale }: GetProjectsProps) => {
     collection: 'projects',
     sort: 'date',
     locale,
+    limit: 100,
   })
 
   return data
