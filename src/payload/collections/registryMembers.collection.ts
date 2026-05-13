@@ -27,6 +27,11 @@ export const registryMembers: CollectionConfig = {
     delete: isSelfOrAdmin,
   },
   fields: [
+    {
+      name: 'submittedBy',
+      label: 'Submitted by User',
+      type: 'text',
+    },
     FirstNameField,
     LastNameField,
     EmailField,
