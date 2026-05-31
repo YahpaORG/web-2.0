@@ -40,7 +40,8 @@
     "contact": "Nous joindre",
     "account": "Mon compte",
     "login": "Connexion",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "signup": "Créer un compte"
   },
   "Footer": {
     "rights": "Tous droits réservés YAHPA © 2021",
@@ -202,6 +203,16 @@
       "title": "Mon registre YAHPA",
       "description": "Vous pouvez modifier et mettre à jour vos informations à partir du registre en ligne des professionnels de santé de YAHPA.",
       "manage": "Gérer les informations"
+    },
+    "greeting": "Bienvenue,",
+    "accountInfo": "Informations du compte",
+    "email": "Courriel",
+    "registryStatus": "Statut du registre",
+    "registrySection": "Registre YAHPA",
+    "registryStatusLabel": {
+      "approved": "Approuvé",
+      "review": "En cours d'examen",
+      "rejected": "Rejeté"
     }
   },
   "RegistryForm": {
@@ -224,7 +235,7 @@
       "other": "Autre"
     },
     "practiceInfo": {
-      "title":"Informations sur votre lieu de pratique",
+      "title": "Informations sur votre lieu de pratique",
       "description": "Veuillez fournir les coordonnées de votre clinique ou hôpital.",
       "name": "Nom de la clinique / de l'hôpital",
       "address": "Adresse",
