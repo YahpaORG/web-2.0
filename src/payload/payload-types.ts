@@ -247,14 +247,22 @@ export interface Admin {
  */
 export interface RegistryForm {
   id: string;
-  registry_status?: ('approved' | 'review') | null;
-  submittedBy?: string | null;
+  registry_status?: ('approved' | 'review' | 'rejected') | null;
+  submittedBy: string | User;
   firstName: string;
   lastName: string;
-  languages: (string | Language)[];
   email: string;
   primaryPhoneNumber: string;
-  preferredContactMethod: 'email' | 'phone';
+  website?: string | null;
+  preferredContactMethod: 'email' | 'phone' | 'website' | 'other';
+  practiceInfo: {
+    name: string;
+    address: string;
+    email?: string | null;
+    phone?: string | null;
+  };
+  languages: (string | Language)[];
+  jobStatus: 'practitioner' | 'student';
   profession:
     | 'acupuncturist'
     | 'art_therapist'
@@ -276,7 +284,8 @@ export interface RegistryForm {
     | 'psychologist'
     | 'psychotherapist'
     | 'social_worker'
-    | 'speech_language_pathologist';
+    | 'speech_language_pathologist'
+    | 'other';
   specialty?: string | null;
   graduationDate?: string | null;
   professionalOrder:
@@ -293,9 +302,21 @@ export interface RegistryForm {
     | 'dentistes'
     | 'none'
     | 'other';
-  sector: 'public' | 'private';
+  sector: 'public' | 'private' | 'other';
   isAcceptingPatients: 'yes' | 'no' | 'yes_temporary' | 'no_later' | 'yes_private';
   newPatientAcceptanceDate?: string | null;
+  /**
+   * For verification purposes only. If you are a student, enter: 0000.
+   */
+  licenseNumber: string;
+  /**
+   * Your practice information will be directly accessible by the general public via yahpa.org/registry.
+   */
+  consentToWebsite: boolean;
+  /**
+   * Your practice information will be made available to other health professionals for referrals.
+   */
+  consentToReferrals?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -321,8 +342,16 @@ export interface RegistryMember {
   lastName: string;
   email: string;
   primaryPhoneNumber: string;
-  preferredContactMethod: 'email' | 'phone';
+  website?: string | null;
+  preferredContactMethod: 'email' | 'phone' | 'website' | 'other';
+  practiceInfo: {
+    name: string;
+    address: string;
+    email?: string | null;
+    phone?: string | null;
+  };
   languages: (string | Language)[];
+  jobStatus: 'practitioner' | 'student';
   profession:
     | 'acupuncturist'
     | 'art_therapist'
@@ -344,7 +373,8 @@ export interface RegistryMember {
     | 'psychologist'
     | 'psychotherapist'
     | 'social_worker'
-    | 'speech_language_pathologist';
+    | 'speech_language_pathologist'
+    | 'other';
   specialty?: string | null;
   graduationDate?: string | null;
   professionalOrder:
@@ -361,9 +391,17 @@ export interface RegistryMember {
     | 'dentistes'
     | 'none'
     | 'other';
-  sector: 'public' | 'private';
+  sector: 'public' | 'private' | 'other';
   isAcceptingPatients: 'yes' | 'no' | 'yes_temporary' | 'no_later' | 'yes_private';
   newPatientAcceptanceDate?: string | null;
+  /**
+   * Your practice information will be directly accessible by the general public via yahpa.org/registry.
+   */
+  consentToWebsite: boolean;
+  /**
+   * Your practice information will be made available to other health professionals for referrals.
+   */
+  consentToReferrals?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -603,10 +641,20 @@ export interface RegistryFormsSelect<T extends boolean = true> {
   submittedBy?: T;
   firstName?: T;
   lastName?: T;
-  languages?: T;
   email?: T;
   primaryPhoneNumber?: T;
+  website?: T;
   preferredContactMethod?: T;
+  practiceInfo?:
+    | T
+    | {
+        name?: T;
+        address?: T;
+        email?: T;
+        phone?: T;
+      };
+  languages?: T;
+  jobStatus?: T;
   profession?: T;
   specialty?: T;
   graduationDate?: T;
@@ -614,6 +662,9 @@ export interface RegistryFormsSelect<T extends boolean = true> {
   sector?: T;
   isAcceptingPatients?: T;
   newPatientAcceptanceDate?: T;
+  licenseNumber?: T;
+  consentToWebsite?: T;
+  consentToReferrals?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -626,8 +677,18 @@ export interface RegistryMembersSelect<T extends boolean = true> {
   lastName?: T;
   email?: T;
   primaryPhoneNumber?: T;
+  website?: T;
   preferredContactMethod?: T;
+  practiceInfo?:
+    | T
+    | {
+        name?: T;
+        address?: T;
+        email?: T;
+        phone?: T;
+      };
   languages?: T;
+  jobStatus?: T;
   profession?: T;
   specialty?: T;
   graduationDate?: T;
@@ -635,6 +696,8 @@ export interface RegistryMembersSelect<T extends boolean = true> {
   sector?: T;
   isAcceptingPatients?: T;
   newPatientAcceptanceDate?: T;
+  consentToWebsite?: T;
+  consentToReferrals?: T;
   updatedAt?: T;
   createdAt?: T;
 }

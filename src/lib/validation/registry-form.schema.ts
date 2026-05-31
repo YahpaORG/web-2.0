@@ -1,16 +1,24 @@
 import validator from 'validator'
 import { z } from 'zod'
 
-export const JOB_STATUS = ['student', 'employed', 'unemployed'] as const
+export const JOB_STATUS = [
+  { label: 'Healthcare Practitioner', value: 'practitioner' },
+  { label: 'Student', value: 'student' },
+] as const
 
 export const SECTORS = [
   { label: 'Private', value: 'private' },
   { label: 'Public', value: 'public' },
+  { label: 'Other', value: 'other' },
 ] as const
+
 export const CONTACT_METHODS = [
   { label: 'By Email', value: 'email' },
   { label: 'By Phone', value: 'phone' },
+  { label: 'Website', value: 'website' },
+  { label: 'Other', value: 'other' },
 ] as const
+
 export const PROFESSIONS = [
   { label: 'Acupuncturist', value: 'acupuncturist' },
   { label: 'Art Therapist', value: 'art_therapist' },
@@ -33,50 +41,24 @@ export const PROFESSIONS = [
   { label: 'Psychotherapist', value: 'psychotherapist' },
   { label: 'Social Worker', value: 'social_worker' },
   { label: 'Speech Language Pathologist', value: 'speech_language_pathologist' },
-]
+  { label: 'Other', value: 'other' },
+] as const
 
 export const PATIENT_OPTIONS = [
-  {
-    label: 'Yes, I am accepting new patients',
-    value: 'yes',
-  },
-  {
-    label: 'No, I am not taking new patients',
-    value: 'no',
-  },
-  {
-    label: 'Yes - but only for a definite period.',
-    value: 'yes_temporary',
-  },
-  {
-    label: 'Not right now - but in the future.',
-    value: 'no_later',
-  },
-  {
-    label: 'Yes - but in private only.',
-    value: 'yes_private',
-  },
+  { label: 'Yes, I am accepting new patients', value: 'yes' },
+  { label: 'No, I am not taking new patients', value: 'no' },
+  { label: 'Yes - but only for a definite period', value: 'yes_temporary' },
+  { label: 'Not right now - but in the future', value: 'no_later' },
+  { label: 'Yes - but in private only', value: 'yes_private' },
 ] as const
 
 export const ORDERS = [
-  {
-    label: 'OOAQ: Ordre des orthophonistes et audiologistes du Québec',
-    value: 'ooaq',
-  },
-  {
-    label: 'Ordre des chiropraticiens du Québec',
-    value: 'ocq',
-  },
-  {
-    label: 'OEQ: Ordre des ergothérapeutes du Québec',
-    value: 'oeq',
-  },
+  { label: 'OOAQ: Ordre des orthophonistes et audiologistes du Québec', value: 'ooaq' },
+  { label: 'Ordre des chiropraticiens du Québec', value: 'ocq' },
+  { label: 'OEQ: Ordre des ergothérapeutes du Québec', value: 'oeq' },
   { label: 'ONDQ: Ordre des diététistes-nutritionnistes du Québec', value: 'ondq' },
   { label: 'Ordre des psychologues du Québec', value: 'psychologues' },
-  {
-    label: 'OPIQ: Ordre des inhalothérapeutes du Québec',
-    value: 'opiq',
-  },
+  { label: 'OPIQ: Ordre des inhalothérapeutes du Québec', value: 'opiq' },
   { label: 'OPPQ: Ordre Professionel de la Physiothérapie du Québec', value: 'oppq' },
   { label: 'Ordre des Podiatres du Québec', value: 'podiatres' },
   { label: 'OIIQ: Ordre des infirmières et infirmiers du Québec', value: 'oiiq' },
@@ -84,30 +66,6 @@ export const ORDERS = [
   { label: 'Ordre des dentistes du Québec', value: 'dentistes' },
   { label: 'None', value: 'none' },
   { label: 'Other', value: 'other' },
-]
-
-const professions = [
-  'acupuncturist',
-  'art_therapist',
-  'audiologist',
-  'chiropractor',
-  'dentist',
-  'dietitian',
-  'denturologist',
-  'occupational_therapist',
-  'nurse',
-  'kinesiologist',
-  'massage_therapist',
-  'physician',
-  'optometrist',
-  'osteopath',
-  'pharmacist',
-  'podiatrist',
-  'physiotherapist',
-  'psychologist',
-  'psychotherapist',
-  'social_worker',
-  'speech_language_pathologist',
 ] as const
 
 export const RegistryFormSchema = z.object({
@@ -119,33 +77,51 @@ export const RegistryFormSchema = z.object({
   }),
 
   // Contact info
-  email: z.email(),
+  email: z.string().email(),
   primaryPhoneNumber: z
     .string({ message: 'Your phone number is required.' })
     .refine(validator.isMobilePhone, { message: 'Please provide a valid phone number.' }),
-  preferredContactMethod: z.enum(['email', 'phone']),
+  preferredContactMethod: z.enum(['email', 'phone', 'website', 'other']),
+  website: z.string().url({ message: 'Please provide a valid URL.' }).optional(),
+
+  // Practice info
+  practiceInfo: z.object({
+    name: z.string().min(1, { message: 'Please enter your clinic or hospital name.' }),
+    address: z.string().min(1, { message: 'Please enter your practice address.' }),
+    email: z.string().email({ message: 'Please enter a valid practice email.' }).optional(),
+    phone: z
+      .string()
+      .refine(validator.isMobilePhone, { message: 'Please provide a valid phone number.' })
+      .optional(),
+  }),
 
   // Professional info
-  profession: z.enum(professions, { message: 'Please select a profession.' }),
-  specialty: z.string({ message: 'Please write your specialty.' }),
+  jobStatus: z.enum(['practitioner', 'student'], {
+    message: 'Please select your job status.',
+  }),
+  profession: z.enum([
+    'acupuncturist', 'art_therapist', 'audiologist', 'chiropractor', 'dentist',
+    'dietitian', 'denturologist', 'occupational_therapist', 'nurse', 'kinesiologist',
+    'massage_therapist', 'physician', 'optometrist', 'osteopath', 'pharmacist',
+    'podiatrist', 'physiotherapist', 'psychologist', 'psychotherapist', 'social_worker',
+    'speech_language_pathologist', 'other',
+  ], { message: 'Please select a profession.' }),
+  specialty: z.string().optional(),
   professionalOrder: z.enum([
-    'ooaq',
-    'ocq',
-    'oeq',
-    'ondq',
-    'psychologues',
-    'opiq',
-    'oppq',
-    'podiatres',
-    'oiiq',
-    'pharmaciens',
-    'dentistes',
-    'none',
-    'other',
+    'ooaq', 'ocq', 'oeq', 'ondq', 'psychologues', 'opiq', 'oppq',
+    'podiatres', 'oiiq', 'pharmaciens', 'dentistes', 'none', 'other',
   ]),
   graduationDate: z.string().optional(),
-  sector: z.enum(['public', 'private']),
+  sector: z.enum(['public', 'private', 'other']),
   isAcceptingPatients: z.enum(['yes', 'no', 'yes_temporary', 'no_later', 'yes_private']),
+  newPatientAcceptanceDate: z.string().optional(),
+  licenseNumber: z.string().min(1, { message: 'Please enter your license number.' }),
+
+  // Consent
+  consentToWebsite: z.literal<boolean>(true, {
+    message: 'You must consent to being listed on the YAHPA website.',
+  }),
+  consentToReferrals: z.boolean(),
 })
 
 export type RegistryFormValues = z.infer<typeof RegistryFormSchema>
