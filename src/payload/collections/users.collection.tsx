@@ -38,9 +38,9 @@ export const users: CollectionConfig = {
   auth: {
     verify: {
       generateEmailHTML: async ({ req, token, user }) => {
-        // Use the token provided to allow your user to verify their account
         const url = `${process.env.NEXT_PUBLIC_CMS_URL}/verify?token=${token}`
-        const html = await render(<AccountConfirmation validationUrl={url} />)
+        const locale = (req.locale as 'en' | 'fr') ?? 'en'
+        const html = await render(<AccountConfirmation validationUrl={url} locale={locale} />)
         return html
       },
     },

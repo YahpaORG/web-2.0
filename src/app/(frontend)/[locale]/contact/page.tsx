@@ -6,25 +6,28 @@ export default async function ContactPage() {
   const t = await getTranslations()
 
   return (
-    <section className="flex flex-col items-center justify-center flex-1 h-full py-12">
-      <div className="flex flex-col items-center justify-center w-full gap-12 md:flex-row">
-        <div className="flex flex-col max-w-md gap-4 mb-4 md:self-start">
-          <h1 className="text-3xl">{t('contact.title')}</h1>
-          <h2 className="font-bold">{t('contact.subtitle')}</h2>
-          <p>{t('contact.description')}</p>
-          <p>{t('contact.footer')}</p>
+    <div className="flex justify-center flex-1 w-full px-4 py-16">
+      <div className="w-full max-w-4xl flex flex-col md:flex-row gap-12">
+
+        {/* Left side */}
+        <div className="flex-1 flex-col gap-4 md:sticky md:top-24 md:self-start">
+          <div className="flex flex-col gap-1">
+            <h1 className="text-3xl font-semibold tracking-tight">{t('contact.title')}</h1>
+            <p className="text-muted-foreground font-medium">{t('contact.subtitle')}</p>
+          </div>
+          <p className="text-sm text-muted-foreground leading-relaxed">{t('contact.description')}</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">{t('contact.footer')}</p>
         </div>
 
-        <ContactForm
-          action={createContactForm}
-          values={{
-            name: '',
-            email: '',
-            reason: '',
-            message: '',
-          }}
-        />
+        {/* Right side */}
+        <div className="flex-1">
+          <ContactForm
+            action={createContactForm}
+            values={{ name: '', email: '', reason: '', message: '' }}
+          />
+        </div>
+
       </div>
-    </section>
+    </div>
   )
 }

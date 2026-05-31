@@ -7,18 +7,15 @@ export default async function LoginPage() {
   const user = await getUser()
   const t = await getTranslations('LoginPage')
 
-  if (user) {
-    redirect('/')
-  }
+  if (user) redirect('/')
 
   return (
-    <div className="flex flex-col items-center justify-center flex-1 w-full gap-2 px-8 ">
-      <section className="max-w-xl">
-        <div className="max-w-md mb-4">
-          <h3 className="text-2xl">{t('title')}</h3>
-          <p>{t('subtitle')}</p>
+    <div className="flex items-center justify-center flex-1 w-full px-4 py-16">
+      <section className="w-full max-w-md bg-card border rounded-xl shadow-sm p-8 flex flex-col gap-6">
+        <div className="flex flex-col gap-1 text-center">
+          <h1 className="text-2xl font-semibold tracking-tight">{t('title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
         </div>
-
         <LoginForm />
       </section>
     </div>
