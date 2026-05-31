@@ -23,12 +23,24 @@ export default async function AccountRegisterPage() {
               preferredContactMethod: 'email',
               email: user?.email ?? '',
               primaryPhoneNumber: '',
+              website: '',
+              practiceInfo: {
+                name: '',
+                address: '',
+                email: '',
+                phone: '',
+              },
+              jobStatus: 'practitioner',
               specialty: '',
-              graduationDate: new Date().toDateString(),
+              graduationDate: '',
               profession: 'acupuncturist',
               sector: 'private',
               professionalOrder: 'none',
               isAcceptingPatients: 'yes',
+              newPatientAcceptanceDate: '',
+              licenseNumber: '',
+              consentToWebsite: false,
+              consentToReferrals: false,
             }}
           />
         </div>

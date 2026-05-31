@@ -25,13 +25,25 @@ export const createRegistryForm = async (
     email: user?.email,
     primaryPhoneNumber: formData.get('primaryPhoneNumber'),
     preferredContactMethod: formData.get('preferredContactMethod'),
+    website: formData.get('website'),
+    practiceInfo: {
+      name: formData.get('practiceInfo.name'),
+      address: formData.get('practiceInfo.address'),
+      email: formData.get('practiceInfo.email'),
+      phone: formData.get('practiceInfo.phone'),
+    },
     languages: formData.getAll('languages'),
+    jobStatus: formData.get('jobStatus'),
     specialty: formData.get('specialty'),
     profession: formData.get('profession'),
     graduationDate: formData.get('graduationDate'),
     sector: formData.get('sector'),
     isAcceptingPatients: formData.get('isAcceptingPatients'),
+    newPatientAcceptanceDate: formData.get('newPatientAcceptanceDate') ?? undefined,
     professionalOrder: formData.get('professionalOrder'),
+    licenseNumber: formData.get('licenseNumber'),
+    consentToWebsite: formData.get('consentToWebsite') === 'on',
+    consentToReferrals: formData.get('consentToReferrals') === 'on',
   } as RegistryFormValues
 
   // 2. Validate parsed data and check for field errors
@@ -48,7 +60,17 @@ export const createRegistryForm = async (
     }
   }
 
-  // 3. If no errors then create registry Form from validated data
+  // 3. If no errors then create registry form from validated data
+  if (!user) {
+  return {
+      values: { ...initialState.values, ...safeValues },
+      errors: {
+        api: { message: 'You must be logged in to submit the registry form.' },
+      },
+    }
+  }
+
+  
   try {
     await payload.create({
       collection: 'registry-forms',
@@ -58,16 +80,16 @@ export const createRegistryForm = async (
       },
     })
   } catch (e) {
-    const apiError = e as APIError
-    return {
-      values: { ...initialState.values, ...safeValues },
-      errors: {
-        ...errors,
-        api: {
-          message: apiError.message,
+    if (e instanceof APIError) {
+      return {
+        values: { ...initialState.values, ...safeValues },
+        errors: {
+          ...errors,
+          api: { message: e.message },
         },
-      },
+      }
     }
+    throw e
   }
 
   redirect('/account')

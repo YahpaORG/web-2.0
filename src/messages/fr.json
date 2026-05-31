@@ -215,15 +215,31 @@
     "contactPreferencesDescription": "Veuillez nous indiquer vos modes de communication préférés.",
     "email": "Courriel",
     "phoneNumber": "Numéro de téléphone",
+    "website": "Site web",
     "contactMethod": {
       "legend": "Veuillez sélectionner votre mode de contact préféré",
       "email": "Par courriel",
-      "phone": "Par téléphone"
+      "phone": "Par téléphone",
+      "website": "Site web",
+      "other": "Autre"
     },
-    "professionalInfo": "Informations personnelles",
-    "professionalInfoDescription": "Parlez-nous un peu de vous.",
+    "practiceInfo": {
+      "title":"Informations sur votre lieu de pratique",
+      "description": "Veuillez fournir les coordonnées de votre clinique ou hôpital.",
+      "name": "Nom de la clinique / de l'hôpital",
+      "address": "Adresse",
+      "email": "Courriel de la clinique",
+      "phone": "Numéro de téléphone de la clinique"
+    },
+    "professionalInfo": "Informations professionnelles",
+    "professionalInfoDescription": "Parlez-nous de votre situation professionnelle actuelle.",
+    "jobStatus": {
+      "legend": "Vous êtes",
+      "practitioner": "Professionnel de la santé",
+      "student": "Étudiant dans un domaine de la santé"
+    },
     "jobTitle": {
-      "label": "Intitulé du poste",
+      "label": "Profession",
       "description": "Veuillez sélectionner le titre qui correspond le mieux à votre travail actuel ou à votre domaine d'études.",
       "defaultOption": "Veuillez sélectionner une profession."
     },
@@ -244,15 +260,33 @@
     "sector": {
       "legend": "Veuillez sélectionner votre secteur d'activité",
       "public": "Public",
-      "private": "Privé"
+      "private": "Privé",
+      "other": "Autre"
     },
     "newPatients": {
-      "label": "Acceptez-vous de nouveaux patients ?",
+      "label": "Acceptez-vous de nouveaux patients ?",
       "yes": "Oui, j'accepte de nouveaux patients",
       "no": "Non, je n'accepte pas de nouveaux patients",
       "yes_temporary": "Oui, mais seulement pour une durée déterminée.",
       "no_later": "Pas maintenant, mais plus tard.",
       "yes_private": "Oui, mais en privé uniquement."
+    },
+    "newPatientAcceptanceDate": {
+      "label": "Date d'acceptation de nouveaux patients",
+      "description": "Le cas échéant, veuillez indiquer la période pendant laquelle vous acceptez de nouveaux patients."
+    },
+    "licenseNumber": {
+      "label": "Numéro de permis",
+      "description": "À des fins de vérification uniquement. Ces informations resteront confidentielles. Si vous êtes étudiant, inscrivez : 0000."
+    },
+    "consent": "Consentement",
+    "consentToWebsite": {
+      "label": "Je consens à ce que mes informations professionnelles soient publiées sur le site web de YAHPA",
+      "description": "Vos informations professionnelles seront directement accessibles au grand public via yahpa.org/registry."
+    },
+    "consentToReferrals": {
+      "label": "Je consens à ce que mes informations professionnelles soient partagées avec d'autres professionnels de la santé à des fins de référence",
+      "description": "Vos informations professionnelles seront mises à la disposition d'autres professionnels de la santé à des fins de référence."
     },
     "formErrors": {
       "hasErrors": "Veuillez corriger les erreurs avant de soumettre."

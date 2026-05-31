@@ -70,7 +70,7 @@
   "HomePage": {
     "Hero": {
       "title": "Striving for accessible healthcare",
-      "description": "We are a gproup of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
+      "description": "We are a group of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
       "discover": "Discover YAHPA",
       "trust": "An officially recognized non-profit organization since 2021"
     },
@@ -100,7 +100,7 @@
     "find": "Find a professional",
     "register": {
       "title": "Are you a healthcare professional?",
-      "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you’ll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
+      "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you'll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
       "button": "Join YAHPA"
     }
   },
@@ -192,7 +192,7 @@
     "subtitle": "Manage your YAHPA account and online registry.",
     "join": {
       "title": "Joining the Registry of Healthcare Professionals",
-      "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you’ll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
+      "description": "YAHPA invites you to become part of our online network, connecting you with patients and other professionals in the Greater Montreal area. By joining, you'll be helping to bridge language barriers, making healthcare more accessible and impactful for diverse communities.",
       "signup": "Signup to Online Registry",
       "inReview": "Your submission is currently being reviewed.",
       "submittedOn": "Submitted on",
@@ -200,7 +200,7 @@
     },
     "modify": {
       "title": "My YAHPA Registry",
-      "description": "You can modify and update your information from YAHPA's online registry ofhealthcare professionals.",
+      "description": "You can modify and update your information from YAHPA's online registry of healthcare professionals.",
       "manage": "Manage Information"
     }
   },
@@ -215,15 +215,31 @@
     "contactPreferencesDescription": "Please let us know your preferred methods of communication.",
     "email": "Email",
     "phoneNumber": "Phone Number",
+    "website": "Website",
     "contactMethod": {
       "legend": "Please select your preferred contact method",
       "email": "By email",
-      "phone": "By Phone"
+      "phone": "By Phone",
+      "website": "Website",
+      "other": "Other"
+    },
+    "practiceInfo": {
+      "title":"Practice Information",
+      "description": "Please provide the details of your clinic or hospital.",
+      "name": "Clinic / Hospital Name",
+      "address": "Address",
+      "email": "Practice Email",
+      "phone": "Practice Phone Number"
     },
     "professionalInfo": "Professional Information",
-    "professionalInfoDescription": "Tell us more about your current professional status",
+    "professionalInfoDescription": "Tell us more about your current professional status.",
+    "jobStatus": {
+      "legend": "You are",
+      "practitioner": "Healthcare Practitioner",
+      "student": "Student in a health discipline"
+    },
     "jobTitle": {
-      "label": "Job Title",
+      "label": "Profession",
       "description": "Please select the title that best reflects your current work or field of study.",
       "defaultOption": "Please select a profession"
     },
@@ -242,9 +258,10 @@
       "description": "If you are currently studying, this could also be your estimated graduation date."
     },
     "sector": {
-      "legend": "Please select your Sector of work",
+      "legend": "Please select your sector of work",
       "public": "Public",
-      "private": "Private"
+      "private": "Private",
+      "other": "Other"
     },
     "newPatients": {
       "label": "Are you accepting new patients?",
@@ -253,6 +270,23 @@
       "yes_temporary": "Yes - but only for a definite period.",
       "no_later": "Not right now - but in the future.",
       "yes_private": "Yes - but in private only."
+    },
+    "newPatientAcceptanceDate": {
+      "label": "New Patient Acceptance Date",
+      "description": "If applicable, please indicate the timeframe during which you accept new patients."
+    },
+    "licenseNumber": {
+      "label": "License Number",
+      "description": "For verification purposes only. This information will be kept confidential. If you are a student, enter: 0000."
+    },
+    "consent": "Consent",
+    "consentToWebsite": {
+      "label": "I consent to having my practice information listed on the YAHPA website",
+      "description": "Your practice information will be directly accessible by the general public via yahpa.org/registry."
+    },
+    "consentToReferrals": {
+      "label": "I consent to having my practice information shared with other health professionals for referrals",
+      "description": "Your practice information will be made available to other health professionals for referrals."
     },
     "formErrors": {
       "hasErrors": "Please correct the errors before submitting."
