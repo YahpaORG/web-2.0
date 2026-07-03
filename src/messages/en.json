@@ -136,7 +136,8 @@
         "yes_private": "Yes, but only privately"
       },
       "joinedSince": "Joined since",
-      "lastUpdate": "Last update since"
+      "lastUpdate": "Last update since",
+      "noContactInfo": "No contact information available"
     }
   },
   "contact": {
