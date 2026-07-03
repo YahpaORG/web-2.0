@@ -176,7 +176,8 @@
       "invalidPassword": "Le mot de passe est invalide. Veuillez fournir au moins 8 caractères.",
       "api": {
         "AuthenticationError": "L'adresse e-mail ou le mot de passe fourni est incorrect. Veuillez réessayer.",
-        "LockedAuth": "Le compte est verrouillé en raison de trop nombreuses tentatives de connexion. Veuillez réessayer plus tard."
+        "LockedAuth": "Le compte est verrouillé en raison de trop nombreuses tentatives de connexion. Veuillez réessayer plus tard.",
+        "UnverifiedEmail": "Le courriel n'a pas été vérifié. Veuillez vérifier votre boîte de réception pour le lien de vérification."
       }
     }
   },
