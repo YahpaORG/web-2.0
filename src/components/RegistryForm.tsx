@@ -6,259 +6,297 @@ import {
   ORDERS,
   PATIENT_OPTIONS,
   PROFESSIONS,
+  RegistryFormSchema,
   RegistryFormValues,
   SECTORS,
 } from '@/lib/validation/registry-form.schema'
 import { Language } from '@/payload/payload-types'
-import { ActionState } from '@/types/action-state'
-import { useActionState } from 'react'
-import { LoadingSpinner } from './ui/LoadingSpinner'
 import { useTranslations } from 'next-intl'
+import { useForm } from 'react-hook-form'
+import { standardSchemaResolver } from '@hookform/resolvers/standard-schema'
+import { useState } from 'react'
+import { LoadingSpinner } from './ui/LoadingSpinner'
+import { Button } from './ui/button'
+import { createRegistryForm } from '@/lib/server/create-registry-form.action'
 
 type RegistrySignupFormProps = {
   languages: Language[]
-  action: (
-    initialState: ActionState<RegistryFormValues>,
-    formData: FormData,
-  ) => Promise<ActionState<RegistryFormValues>>
   values: RegistryFormValues
 }
 
-export function CreateRegistryForm({ languages, action, values }: RegistrySignupFormProps) {
+function Required() {
+  return <span className="text-red-500 ml-0.5">*</span>
+}
+
+function Optional({ label }: { label: string }) {
+  return <span className="ml-1 text-xs font-normal text-muted-foreground">({label})</span>
+}
+
+const inputClass = 'p-2.5 border rounded-lg bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring'
+const errorInputClass = 'border-red-500'
+
+export function CreateRegistryForm({ languages, values }: RegistrySignupFormProps) {
   const t = useTranslations('RegistryForm')
-  const [state, formAction, isPending] = useActionState(action, {
-    values,
-    errors: {},
+  const [apiError, setApiError] = useState<string | null>(null)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<RegistryFormValues>({
+    resolver: standardSchemaResolver(RegistryFormSchema),
+    defaultValues: values,
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit'
   })
 
+  const onSubmit = async (data: RegistryFormValues) => {
+    setApiError(null)
+    const result = await createRegistryForm(data)
+    if (result?.errors?.api) {
+      setApiError(result.errors.api.message)
+    }
+  }
+
   return (
-    <form action={formAction} className="flex flex-col gap-6">
-      {state.errors.api && (
-        <p role="alert" className="text-red-500">
-          {state.errors.api.message}
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-6">
+      <p className="text-xs text-muted-foreground">
+        {t('requiredNote')} <span className="text-red-500">*</span>
+      </p>
+
+      {apiError && (
+        <p role="alert" className="text-sm text-red-800 bg-red-50 border border-red-200 rounded-lg p-3">
+          {apiError}
         </p>
       )}
 
       {/* Personal Info */}
-      <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-4">
         <div>
           <h4 className="p-0 m-0 text-xl font-medium">{t('personalInfo')}</h4>
-          <p className="text-sm">{t('personalInfoDescription')}</p>
+          <p className="text-sm text-muted-foreground">{t('personalInfoDescription')}</p>
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('firstName')}</label>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">
+            {t('firstName')}<Required />
+          </label>
           <input
-            name="firstName"
+            {...register('firstName')}
             type="text"
-            placeholder="Jimmy"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.firstName}
-            required
+            placeholder={t('firstName')}
+            className={`${inputClass} ${errors.firstName ? errorInputClass : ''}`}
           />
-          {state.errors.firstName && (
-            <p role="alert" className="text-red-500">{state.errors.firstName.message}</p>
+          {errors.firstName && (
+            <p role="alert" className="text-xs text-red-500">{errors.firstName.message}</p>
           )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('lastName')}</label>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">
+            {t('lastName')}<Required />
+          </label>
           <input
-            name="lastName"
+            {...register('lastName')}
             type="text"
-            placeholder="Choo"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.lastName}
-            required
+            placeholder={t('lastName')}
+            className={`${inputClass} ${errors.lastName ? errorInputClass : ''}`}
           />
-          {state.errors.lastName && (
-            <p role="alert" className="text-red-500">{state.errors.lastName.message}</p>
+          {errors.lastName && (
+            <p role="alert" className="text-xs text-red-500">{errors.lastName.message}</p>
           )}
         </div>
-        <fieldset className="border rounded-md">
-          <legend className="px-2 ml-4 text-sm font-semibold">{t('fluentLanguages')}</legend>
+        <fieldset className={`border rounded-lg ${errors.languages ? 'border-red-500' : ''}`}>
+          <legend className="px-2 ml-4 text-sm font-medium">
+            {t('fluentLanguages')}<Required />
+          </legend>
           <ul className="flex flex-row flex-wrap m-4">
             {languages.map((option) => (
               <li key={option.id} className="w-full max-w-[10rem]">
-                <label className="flex items-center whitespace-nowrap cursor-pointer max-w-[200px] px-2 py-1 transition-colors hover:bg-gray-100 [&:has(input:checked)]:bg-gray-200">
+                <label className="flex items-center whitespace-nowrap cursor-pointer max-w-[200px] px-2 py-1 m-0.5 transition-colors hover:bg-muted rounded has-[:checked]:bg-muted">
                   <input
+                    {...register('languages')}
                     type="checkbox"
-                    name="languages"
                     value={option.id}
-                    className="cursor-pointer"
-                    defaultChecked={state.values.languages?.includes(option.id)}
+                    className="cursor-pointer accent-primary"
                   />
-                  <span className="ml-2">{option.autonym}</span>
+                  <span className="ml-2 text-sm">{option.autonym}</span>
                 </label>
               </li>
             ))}
           </ul>
-          {state.errors.languages && (
-            <p role="alert" className="text-red-500">{state.errors.languages.message}</p>
+          {errors.languages && (
+            <p role="alert" className="text-xs text-red-500 m-4 mt-0">{errors.languages.message}</p>
           )}
         </fieldset>
       </section>
 
       {/* Contact Info */}
-      <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-4">
         <div>
           <h4 className="p-0 m-0 text-xl font-medium">{t('contactPreferences')}</h4>
-          <p className="text-sm">{t('contactPreferencesDescription')}</p>
+          <p className="text-sm text-muted-foreground">{t('contactPreferencesDescription')}</p>
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('email')}</label>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">{t('email')}</label>
           <input
-            name="email"
+            {...register('email')}
             disabled
             type="email"
-            placeholder="Your email"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.email}
-            required
+            className={`${inputClass} opacity-60`}
           />
-          {state.errors.email && (
-            <p role="alert" className="text-red-500">{state.errors.email.message}</p>
+          {errors.email && (
+            <p role="alert" className="text-xs text-red-500">{errors.email.message}</p>
           )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('phoneNumber')}</label>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">
+            {t('phoneNumber')}
+            <Optional label={t('optional')} />
+          </label>
           <input
-            name="primaryPhoneNumber"
+            {...register('primaryPhoneNumber')}
             type="tel"
             placeholder="(514) 123-4567"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.primaryPhoneNumber}
-            required
+            className={`${inputClass} ${errors.primaryPhoneNumber ? errorInputClass : ''}`}
           />
-          {state.errors.primaryPhoneNumber && (
-            <p role="alert" className="text-red-500">{state.errors.primaryPhoneNumber.message}</p>
+          {errors.primaryPhoneNumber && (
+            <p role="alert" className="text-xs text-red-500">{errors.primaryPhoneNumber.message}</p>
           )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('website')}</label>
-          <input
-            name="website"
-            type="url"
-            placeholder="https://yourwebsite.com"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.website ?? ''}
-          />
-          {state.errors.website && (
-            <p role="alert" className="text-red-500">{state.errors.website.message}</p>
-          )}
-        </div>
-        <fieldset className="p-4 border rounded-md">
-          <legend className="px-2 text-sm font-semibold">{t('contactMethod.legend')}</legend>
+        <fieldset className="p-4 border rounded-lg">
+          <legend className="px-2 text-sm font-medium">
+            {t('contactMethod.legend')}
+            <Optional label={t('optional')} />
+          </legend>
           {CONTACT_METHODS.map((method) => (
-            <div key={method.value} className="flex flex-row items-center gap-2">
+            <label
+              key={method.value}
+              className="flex flex-row items-center gap-2 py-1 cursor-pointer hover:bg-muted rounded px-2 my-0.5 has-[:checked]:bg-muted"
+            >
               <input
-                name="preferredContactMethod"
+                {...register('preferredContactMethod')}
                 type="radio"
-                defaultChecked={state.values.preferredContactMethod === method.value}
                 value={method.value}
-                required
+                className="accent-primary"
               />
-              <label>{t(`contactMethod.${method.value}`)}</label>
-            </div>
+              <span className="text-sm">{t(`contactMethod.${method.value}`)}</span>
+            </label>
           ))}
-          {state.errors.preferredContactMethod && (
-            <p role="alert" className="text-red-500">{state.errors.preferredContactMethod.message}</p>
+          {errors.preferredContactMethod && (
+            <p role="alert" className="text-xs text-red-500 mt-2">{errors.preferredContactMethod.message}</p>
           )}
         </fieldset>
       </section>
 
       {/* Practice Info */}
-      <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-4">
         <div>
-          <h4 className="p-0 m-0 text-xl font-medium">{t('practiceInfo.title')}</h4>
-          <p className="text-sm">{t('practiceInfo.description')}</p>
+          <h4 className="p-0 m-0 text-xl font-medium">
+            {t('practiceInfoSection')}
+            <Optional label={t('optional')} />
+          </h4>
+          <p className="text-sm text-muted-foreground">{t('practiceInfoSectionDescription')}</p>
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('practiceInfo.name')}</label>
+        {errors.practiceInfo && (
+          <p className="text-sm text-red-800 bg-red-50 border border-red-200 rounded-lg p-3">
+            {errors.practiceInfo.message}
+          </p>
+        )}
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">{t('practiceInfo.name')}</label>
           <input
-            name="practiceInfo.name"
+            {...register('practiceInfo.name')}
             type="text"
-            placeholder="Montreal General Hospital"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.practiceInfo?.name}
-            required
+            placeholder={t('practiceInfo.name')}
+            className={inputClass}
           />
-          {state.errors['practiceInfo.name'] && (
-            <p role="alert" className="text-red-500">{state.errors['practiceInfo.name'].message}</p>
-          )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('practiceInfo.address')}</label>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">{t('practiceInfo.address')}</label>
           <input
-            name="practiceInfo.address"
+            {...register('practiceInfo.address')}
             type="text"
-            placeholder="1234 Rue Sainte-Catherine"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.practiceInfo?.address}
-            required
+            placeholder={t('practiceInfo.address')}
+            className={inputClass}
           />
-          {state.errors['practiceInfo.address'] && (
-            <p role="alert" className="text-red-500">{state.errors['practiceInfo.address'].message}</p>
-          )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('practiceInfo.email')}</label>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">{t('practiceInfo.email')}</label>
           <input
-            name="practiceInfo.email"
+            {...register('practiceInfo.email')}
             type="email"
-            placeholder="clinic@example.com"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.practiceInfo?.email ?? ''}
+            placeholder={t('practiceInfo.email')}
+            className={`${inputClass} ${errors.practiceInfo?.email ? errorInputClass : ''}`}
           />
-          {state.errors['practiceInfo.email'] && (
-            <p role="alert" className="text-red-500">{state.errors['practiceInfo.email'].message}</p>
+          {errors.practiceInfo?.email && (
+            <p role="alert" className="text-xs text-red-500">{errors.practiceInfo.email.message}</p>
           )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('practiceInfo.phone')}</label>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">{t('practiceInfo.phone')}</label>
           <input
-            name="practiceInfo.phone"
+            {...register('practiceInfo.phone')}
             type="tel"
             placeholder="(514) 123-4567"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.practiceInfo?.phone ?? ''}
+            className={`${inputClass} ${errors.practiceInfo?.phone ? errorInputClass : ''}`}
           />
-          {state.errors['practiceInfo.phone'] && (
-            <p role="alert" className="text-red-500">{state.errors['practiceInfo.phone'].message}</p>
+          {errors.practiceInfo?.phone && (
+            <p role="alert" className="text-xs text-red-500">{errors.practiceInfo.phone.message}</p>
+          )}
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">
+            {t('website')}
+            <Optional label={t('optional')} />
+          </label>
+          <input
+            {...register('practiceInfo.website')}
+            type="url"
+            placeholder="https://yourwebsite.com"
+            className={`${inputClass} ${errors.practiceInfo?.website ? errorInputClass : ''}`}
+          />
+          {errors.practiceInfo?.website && (
+            <p role="alert" className="text-xs text-red-500">{errors.practiceInfo?.website.message}</p>
           )}
         </div>
       </section>
 
       {/* Professional Info */}
-      <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-4">
         <div>
           <h4 className="p-0 m-0 text-xl font-medium">{t('professionalInfo')}</h4>
-          <p className="text-sm">{t('professionalInfoDescription')}</p>
+          <p className="text-sm text-muted-foreground">{t('professionalInfoDescription')}</p>
         </div>
-        <fieldset className="p-4 border rounded-md">
-          <legend className="px-2 text-sm font-semibold">{t('jobStatus.legend')}</legend>
+        <fieldset className={`p-4 border rounded-lg ${errors.jobStatus ? 'border-red-500' : ''}`}>
+          <legend className="px-2 text-sm font-medium">
+            {t('jobStatus.legend')}<Required />
+          </legend>
           {JOB_STATUS.map((status) => (
-            <div key={status.value} className="flex flex-row items-center gap-2">
+            <label
+              key={status.value}
+              className="flex flex-row items-center gap-2 py-1 cursor-pointer hover:bg-muted rounded px-2 my-0.5 has-[:checked]:bg-muted"
+            >
               <input
-                name="jobStatus"
+                {...register('jobStatus')}
                 type="radio"
-                defaultChecked={state.values.jobStatus === status.value}
                 value={status.value}
-                required
+                className="accent-primary"
               />
-              <label>{t(`jobStatus.${status.value}`)}</label>
-            </div>
+              <span className="text-sm">{t(`jobStatus.${status.value}`)}</span>
+            </label>
           ))}
-          {state.errors.jobStatus && (
-            <p role="alert" className="text-red-500">{state.errors.jobStatus.message}</p>
+          {errors.jobStatus && (
+            <p role="alert" className="text-xs text-red-500 mt-2">{errors.jobStatus.message}</p>
           )}
         </fieldset>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('jobTitle.label')}</label>
-          <p className="text-sm text-gray-500">{t('jobTitle.description')}</p>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">
+            {t('jobTitle.label')}<Required />
+          </label>
+          <p className="text-xs text-muted-foreground">{t('jobTitle.description')}</p>
           <select
-            name="profession"
-            className="p-2 border rounded-lg max-w-[15rem]"
-            defaultValue={state.values.profession ?? 'default'}
-            required
+            {...register('profession')}
+            className={`${inputClass} max-w-xs ${errors.profession ? errorInputClass : ''}`}
+            defaultValue="default"
           >
             <option value="default" disabled>{t('jobTitle.defaultOption')}</option>
             {PROFESSIONS.map((profession) => (
@@ -267,165 +305,169 @@ export function CreateRegistryForm({ languages, action, values }: RegistrySignup
               </option>
             ))}
           </select>
-          {state.errors.profession && (
-            <p role="alert" className="text-red-500">{state.errors.profession.message}</p>
+          {errors.profession && (
+            <p role="alert" className="text-xs text-red-500">{errors.profession.message}</p>
           )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('specialty.label')}</label>
-          <p className="text-sm text-gray-500">{t('specialty.description')}</p>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">
+            {t('specialty.label')}
+            <Optional label={t('optional')} />
+          </label>
+          <p className="text-xs text-muted-foreground">{t('specialty.description')}</p>
           <input
-            name="specialty"
+            {...register('specialty')}
             type="text"
             placeholder={t('specialty.placeholder')}
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.specialty ?? ''}
+            className={inputClass}
           />
-          {state.errors.specialty && (
-            <p role="alert" className="text-red-500">{state.errors.specialty.message}</p>
-          )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('order.label')}</label>
-          <p className="text-sm text-gray-500">{t('order.description')}</p>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">
+            {t('order.label')}
+            <Optional label={t('optional')} />
+          </label>
+          <p className="text-xs text-muted-foreground">{t('order.description')}</p>
           <select
-            name="professionalOrder"
-            className="p-2 border rounded-lg"
-            defaultValue={state.values.professionalOrder ?? 'default'}
-            required
+            {...register('professionalOrder')}
+            className={inputClass}
           >
-            <option value="default" disabled>{t('order.defaultOption')}</option>
             {ORDERS.map((order) => (
               <option key={order.value} value={order.value}>
                 {order.label}
               </option>
             ))}
           </select>
-          {state.errors.professionalOrder && (
-            <p role="alert" className="text-red-500">{state.errors.professionalOrder.message}</p>
-          )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('graduationDate.label')}</label>
-          <p className="text-sm text-gray-500">{t('graduationDate.description')}</p>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">
+            {t('graduationDate.label')}
+            <Optional label={t('optional')} />
+          </label>
+          <p className="text-xs text-muted-foreground">{t('graduationDate.description')}</p>
           <input
-            name="graduationDate"
+            {...register('graduationDate')}
             type="date"
-            className="p-2 border rounded-lg max-w-[15rem]"
-            defaultValue={state.values.graduationDate ?? ''}
+            className={`${inputClass} max-w-[15rem]`}
           />
-          {state.errors.graduationDate && (
-            <p role="alert" className="text-red-500">{state.errors.graduationDate.message}</p>
-          )}
         </div>
-        <fieldset className="p-4 border rounded-md">
-          <legend className="px-2 text-sm font-semibold">{t('sector.legend')}</legend>
+        <fieldset className="p-4 border rounded-lg">
+          <legend className="px-2 text-sm font-medium">
+            {t('sector.legend')}
+            <Optional label={t('optional')} />
+          </legend>
           {SECTORS.map((sector) => (
-            <div key={sector.value} className="flex flex-row items-center gap-2">
+            <label
+              key={sector.value}
+              className="flex flex-row items-center gap-2 py-1 cursor-pointer hover:bg-muted rounded px-2 my-0.5 has-[:checked]:bg-muted"
+            >
               <input
-                name="sector"
+                {...register('sector')}
                 type="radio"
-                defaultChecked={state.values.sector === sector.value}
                 value={sector.value}
+                className="accent-primary"
               />
-              <label>{t(`sector.${sector.value}`)}</label>
-            </div>
+              <span className="text-sm">{t(`sector.${sector.value}`)}</span>
+            </label>
           ))}
-          {state.errors.sector && (
-            <p role="alert" className="text-red-500">{state.errors.sector.message}</p>
-          )}
         </fieldset>
-        <fieldset className="p-4 border rounded-md">
-          <legend className="px-2 text-sm font-semibold">{t('newPatients.label')}</legend>
+        <fieldset className={`p-4 border rounded-lg ${errors.isAcceptingPatients ? 'border-red-500' : ''}`}>
+          <legend className="px-2 text-sm font-medium">
+            {t('newPatients.label')}<Required />
+          </legend>
           {PATIENT_OPTIONS.map((option) => (
-            <div key={option.value} className="flex flex-row items-center gap-2">
+            <label
+              key={option.value}
+              className="flex flex-row items-center gap-2 py-1 cursor-pointer hover:bg-muted rounded px-2 my-0.5 has-[:checked]:bg-muted"
+            >
               <input
-                name="isAcceptingPatients"
+                {...register('isAcceptingPatients')}
                 type="radio"
-                defaultChecked={state.values.isAcceptingPatients === option.value}
                 value={option.value}
+                className="accent-primary"
               />
-              <label>{t(`newPatients.${option.value}`)}</label>
-            </div>
+              <span className="text-sm">{t(`newPatients.${option.value}`)}</span>
+            </label>
           ))}
-          {state.errors.isAcceptingPatients && (
-            <p role="alert" className="text-red-500">{state.errors.isAcceptingPatients.message}</p>
+          {errors.isAcceptingPatients && (
+            <p role="alert" className="text-xs text-red-500 mt-2">{errors.isAcceptingPatients.message}</p>
           )}
         </fieldset>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('newPatientAcceptanceDate.label')}</label>
-          <p className="text-sm text-gray-500">{t('newPatientAcceptanceDate.description')}</p>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">
+            {t('newPatientAcceptanceDate.label')}
+            <Optional label={t('optional')} />
+          </label>
+          <p className="text-xs text-muted-foreground">{t('newPatientAcceptanceDate.description')}</p>
           <input
-            name="newPatientAcceptanceDate"
+            {...register('newPatientAcceptanceDate')}
             type="date"
-            className="p-2 border rounded-lg max-w-[15rem]"
-            defaultValue={state.values.newPatientAcceptanceDate ?? ''}
+            className={`${inputClass} max-w-[15rem]`}
           />
-          {state.errors.newPatientAcceptanceDate && (
-            <p role="alert" className="text-red-500">
-              {state.errors.newPatientAcceptanceDate.message}
-            </p>
-          )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold">{t('licenseNumber.label')}</label>
-          <p className="text-sm text-gray-500">{t('licenseNumber.description')}</p>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium">
+            {t('licenseNumber.label')}<Required />
+          </label>
+          <p className="text-xs text-muted-foreground">{t('licenseNumber.description')}</p>
           <input
-            name="licenseNumber"
+            {...register('licenseNumber')}
             type="text"
-            className="p-2 border rounded-lg max-w-[15rem]"
-            defaultValue={state.values.licenseNumber ?? ''}
-            required
+            className={`${inputClass} max-w-[15rem] ${errors.licenseNumber ? errorInputClass : ''}`}
           />
-          {state.errors.licenseNumber && (
-            <p role="alert" className="text-red-500">{state.errors.licenseNumber.message}</p>
+          {errors.licenseNumber && (
+            <p role="alert" className="text-xs text-red-500">{errors.licenseNumber.message}</p>
           )}
         </div>
       </section>
 
       {/* Consent */}
-      <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-4">
         <div>
           <h4 className="p-0 m-0 text-xl font-medium">{t('consent')}</h4>
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="flex items-center gap-2 cursor-pointer">
+        <div className="flex flex-col gap-1.5">
+          <label className="flex items-start gap-2 cursor-pointer">
             <input
-              name="consentToWebsite"
+              {...register('consentToWebsite')}
               type="checkbox"
-              defaultChecked={state.values.consentToWebsite === true}
-              required
+              className="mt-0.5 accent-primary"
             />
-            <span className="text-sm font-semibold">{t('consentToWebsite.label')}</span>
+            <span className="text-sm font-medium">
+              {t('consentToWebsite.label')}<Required />
+            </span>
           </label>
-          <p className="text-sm text-gray-500">{t('consentToWebsite.description')}</p>
-          {state.errors.consentToWebsite && (
-            <p role="alert" className="text-red-500">{state.errors.consentToWebsite.message}</p>
+          <p className="text-xs text-muted-foreground ml-5">{t('consentToWebsite.description')}</p>
+          {errors.consentToWebsite && (
+            <p role="alert" className="text-xs text-red-500">{errors.consentToWebsite.message}</p>
           )}
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="flex items-center gap-2 cursor-pointer">
+        <div className="flex flex-col gap-1.5">
+          <label className="flex items-start gap-2 cursor-pointer">
             <input
-              name="consentToReferrals"
+              {...register('consentToReferrals')}
               type="checkbox"
-              defaultChecked={state.values.consentToReferrals === true}
+              className="mt-0.5 accent-primary"
             />
-            <span className="text-sm font-semibold">{t('consentToReferrals.label')}</span>
+            <span className="text-sm font-medium">
+              {t('consentToReferrals.label')}
+              <Optional label={t('optional')} />
+            </span>
           </label>
-          <p className="text-sm text-gray-500">{t('consentToReferrals.description')}</p>
-          {state.errors.consentToReferrals && (
-            <p role="alert" className="text-red-500">{state.errors.consentToReferrals.message}</p>
-          )}
+          <p className="text-xs text-muted-foreground ml-5">{t('consentToReferrals.description')}</p>
         </div>
       </section>
 
-      {Object.keys(state.errors).length > 0 && (
-        <p className="text-red-500">{t('formErrors.hasErrors')}</p>
+      {Object.keys(errors).length > 0 && (
+        <p className="text-sm text-red-800 bg-red-50 border border-red-200 rounded-lg p-3">
+          {t('formErrors.hasErrors')}
+        </p>
       )}
+
       <div>
-        <button type="submit" className="px-4 py-2 text-white bg-black rounded-md">
-          {isPending ? <LoadingSpinner /> : t('submit')}
-        </button>
+        <Button type="submit" className="w-full" disabled={isSubmitting}>
+          {isSubmitting ? <LoadingSpinner /> : t('submit')}
+        </Button>
       </div>
     </form>
   )

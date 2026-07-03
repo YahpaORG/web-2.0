@@ -18,20 +18,14 @@ export const EmailField: Field = {
   name: 'email',
   label: 'Contact Email',
   type: 'email',
-  required: true,
+  required: false,
 }
 
 export const PrimaryPhoneNumberField: Field = {
   name: 'primaryPhoneNumber',
   label: 'Primary Phone Number',
   type: 'text',
-  required: true,
-}
-
-export const WebsiteField: Field = {
-  name: 'website',
-  label: 'Website',
-  type: 'text',
+  required: false,
 }
 
 export const PreferredContactMethodField: Field = {
@@ -44,25 +38,26 @@ export const PreferredContactMethodField: Field = {
     { label: 'Website', value: 'website' },
     { label: 'Other', value: 'other' },
   ],
-  required: true,
+  required: false,
 }
 
 export const PracticeInfoField: Field = {
   name: 'practiceInfo',
   label: 'Practice Information',
   type: 'group',
+  admin: {
+    description: 'Optional — only fill in if you want your practice information shown publicly.',
+  },
   fields: [
     {
       name: 'name',
       label: 'Clinic / Hospital Name',
       type: 'text',
-      required: true,
     },
     {
       name: 'address',
       label: 'Address',
       type: 'text',
-      required: true,
     },
     {
       name: 'email',
@@ -74,6 +69,11 @@ export const PracticeInfoField: Field = {
       label: 'Practice Phone Number',
       type: 'text',
     },
+    {
+      name: 'website',
+      label: 'Website',
+      type: 'text'
+    }
   ],
 }
 
@@ -132,18 +132,21 @@ export const SpecialtyField: Field = {
   name: 'specialty',
   label: 'Specialty',
   type: 'text',
+  required: false,
 }
 
 export const GraduationDateField: Field = {
   name: 'graduationDate',
   label: 'Graduation Date',
   type: 'date',
+  required: false,
 }
 
 export const ProfessionalOrderSelectField: Field = {
   name: 'professionalOrder',
   label: 'Professional Order or Association',
   type: 'select',
+  defaultValue: 'none',
   options: [
     { label: 'OOAQ: Ordre des orthophonistes et audiologistes du Québec', value: 'ooaq' },
     { label: 'Ordre des chiropraticiens du Québec', value: 'ocq' },
@@ -159,19 +162,20 @@ export const ProfessionalOrderSelectField: Field = {
     { label: 'None', value: 'none' },
     { label: 'Other', value: 'other' },
   ],
-  required: true,
+  required: false,
 }
 
 export const SectorField: Field = {
   name: 'sector',
   label: 'Practice Sector',
   type: 'radio',
+  defaultValue: 'private',
   options: [
     { label: 'Public', value: 'public' },
     { label: 'Private', value: 'private' },
     { label: 'Other', value: 'other' },
   ],
-  required: true,
+  required: false,
 }
 
 export const IsAcceptingPatientsField: Field = {
@@ -192,6 +196,7 @@ export const NewPatientAcceptanceDateField: Field = {
   name: 'newPatientAcceptanceDate',
   label: 'New Patient Acceptance Date',
   type: 'date',
+  required: false,
 }
 
 export const LicenseNumberField: Field = {
@@ -200,7 +205,7 @@ export const LicenseNumberField: Field = {
   type: 'text',
   required: true,
   admin: {
-    description: 'For verification purposes only. If you are a student, enter: 0000.',
+    description: 'For verification purposes only. This information will never be shown publicly. If you are a student, enter: 0000.',
   },
 }
 
@@ -210,8 +215,7 @@ export const ConsentToWebsiteField: Field = {
   type: 'checkbox',
   required: true,
   admin: {
-    description:
-      'Your practice information will be directly accessible by the general public via yahpa.org/registry.',
+    description: 'Your practice information will be directly accessible by the general public via yahpa.org/registry.',
   },
 }
 
@@ -219,6 +223,7 @@ export const ConsentToReferralsField: Field = {
   name: 'consentToReferrals',
   label: 'Consent to be available for referrals',
   type: 'checkbox',
+  required: false,
   admin: {
     description: 'Your practice information will be made available to other health professionals for referrals.',
   },

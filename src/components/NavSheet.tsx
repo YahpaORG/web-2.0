@@ -15,9 +15,10 @@ import { Button } from './ui/button'
 import { Url } from 'next/dist/shared/lib/router/router'
 import { LogoutButton } from './LogoutButton'
 import { useTranslations } from 'next-intl'
+import LocaleSwitcher from './LocaleSwitcher'
 
 type NavSection = {
-  label: string | null
+  label: string | null | undefined
   links: { href: string; label: string }[]
 }
 
@@ -38,9 +39,12 @@ export function NavSheet({ isAuth, sections }: { isAuth: boolean; sections: NavS
       >
         <SheetHeader className="flex flex-col items-center justify-center">
           <Image src="/media/logo_w_b.png" alt="" width={72} height={72} />
-          <SheetTitle>Welcome to YAHPA</SheetTitle>
-          <SheetDescription>What are you looking for today?</SheetDescription>
+          <SheetTitle>{t('welcome.title')}</SheetTitle>
+          <SheetDescription>{t('welcome.subtitle')}</SheetDescription>
         </SheetHeader>
+        <div className='w-32 m-auto mt-8'>
+          <LocaleSwitcher />
+        </div>
         <ul className="flex flex-col items-center gap-2 p-6">
           {sections.map((section) =>
             section.label ? (

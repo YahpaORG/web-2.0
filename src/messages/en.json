@@ -16,7 +16,7 @@
     "registry": {
       "title": "Registry",
       "search": {
-        "title": "Search",
+        "title": "Registry",
         "description": "Find a healthcare professional from our online registry."
       },
       "about": {
@@ -41,7 +41,11 @@
     "account": "Account",
     "login": "Login",
     "logout": "Logout",
-    "signup": "Create Account"
+    "signup": "Create Account",
+    "welcome":{
+      "title": "Welcome to YAHPA",
+      "subtitle": "What are you looking for today?"
+    } 
   },
   "Footer": {
     "rights": "All rights deserved YAHPA © 2021",
@@ -111,7 +115,13 @@
     "search": {
       "label": "Enter a search term",
       "placeholder": "Physiotherapist, Dentist, Optometrist...",
-      "clear": "Clear"
+      "clear": "Clear",
+      "profession": "Profession",
+      "language": "Language",
+      "clearFilter": "Clear filter",
+      "allProfessions": "All",
+      "allLanguages": "All",
+      "clearAll": "Clear all filters"
     },
     "results": {
       "phoneNumber": "Phone number",
@@ -126,7 +136,8 @@
         "yes_private": "Yes, but only privately"
       },
       "joinedSince": "Joined since",
-      "lastUpdate": "Last update since"
+      "lastUpdate": "Last update since",
+      "noContactInfo": "No contact information available"
     }
   },
   "contact": {
@@ -165,7 +176,8 @@
       "invalidPassword": "The password is invalid. Please provide at least 8 characters.",
       "api": {
         "AuthenticationError": "The email or password provided is incorrect. Please try again.",
-        "LockedAuth": "Account is locked due to having too many failed login attempts. Please try again later."
+        "LockedAuth": "Account is locked due to having too many failed login attempts. Please try again later.",
+        "UnverifiedEmail": "The email address has not been verified. Please check your inbox for the verification link."
       }
     }
   },
@@ -242,6 +254,8 @@
       "email": "Practice Email",
       "phone": "Practice Phone Number"
     },
+    "practiceInfoSection": "Practice Information",
+    "practiceInfoSectionDescription": "Optional — only fill in if you want your practice location shown publicly.",
     "professionalInfo": "Professional Information",
     "professionalInfoDescription": "Tell us more about your current professional status.",
     "jobStatus": {
@@ -302,7 +316,10 @@
     "formErrors": {
       "hasErrors": "Please correct the errors before submitting."
     },
-    "submit": "Submit"
+    "submit": "Submit",
+    "requiredNote": "Fields marked with are required",
+    "optional": "optional",
+    "updateSuccess": "Your profile has been updated successfully."
   },
   "ProjectsPage": {
     "header": "Projects"

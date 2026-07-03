@@ -251,15 +251,18 @@ export interface RegistryForm {
   submittedBy: string | User;
   firstName: string;
   lastName: string;
-  email: string;
-  primaryPhoneNumber: string;
-  website?: string | null;
-  preferredContactMethod: 'email' | 'phone' | 'website' | 'other';
-  practiceInfo: {
-    name: string;
-    address: string;
+  email?: string | null;
+  primaryPhoneNumber?: string | null;
+  preferredContactMethod?: ('email' | 'phone' | 'website' | 'other') | null;
+  /**
+   * Optional — only fill in if you want your practice information shown publicly.
+   */
+  practiceInfo?: {
+    name?: string | null;
+    address?: string | null;
     email?: string | null;
     phone?: string | null;
+    website?: string | null;
   };
   languages: (string | Language)[];
   jobStatus: 'practitioner' | 'student';
@@ -288,25 +291,28 @@ export interface RegistryForm {
     | 'other';
   specialty?: string | null;
   graduationDate?: string | null;
-  professionalOrder:
-    | 'ooaq'
-    | 'ocq'
-    | 'oeq'
-    | 'ondq'
-    | 'psychologues'
-    | 'opiq'
-    | 'oppq'
-    | 'podiatres'
-    | 'oiiq'
-    | 'pharmaciens'
-    | 'dentistes'
-    | 'none'
-    | 'other';
-  sector: 'public' | 'private' | 'other';
+  professionalOrder?:
+    | (
+        | 'ooaq'
+        | 'ocq'
+        | 'oeq'
+        | 'ondq'
+        | 'psychologues'
+        | 'opiq'
+        | 'oppq'
+        | 'podiatres'
+        | 'oiiq'
+        | 'pharmaciens'
+        | 'dentistes'
+        | 'none'
+        | 'other'
+      )
+    | null;
+  sector?: ('public' | 'private' | 'other') | null;
   isAcceptingPatients: 'yes' | 'no' | 'yes_temporary' | 'no_later' | 'yes_private';
   newPatientAcceptanceDate?: string | null;
   /**
-   * For verification purposes only. If you are a student, enter: 0000.
+   * For verification purposes only. This information will never be shown publicly. If you are a student, enter: 0000.
    */
   licenseNumber: string;
   /**
@@ -340,15 +346,18 @@ export interface RegistryMember {
   id: string;
   firstName: string;
   lastName: string;
-  email: string;
-  primaryPhoneNumber: string;
-  website?: string | null;
-  preferredContactMethod: 'email' | 'phone' | 'website' | 'other';
-  practiceInfo: {
-    name: string;
-    address: string;
+  email?: string | null;
+  primaryPhoneNumber?: string | null;
+  preferredContactMethod?: ('email' | 'phone' | 'website' | 'other') | null;
+  /**
+   * Optional — only fill in if you want your practice information shown publicly.
+   */
+  practiceInfo?: {
+    name?: string | null;
+    address?: string | null;
     email?: string | null;
     phone?: string | null;
+    website?: string | null;
   };
   languages: (string | Language)[];
   jobStatus: 'practitioner' | 'student';
@@ -377,21 +386,24 @@ export interface RegistryMember {
     | 'other';
   specialty?: string | null;
   graduationDate?: string | null;
-  professionalOrder:
-    | 'ooaq'
-    | 'ocq'
-    | 'oeq'
-    | 'ondq'
-    | 'psychologues'
-    | 'opiq'
-    | 'oppq'
-    | 'podiatres'
-    | 'oiiq'
-    | 'pharmaciens'
-    | 'dentistes'
-    | 'none'
-    | 'other';
-  sector: 'public' | 'private' | 'other';
+  professionalOrder?:
+    | (
+        | 'ooaq'
+        | 'ocq'
+        | 'oeq'
+        | 'ondq'
+        | 'psychologues'
+        | 'opiq'
+        | 'oppq'
+        | 'podiatres'
+        | 'oiiq'
+        | 'pharmaciens'
+        | 'dentistes'
+        | 'none'
+        | 'other'
+      )
+    | null;
+  sector?: ('public' | 'private' | 'other') | null;
   isAcceptingPatients: 'yes' | 'no' | 'yes_temporary' | 'no_later' | 'yes_private';
   newPatientAcceptanceDate?: string | null;
   /**
@@ -643,7 +655,6 @@ export interface RegistryFormsSelect<T extends boolean = true> {
   lastName?: T;
   email?: T;
   primaryPhoneNumber?: T;
-  website?: T;
   preferredContactMethod?: T;
   practiceInfo?:
     | T
@@ -652,6 +663,7 @@ export interface RegistryFormsSelect<T extends boolean = true> {
         address?: T;
         email?: T;
         phone?: T;
+        website?: T;
       };
   languages?: T;
   jobStatus?: T;
@@ -677,7 +689,6 @@ export interface RegistryMembersSelect<T extends boolean = true> {
   lastName?: T;
   email?: T;
   primaryPhoneNumber?: T;
-  website?: T;
   preferredContactMethod?: T;
   practiceInfo?:
     | T
@@ -686,6 +697,7 @@ export interface RegistryMembersSelect<T extends boolean = true> {
         address?: T;
         email?: T;
         phone?: T;
+        website?: T;
       };
   languages?: T;
   jobStatus?: T;

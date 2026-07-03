@@ -19,13 +19,11 @@ import {
   ProfessionalOrderSelectField,
   ProfessionSelectField,
   SectorField,
-  SpecialtyField,
-  WebsiteField,
+  SpecialtyField
 } from '../fields/registry-form'
 import { RegistryForm } from '../payload-types'
 
 const createRegistryMember: FieldHook<RegistryForm> = async ({ value, operation, data, req }) => {
-  console.log('createRegistryMember hook fired', { value, operation })
   if (operation === 'update' && value === 'approved' && data) {
     const form = data as unknown as RegistryForm
 
@@ -37,12 +35,11 @@ const createRegistryMember: FieldHook<RegistryForm> = async ({ value, operation,
         email: form.email,
         primaryPhoneNumber: form.primaryPhoneNumber,
         preferredContactMethod: form.preferredContactMethod,
-        website: form.website,
         practiceInfo: form.practiceInfo,
         languages: form.languages,
         jobStatus: form.jobStatus,
         profession: form.profession,
-        specialty: form.specialty,
+        specialty: form.specialty ?? undefined,
         graduationDate: form.graduationDate,
         professionalOrder: form.professionalOrder,
         sector: form.sector,
@@ -97,7 +94,6 @@ export const registryForms: CollectionConfig = {
     LastNameField,
     EmailField,
     PrimaryPhoneNumberField,
-    WebsiteField,
     PreferredContactMethodField,
     PracticeInfoField,
     LanguagesRelationshipField,

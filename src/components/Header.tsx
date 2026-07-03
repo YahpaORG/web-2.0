@@ -21,23 +21,10 @@ export async function Header() {
         { href: '/', label: t('Header.home') },
         { href: '/about', label: t('Header.about') },
         { href: '/projects', label: t('Header.projects') },
+        { href: '/registry/search', label: t('Header.registry.search.title') },
         { href: '/contact', label: t('Header.contact') },
       ],
-    },
-    {
-      label: t('Header.registry.title'),
-      links: [
-        { href: '/registry/search', label: t('Header.registry.search.title') },
-        { href: '/registry', label: t('Header.registry.about.title') },
-      ],
-    },
-    {
-      label: t('Header.news.title'),
-      links: [
-        { href: '/#latest', label: t('Header.news.latest.title') },
-        { href: '/', label: t('Header.news.events.title') },
-      ],
-    },
+    }
   ]
 
   return (

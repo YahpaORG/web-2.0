@@ -1,5 +1,6 @@
 'use client'
 
+import * as AspectRatio from '@radix-ui/react-aspect-ratio'
 import {
   Carousel,
   CarouselContent,
@@ -31,26 +32,42 @@ export const FeatureCarousel = ({
 }: FeatureCarouselProps) => {
   return (
     <section {...props}>
-      <div className="container p-4 mx-auto lg:p-16">
-        <div className="flex flex-col-reverse gap-8 lg:flex-row">
-          <Carousel className="w-full max-w-sm mx-auto md:max-w-xl">
+      <div className="container mx-auto p-4 lg:p-16">
+        <div className="flex flex-col-reverse gap-8 lg:flex-row lg:items-center">
+          <Carousel className="mx-auto w-full max-w-4xl">
             <CarouselContent>
               {imageSlides.map((image, index) => (
                 <CarouselItem key={index}>
-                  <div className="mx-auto relative h-72 lg:w-xl lg:h-104 rounded-xl">
-                    <Image src={image.src} alt="" className="object-cover rounded-xl" fill />
-                  </div>
+                  <AspectRatio.Root
+                    ratio={16 / 9}
+                    className="relative overflow-hidden rounded-xl"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt ?? ''}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
+                    />
+                  </AspectRatio.Root>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-center gap-4 my-4">
+
+            <div className="my-4 flex justify-center gap-4">
               <CarouselPrevious className="static translate-y-0" />
               <CarouselNext className="static translate-y-0" />
             </div>
           </Carousel>
-          <div className="py-4 px-8 rounded-lg bg-accent max-h-min">
-            <h2 className="mb-4 text-2xl font-semibold text-center">{heading}</h2>
-            <p className="text-muted-foreground lg:text-lg">{description}</p>
+
+          <div className="rounded-lg bg-accent px-8 py-6 lg:max-w-md">
+            <h2 className="mb-4 text-center text-2xl font-semibold">
+              {heading}
+            </h2>
+
+            <p className="text-muted-foreground lg:text-lg">
+              {description}
+            </p>
           </div>
         </div>
       </div>
