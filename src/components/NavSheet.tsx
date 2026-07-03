@@ -13,9 +13,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from './ui/button'
 import { Url } from 'next/dist/shared/lib/router/router'
-import { LogoutButton } from './LogoutButton'
 import { useTranslations } from 'next-intl'
 import LocaleSwitcher from './LocaleSwitcher'
+import { useState } from 'react'
+import { logoutUser } from '@/lib/server/logoutUser.action'
+import { useRouter } from 'next/dist/client/components/navigation'
 
 type NavSection = {
   label: string | null | undefined
@@ -24,9 +26,11 @@ type NavSection = {
 
 export function NavSheet({ isAuth, sections }: { isAuth: boolean; sections: NavSection[] }) {
   const t = useTranslations('Header')
+  const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter();
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button variant="outline" size="icon" className="size-8">
           <MenuIcon />
@@ -72,9 +76,15 @@ export function NavSheet({ isAuth, sections }: { isAuth: boolean; sections: NavS
             <>
               <ListItemLink href="/account">{t('account')}</ListItemLink>
               <li>
-                <SheetClose asChild>
-                  <LogoutButton />
-                </SheetClose>
+                <Button
+                  onClick={async () => {
+                    await logoutUser()
+                    setIsOpen(false)
+                    router.refresh()
+                  }}
+                >
+                  {t('logout')}
+                </Button>
               </li>
             </>
           ) : (
