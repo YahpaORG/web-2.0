@@ -29,32 +29,6 @@ export function NavigationMenuDesktop() {
             <Link href="/registry/search">{t('registry.title')}</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
-        {/* <NavigationMenuItem>
-          <NavigationMenuTrigger>{t('registry.title')}</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="flex flex-col w-[300px] lg:w-[400px] p-2">
-              <ListItem href="/registry/search" title={t('registry.search.title')}>
-                {t('registry.search.description')}
-              </ListItem>
-              <ListItem href="/registry" title={t('registry.about.title')}>
-                {t('registry.about.description')}
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem> */}
-        {/* <NavigationMenuItem>
-          <NavigationMenuTrigger>{t('news.title')}</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="flex flex-col w-[300px] lg:w-[400px] p-2">
-              <ListItem href="/#latest" title={t('news.latest.title')}>
-                {t('news.latest.description')}
-              </ListItem>
-              <ListItem href="/" title={t('news.events.title')}>
-                {t('news.events.description')}
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem> */}
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <Link href="/projects">{t('projects')}</Link>

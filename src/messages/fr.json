@@ -16,7 +16,7 @@
     "registry": {
       "title": "Notre registre",
       "search": {
-        "title": "Rechercher",
+        "title": "Notre registre",
         "description": "Trouvez un professionnel de la santé dans notre registre en ligne."
       },
       "about": {
@@ -41,7 +41,11 @@
     "account": "Mon compte",
     "login": "Connexion",
     "logout": "Déconnexion",
-    "signup": "Créer un compte"
+    "signup": "Créer un compte",
+    "welcome":{
+      "title": "Bienvenue chez YAHPA",
+      "subtitle":"Que recherchez vous aujourd'hui?"
+    } 
   },
   "Footer": {
     "rights": "Tous droits réservés YAHPA © 2021",
@@ -111,7 +115,13 @@
     "search": {
       "label": "Saisissez un terme de recherche",
       "placeholder": "Kinésithérapeute, Dentiste, Optométriste...",
-      "clear": "Effacer"
+      "clear": "Effacer",
+      "profession": "Profession",
+      "language": "Langue",
+      "clearFilter": "Effacer le filtre",
+      "allProfessions": "Tous",
+      "allLanguages": "Tous",
+      "clearAll": "Effacer tous les filtres"
     },
     "results": {
       "phoneNumber": "Numéro de téléphone",
@@ -242,6 +252,8 @@
       "email": "Courriel de la clinique",
       "phone": "Numéro de téléphone de la clinique"
     },
+    "practiceInfoSection": "Informations sur le lieu de pratique",
+    "practiceInfoSectionDescription": "Optionnel — remplissez uniquement si vous souhaitez que votre lieu de pratique soit affiché publiquement.",
     "professionalInfo": "Informations professionnelles",
     "professionalInfoDescription": "Parlez-nous de votre situation professionnelle actuelle.",
     "jobStatus": {
@@ -302,7 +314,10 @@
     "formErrors": {
       "hasErrors": "Veuillez corriger les erreurs avant de soumettre."
     },
-    "submit": "Soumettre"
+    "submit": "Soumettre",
+    "requiredNote": "Les champs marqués sont obligatoires",
+    "optional": "optionnel",
+    "updateSuccess": "Votre profil a été mis à jour avec succès."
   },
   "ProjectsPage": {
     "header": "Projets"

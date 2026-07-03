@@ -15,29 +15,22 @@ export default async function AccountRegisterPage() {
           <h1 className="text-3xl">{t('title')}</h1>
           <CreateRegistryForm
             languages={languages.docs}
-            action={createRegistryForm}
             values={{
               firstName: '',
               lastName: '',
               languages: [],
               preferredContactMethod: 'email',
-              email: user?.email ?? '',
-              primaryPhoneNumber: '',
-              website: '',
-              practiceInfo: {
-                name: '',
-                address: '',
-                email: '',
-                phone: '',
-              },
+              email: user?.email,
+              primaryPhoneNumber: undefined,
+              practiceInfo: undefined,
               jobStatus: 'practitioner',
-              specialty: '',
-              graduationDate: '',
+              specialty: undefined,
+              graduationDate: undefined,
               profession: 'acupuncturist',
               sector: 'private',
               professionalOrder: 'none',
               isAcceptingPatients: 'yes',
-              newPatientAcceptanceDate: '',
+              newPatientAcceptanceDate: undefined,
               licenseNumber: '',
               consentToWebsite: false,
               consentToReferrals: false,

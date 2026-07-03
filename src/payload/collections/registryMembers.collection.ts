@@ -19,7 +19,6 @@ import {
   ProfessionSelectField,
   SectorField,
   SpecialtyField,
-  WebsiteField,
 } from '../fields/registry-form'
 
 export const registryMembers: CollectionConfig = {
@@ -36,7 +35,6 @@ export const registryMembers: CollectionConfig = {
     LastNameField,
     EmailField,
     PrimaryPhoneNumberField,
-    WebsiteField,
     PreferredContactMethodField,
     PracticeInfoField,
     LanguagesRelationshipField,

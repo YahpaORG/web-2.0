@@ -60,10 +60,11 @@ export default function TempRegistryResults({ query }: SearchResultsProps) {
                   {result.workplace || 'Private Practice'}
                 </span>
               </div>
-              <div className="flex items-start gap-2">
+              {result.address && <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary" />
                 <span>{result.address || 'Address not listed'}</span>
               </div>
+              }
             </div>
 
             <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">

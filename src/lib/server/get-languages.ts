@@ -8,6 +8,8 @@ export const getLanguages = async () => {
 
   const data = await payload.find({
     collection: 'languages',
+    limit:30,
+    sort: 'autonym',
   })
   return data
 }

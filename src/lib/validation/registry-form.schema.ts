@@ -15,7 +15,6 @@ export const SECTORS = [
 export const CONTACT_METHODS = [
   { label: 'By Email', value: 'email' },
   { label: 'By Phone', value: 'phone' },
-  { label: 'Website', value: 'website' },
   { label: 'Other', value: 'other' },
 ] as const
 
@@ -69,33 +68,41 @@ export const ORDERS = [
 ] as const
 
 export const RegistryFormSchema = z.object({
-  // Personal info
+  // Personal info — required
   firstName: z.string().min(1, { message: 'Please enter your first name.' }),
   lastName: z.string().min(1, { message: 'Please enter your last name.' }),
-  languages: z.array(z.string()).min(1, {
-    message: 'You have to select at least one language.',
-  }),
+  languages: z.array(z.string()).min(1, { message: 'Please select at least one language.' }),
 
-  // Contact info
-  email: z.string().email(),
+  // Contact info — optional, but at least one contact method should be provided
+  email: z.string().email().optional(),
   primaryPhoneNumber: z
-    .string({ message: 'Your phone number is required.' })
-    .refine(validator.isMobilePhone, { message: 'Please provide a valid phone number.' }),
-  preferredContactMethod: z.enum(['email', 'phone', 'website', 'other']),
-  website: z.string().url({ message: 'Please provide a valid URL.' }).optional(),
+    .string()
+    .refine((val) => !val || validator.isMobilePhone(val), {
+      message: 'Please provide a valid phone number.',
+    })
+    .optional(),
+  preferredContactMethod: z.enum(['email', 'phone', 'website', 'other']).optional(),
 
-  // Practice info
+  // Practice info — fully optional group
   practiceInfo: z.object({
-    name: z.string().min(1, { message: 'Please enter your clinic or hospital name.' }),
-    address: z.string().min(1, { message: 'Please enter your practice address.' }),
-    email: z.string().email({ message: 'Please enter a valid practice email.' }).optional(),
+    name: z.string().optional(),
+    address: z.string().optional(),
+    email: z.string().email({ message: 'Please provide a valid practice email.' }).optional().or(z.literal('')),
     phone: z
       .string()
-      .refine(validator.isMobilePhone, { message: 'Please provide a valid phone number.' })
+      .refine((val) => !val || validator.isMobilePhone(val), {
+        message: 'Please provide a valid phone number.',
+      })
       .optional(),
-  }),
+    website: z
+    .string()
+    .refine((val) => !val || validator.isURL(val), {
+      message: 'Please provide a valid URL.',
+    })
+    .optional(),
+  }).optional(),
 
-  // Professional info
+  // Professional info — required
   jobStatus: z.enum(['practitioner', 'student'], {
     message: 'Please select your job status.',
   }),
@@ -110,10 +117,12 @@ export const RegistryFormSchema = z.object({
   professionalOrder: z.enum([
     'ooaq', 'ocq', 'oeq', 'ondq', 'psychologues', 'opiq', 'oppq',
     'podiatres', 'oiiq', 'pharmaciens', 'dentistes', 'none', 'other',
-  ]),
+  ]).default('none'),
   graduationDate: z.string().optional(),
-  sector: z.enum(['public', 'private', 'other']),
-  isAcceptingPatients: z.enum(['yes', 'no', 'yes_temporary', 'no_later', 'yes_private']),
+  sector: z.enum(['public', 'private', 'other']).default('private'),
+  isAcceptingPatients: z.enum(['yes', 'no', 'yes_temporary', 'no_later', 'yes_private'], {
+    message: 'Please indicate if you are accepting new patients.',
+  }),
   newPatientAcceptanceDate: z.string().optional(),
   licenseNumber: z.string().min(1, { message: 'Please enter your license number.' }),
 
@@ -121,7 +130,13 @@ export const RegistryFormSchema = z.object({
   consentToWebsite: z.literal<boolean>(true, {
     message: 'You must consent to being listed on the YAHPA website.',
   }),
-  consentToReferrals: z.boolean(),
-})
+  consentToReferrals: z.boolean().optional(),
+}).refine(
+  (data) =>  data.practiceInfo?.website || data.practiceInfo?.email || data.practiceInfo?.phone,
+  {
+    message: 'Please provide at least one way for patients to contact you.',
+    path: ['practiceInfo'],
+  }
+)
 
 export type RegistryFormValues = z.infer<typeof RegistryFormSchema>
