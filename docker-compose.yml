@@ -1,3 +1,4 @@
+
 services:
   payload:
     image: node:18-alpine
